@@ -20,7 +20,7 @@ export class JsValue {
   /**
    * Js原始值
    */
-  public get Value() {
+  public get SrcValue() {
     return this.value;
   }
 

@@ -22,6 +22,20 @@ export class JsField {
   }
 
   /**
+   * Js字段类型
+   */
+  public get Type() {
+    return this.value.Type;
+  }
+
+  /**
+   * Js字段原始值
+   */
+  public get SrcValue() {
+    return this.value.SrcValue;
+  }
+
+  /**
    * 构造函数
    * @param name Js字段名称
    * @param value Js字段值
