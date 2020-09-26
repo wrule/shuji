@@ -11,5 +11,8 @@
   "repository": "https://github.com/wrule/shuji.git",
   "author": "jimao <1982775886@qq.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "hasha": "^5.2.0"
+  }
 }
