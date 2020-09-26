@@ -21,6 +21,11 @@ export class JsField {
     return this.value;
   }
 
+  /**
+   * 构造函数
+   * @param name Js字段名称
+   * @param value Js字段值
+   */
   public constructor(
     name: string,
     value: any,
