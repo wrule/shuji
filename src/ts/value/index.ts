@@ -11,6 +11,8 @@ export class TsValue {
   private arrayValues: TsValue[] = [];
   private hash: string = '';
 
+  private structDesc: string = '';
+
   public get Type() {
     return this.type;
   }
@@ -19,12 +21,16 @@ export class TsValue {
     return this.hash;
   }
 
-  private arrayHash(values: TsValue[]) {
-    return Hash(values.map((item) => item.Hash).join(','));
+  public get StructDesc() {
+    return this.structDesc;
   }
 
-  private objectHash(fields: TsField[]) {
-    return Hash(fields.map((item) => `${item.Name}:${item.Hash}`).join(','));
+  private arrayStructDesc(values: TsValue[]) {
+    return values.map((item) => item.Hash).join(',');
+  }
+
+  private objectStructDesc(fields: TsField[]) {
+    return fields.map((item) => `${item.Name}:${item.Hash}`).join(',');
   }
 
   public constructor(value: JsValue) {
@@ -32,27 +38,31 @@ export class TsValue {
     switch (this.value.Type) {
       case JsType.Undefined: {
         this.type = TsType.Undefined;
+        this.structDesc = TsType.Undefined.toString();
         this.hash = TsType.Undefined.toString();
       } break;
       case JsType.Null: {
         this.type = TsType.Null;
+        this.structDesc = TsType.Null.toString();
         this.hash = TsType.Null.toString();
       } break;
       case JsType.Boolean: {
         this.type = TsType.Boolean;
+        this.structDesc = TsType.Boolean.toString();
         this.hash = TsType.Boolean.toString();
       } break;
       case JsType.Number: {
         this.type = TsType.Number;
+        this.structDesc = TsType.Number.toString();
         this.hash = TsType.Number.toString();
       } break;
       case JsType.String: {
         this.type = TsType.String;
-        this.hash = TsType.String.toString();
+        this.structDesc = TsType.String.toString();
       } break;
       case JsType.Date: {
         this.type = TsType.Date;
-        this.hash = TsType.Date.toString();
+        this.structDesc = TsType.Date.toString();
       } break;
       case JsType.Object: {
         this.type = TsType.Object;
@@ -60,17 +70,17 @@ export class TsValue {
         this.objectFields = this.value.ObjectFields
           .map((item) => new TsField(item))
           .sort((a, b) => a.Name.localeCompare(b.Name));
-        this.hash = this.objectHash(this.objectFields);
+        this.structDesc = this.objectStructDesc(this.objectFields);
       } break;
       case JsType.Array: {
         this.type = TsType.Array;
         this.arrayValues = this.value.ArrayValues
           .map((item) => new TsValue(item));
-        this.hash = this.arrayHash(this.arrayValues);
+        this.structDesc = this.arrayStructDesc(this.arrayValues);
       } break;
       default: {
         this.type = TsType.Unknow;
-        this.hash = TsType.Unknow.toString();
+        this.structDesc = TsType.Unknow.toString();
       }
     }
   }
