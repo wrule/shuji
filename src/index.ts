@@ -1,1 +1,6 @@
-console.log('你好,世界');
+const jsObj: any = {
+  name: '小明',
+  age: 27,
+  address: '中国',
+};
+
