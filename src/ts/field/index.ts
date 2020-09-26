@@ -9,8 +9,8 @@ export class TsField {
     return this.name;
   }
 
-  public get Hash() {
-    return this.value.Hash;
+  public get StructHash() {
+    return this.value.StructHash;
   }
 
   public constructor(field: JsField) {

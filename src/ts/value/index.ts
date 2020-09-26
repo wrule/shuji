@@ -9,28 +9,34 @@ export class TsValue {
   private value: JsValue;
   private objectFields: TsField[] = [];
   private arrayValues: TsValue[] = [];
-  private hash: string = '';
 
+  private structHash: string = '';
   private structDesc: string = '';
 
   public get Type() {
     return this.type;
   }
 
-  public get Hash() {
-    return this.hash;
+  /**
+   * 类型的结构Hash
+   */
+  public get StructHash() {
+    return this.structHash;
   }
 
+  /**
+   * 类型的结构描述
+   */
   public get StructDesc() {
     return this.structDesc;
   }
 
   private arrayStructDesc(values: TsValue[]) {
-    return values.map((item) => item.Hash).join(',');
+    return values.map((item) => item.StructHash).join(',');
   }
 
   private objectStructDesc(fields: TsField[]) {
-    return fields.map((item) => `${item.Name}:${item.Hash}`).join(',');
+    return fields.map((item) => `${item.Name}:${item.StructHash}`).join(',');
   }
 
   public constructor(value: JsValue) {
@@ -39,22 +45,22 @@ export class TsValue {
       case JsType.Undefined: {
         this.type = TsType.Undefined;
         this.structDesc = TsType.Undefined.toString();
-        this.hash = TsType.Undefined.toString();
+        this.structHash = TsType.Undefined.toString();
       } break;
       case JsType.Null: {
         this.type = TsType.Null;
         this.structDesc = TsType.Null.toString();
-        this.hash = TsType.Null.toString();
+        this.structHash = TsType.Null.toString();
       } break;
       case JsType.Boolean: {
         this.type = TsType.Boolean;
         this.structDesc = TsType.Boolean.toString();
-        this.hash = TsType.Boolean.toString();
+        this.structHash = TsType.Boolean.toString();
       } break;
       case JsType.Number: {
         this.type = TsType.Number;
         this.structDesc = TsType.Number.toString();
-        this.hash = TsType.Number.toString();
+        this.structHash = TsType.Number.toString();
       } break;
       case JsType.String: {
         this.type = TsType.String;
