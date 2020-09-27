@@ -18,21 +18,13 @@ var root1 = {
   name: "a",
   children: [
     { name: "b" },
-    { name: "c" },
-    { name: "d" },
-    { name: "e" },
-    { name: "f" },
   ]
 }
 
 var root2 = {
   name: "a",
   children: [
-    { name: "b" },
     { name: "c" },
-    { name: "d" },
-    { name: "e" },
-    { name: "0" },
   ]
 }
 
@@ -45,8 +37,8 @@ jq.distance({
   lfn: function(node: any){ return node.name; },
   cfn: function(node: any){ return node.children; }
 }, {
-  p:2,
-  q:3,
+  p: 2,
+  q: 3,
   depth:10,
 }, function (result: any) {
   console.log(result.distance);
