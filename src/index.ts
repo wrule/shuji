@@ -1,13 +1,54 @@
-import { JsField } from "./js/field";
-import { TsField } from "./ts/field";
+// import { JsField } from "./js/field";
+// import { TsField } from "./ts/field";
 
-const jsObj: any = {
-  name: '小明',
-  age: '233',
-  address: '中国',
-};
+// const jsObj: any = {
+//   name: '小明',
+//   age: '233',
+//   address: '中国',
+// };
 
-const field = new JsField('ni', jsObj);
-const ts = new TsField(field);
+// const field = new JsField('ni', jsObj);
+// const ts = new TsField(field);
 
-console.log(ts.Hash);
+// console.log(ts.StructHash);
+
+import { jqgram as jq } from 'jqgram';
+
+var root1 = {
+  name: "a",
+  children: [
+    { name: "b" },
+    { name: "c" },
+    { name: "d" },
+    { name: "e" },
+    { name: "f" },
+  ]
+}
+
+var root2 = {
+  name: "a",
+  children: [
+    { name: "b" },
+    { name: "c" },
+    { name: "d" },
+    { name: "e" },
+    { name: "0" },
+  ]
+}
+
+jq.distance({
+  root: root1,
+  lfn: function(node: any){ return node.name; },
+  cfn: function(node: any){ return node.children; }
+}, {
+  root: root2,
+  lfn: function(node: any){ return node.name; },
+  cfn: function(node: any){ return node.children; }
+}, {
+  p:2,
+  q:3,
+  depth:10,
+}, function (result: any) {
+  console.log(result.distance);
+});
+
