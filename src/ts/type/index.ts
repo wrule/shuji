@@ -35,6 +35,14 @@ export enum TsType {
    */
   Array = 'Array',
   /**
+   * Ts 元组类型
+   */
+  Tuple = 'Tuple',
+  /**
+   * Ts 联合类型
+   */
+  Unoin = 'Unoin',
+  /**
    * Ts 未知的类型
    */
   Unknow = 'Unknow',
