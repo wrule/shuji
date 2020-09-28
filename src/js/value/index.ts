@@ -6,7 +6,6 @@ import { JsField } from '../field';
  */
 export class JsValue {
   private type: JsType;
-  private value: any;
   private objectFields: JsField[] = [];
   private arrayValues: JsValue[] = [];
 
@@ -15,13 +14,6 @@ export class JsValue {
    */
   public get Type() {
     return this.type;
-  }
-
-  /**
-   * Js原始值
-   */
-  public get SrcValue() {
-    return this.value;
   }
 
   /**
@@ -43,8 +35,7 @@ export class JsValue {
    * @param value Js值
    */
   public constructor(value: any) {
-    this.value = value;
-    const protName = Object.prototype.toString.call(this.value);
+    const protName = Object.prototype.toString.call(value);
     switch (protName) {
       case '[object Undefined]': this.type = JsType.Undefined; break;
       case '[object Null]': this.type = JsType.Null; break;
@@ -54,11 +45,11 @@ export class JsValue {
       case '[object Date]': this.type = JsType.Date; break;
       case '[object Object]': {
         this.type = JsType.Object;
-        this.objectFields = Object.entries(this.value).map((ary: [string, any]) => new JsField(ary[0], ary[1]));
+        this.objectFields = Object.entries(value).map((ary: [string, any]) => new JsField(ary[0], ary[1]));
       } break;
       case '[object Array]': {
         this.type = JsType.Array;
-        this.arrayValues = (this.value as any[]).map((item) => new JsValue(item));
+        this.arrayValues = (value as any[]).map((item) => new JsValue(item));
       } break;
       default: this.type = JsType.Unknow;
     }
