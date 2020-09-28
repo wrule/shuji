@@ -1,5 +1,6 @@
 import { TS } from '../index';
 import { TsType } from '../type';
+import { TsUnion } from '../union';
 
 export class TsNull extends TS {
   public get Type() {
@@ -16,5 +17,13 @@ export class TsNull extends TS {
 
   public Contain(ts: TS): boolean {
     return ts.Type === this.Type;
+  }
+
+  public Merge(ts: TS): TS {
+    if (ts.Type === this.Type) {
+      return this;
+    } else {
+      return new TsUnion([this, ts]);
+    }
   }
 }

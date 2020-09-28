@@ -1,5 +1,6 @@
 import { TS } from '../index';
 import { TsType } from '../type';
+import { TsUnion } from '../union';
 
 export class TsTuple extends TS {
   public get Type() {
@@ -30,6 +31,14 @@ export class TsTuple extends TS {
 
   private get Members() {
     return this.members;
+  }
+
+  public Merge(ts: TS): TS {
+    if (ts.Type === this.Type) {
+      return this;
+    } else {
+      return new TsUnion([this, ts]);
+    }
   }
 
   public constructor(

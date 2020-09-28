@@ -1,5 +1,6 @@
 import { TS } from '../index';
 import { TsType } from '../type';
+import { TsUnion } from '../union';
 
 export class TsObject extends TS {
   public get Type() {
@@ -34,6 +35,14 @@ export class TsObject extends TS {
 
   public get Fields() {
     return this.fields;
+  }
+
+  public Merge(ts: TS): TS {
+    if (ts.Type === this.Type) {
+      return this;
+    } else {
+      return new TsUnion([this, ts]);
+    }
   }
 
   public constructor(

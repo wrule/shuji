@@ -9,5 +9,5 @@ export abstract class TS {
 
   public abstract Contain(ts: TS): boolean;
 
-  // public abstract Merge(ts: TS): TS;
+  public abstract Merge(ts: TS): TS;
 }

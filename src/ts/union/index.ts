@@ -26,6 +26,14 @@ export class TsUnion extends TS {
     return this.members;
   }
 
+  public Merge(ts: TS): TS {
+    if (ts.Type === this.Type) {
+      return this;
+    } else {
+      return new TsUnion([this, ts]);
+    }
+  }
+
   public constructor(
     private members: TS[],
   ) {
