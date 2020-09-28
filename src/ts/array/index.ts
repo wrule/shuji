@@ -9,4 +9,8 @@ export class TsArray extends TS {
   public get IsBasic() {
     return false;
   }
+
+  public Compare(ts: TS): number {
+    return 0;
+  }
 }
