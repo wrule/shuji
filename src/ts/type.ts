@@ -41,7 +41,7 @@ export enum TsType {
   /**
    * Ts 联合类型
    */
-  Unoin = 'Unoin',
+  Union = 'Union',
   /**
    * Ts 未知的类型
    */
