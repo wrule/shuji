@@ -6,4 +6,8 @@ export abstract class TS {
   public abstract IsBasic: boolean;
 
   public abstract Compare(ts: TS): number;
+
+  public abstract Contain(ts: TS): boolean;
+
+  // public abstract Merge(ts: TS): TS;
 }

@@ -13,4 +13,8 @@ export class TsNumber extends TS {
   public Compare(ts: TS): number {
     return ts.Type === this.Type ? 1 : 0;
   }
+
+  public Contain(ts: TS): boolean {
+    return ts.Type === this.Type;
+  }
 }
