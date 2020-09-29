@@ -20,7 +20,12 @@ export class TsArray extends TS {
   }
 
   public Compare(ts: TS): number {
-    return 0;
+    if (ts.Type === TsType.Array) {
+      const array = ts as TsArray;
+      return this.ElementType.Compare(array.ElementType);
+    } else {
+      return 0;
+    }
   }
 
   public Contain(ts: TS): boolean {

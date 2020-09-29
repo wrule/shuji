@@ -23,12 +23,21 @@ export class TsObject extends TS {
     if (ts.Type === TsType.Object) {
       const object = ts as TsObject;
       const srcKeys = Array.from(this.Fields.keys());
-      const dstKeys = Array.from(object.Fields.keys());
-      const bothKeys = srcKeys.filter((key) => dstKeys.some((item) => item === key));
-      const keysLength = srcKeys.length > dstKeys.length ? srcKeys.length : dstKeys.length;
-      // const allKeys = Array.from(new Set(srcKeys.concat(dstKeys)));
-  
-      return 1;
+      const bothKeys = srcKeys.filter((key) => object.Fields.has(key));
+      if (bothKeys.length > 0) {
+        const dstKeysCount = object.Fields.size;
+        const keysCount = srcKeys.length > dstKeysCount ? srcKeys.length : dstKeysCount;
+        const passRate = bothKeys.length / keysCount;
+        let sum = 0;
+        bothKeys.forEach((key) => {
+          const srcType = this.Fields.get(key) as TS;
+          const dstType = object.Fields.get(key) as TS;
+          sum += (0.2 + srcType.Compare(dstType) * 0.8);
+        });
+        return (sum / bothKeys.length) * passRate;
+      } else {
+        return 0;
+      }
     } else {
       return 0;
     }
