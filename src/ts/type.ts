@@ -3,6 +3,10 @@
  */
 export enum TsType {
   /**
+   * Ts 未知的类型
+   */
+  Unknow = 'Unknow',
+  /**
    * Ts Undefined类型
    */
   Undefined = 'Undefined',
@@ -42,8 +46,4 @@ export enum TsType {
    * Ts 联合类型
    */
   Union = 'Union',
-  /**
-   * Ts 未知的类型
-   */
-  Unknow = 'Unknow',
 }

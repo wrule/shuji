@@ -42,7 +42,8 @@ export class TsArray extends TS {
 
   public Merge(ts: TS): TS {
     if (ts.Type === this.Type) {
-      return this;
+      const array = ts as TsArray;
+      return new TsArray(this.ElementType.Merge(array.ElementType));
     } else {
       return new TsUnion([this, ts]);
     }
