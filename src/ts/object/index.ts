@@ -20,7 +20,18 @@ export class TsObject extends TS {
   }
 
   public Compare(ts: TS): number {
-    return 0;
+    if (ts.Type === TsType.Object) {
+      const object = ts as TsObject;
+      const srcKeys = Array.from(this.Fields.keys());
+      const dstKeys = Array.from(object.Fields.keys());
+      const bothKeys = srcKeys.filter((key) => dstKeys.some((item) => item === key));
+      const keysLength = srcKeys.length > dstKeys.length ? srcKeys.length : dstKeys.length;
+      // const allKeys = Array.from(new Set(srcKeys.concat(dstKeys)));
+  
+      return 1;
+    } else {
+      return 0;
+    }
   }
 
   public Contain(ts: TS): boolean {
