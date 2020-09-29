@@ -18,14 +18,16 @@ export abstract class TS {
   public abstract StructHash: string;
 
   /**
-   * 判断两个类型是否相等
+   * 判断两个类型是否完全相等
    * @param ts 目标类型
+   * @returns 是否完全相等
    */
   public abstract Equal(ts: TS): boolean;
 
   /**
    * 判断此类型是否包含目标类型
    * @param ts 目标类型
+   * @returns 是否包含
    */
   public abstract Contain(ts: TS): boolean;
 
