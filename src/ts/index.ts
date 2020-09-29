@@ -1,4 +1,5 @@
 import { TsType } from "./type";
+import { TsUnion } from "./union";
 
 export abstract class TS {
   /**
@@ -41,4 +42,25 @@ export abstract class TS {
    * @returns 合并之后的类型
    */
   public abstract Merge(ts: TS): TS;
+
+  /**
+   * 类型更新
+   * @param ts 目标类型
+   * @returns 更新之后的类型
+   */
+  public Update(ts: TS): TS {
+    if (this.Equal(ts)) {
+      return this;
+    } else {
+      if (this.Contain(ts)) {
+        return this;
+      } else {
+        if (this.Compare(ts) > 0.1) {
+          return this.Merge(ts);
+        } else {
+          return new TsUnion([this, ts]);
+        }
+      }
+    }
+  }
 }

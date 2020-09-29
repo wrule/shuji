@@ -6,6 +6,14 @@ export class TsUnion extends TS {
     return TsType.Union;
   }
 
+  public get StructHash() {
+    return TsType.Union.toString();
+  }
+
+  public Equal(ts: TS) {
+    return this.StructHash === ts.StructHash;
+  }
+
   public get IsBasic() {
     return false;
   }

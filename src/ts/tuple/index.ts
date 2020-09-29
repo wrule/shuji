@@ -7,6 +7,14 @@ export class TsTuple extends TS {
     return TsType.Tuple;
   }
 
+  public get StructHash() {
+    return TsType.Tuple.toString();
+  }
+
+  public Equal(ts: TS) {
+    return this.StructHash === ts.StructHash;
+  }
+
   public get IsBasic() {
     return false;
   }

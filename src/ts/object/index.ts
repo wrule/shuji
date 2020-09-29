@@ -7,6 +7,14 @@ export class TsObject extends TS {
     return TsType.Object;
   }
 
+  public get StructHash() {
+    return TsType.Object.toString();
+  }
+
+  public Equal(ts: TS) {
+    return this.StructHash === ts.StructHash;
+  }
+
   public get IsBasic() {
     return false;
   }
