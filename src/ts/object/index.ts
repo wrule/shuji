@@ -1,6 +1,7 @@
 import { TS } from '../index';
 import { TsType } from '../type';
 import { TsUnion } from '../union';
+import { TsUndefined } from '../undefined';
 
 export class TsObject extends TS {
   public get Type() {
@@ -67,7 +68,17 @@ export class TsObject extends TS {
 
   public Merge(ts: TS): TS {
     if (ts.Type === this.Type) {
-      return this;
+      const object = ts as TsObject;
+      const allKeys = Array.from(new Set(
+        Array.from(this.Fields.keys())
+          .concat(Array.from(object.Fields.keys()))
+      ));
+      const undefinedType = new TsUndefined();
+      return new TsObject(new Map(allKeys.map((key) => {
+        const srcType = this.Fields.get(key) || undefinedType;
+        const dstType = object.Fields.get(key) || undefinedType;
+        return [key, srcType.Merge(dstType)];
+      })));
     } else {
       return new TsUnion([this, ts]);
     }
