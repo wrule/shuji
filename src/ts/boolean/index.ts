@@ -7,8 +7,16 @@ export class TsBoolean extends TS {
     return TsType.Boolean;
   }
 
+  public get StructHash() {
+    return TsType.Boolean.toString();
+  }
+
   public get IsBasic() {
     return true;
+  }
+
+  public Equal(ts: TS) {
+    return this.StructHash === ts.StructHash;
   }
 
   public Compare(ts: TS): number {

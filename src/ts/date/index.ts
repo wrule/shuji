@@ -7,6 +7,14 @@ export class TsDate extends TS {
     return TsType.Date;
   }
 
+  public get StructHash() {
+    return TsType.Date.toString();
+  }
+
+  public Equal(ts: TS) {
+    return this.StructHash === ts.StructHash;
+  }
+
   public get IsBasic() {
     return true;
   }

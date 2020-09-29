@@ -7,6 +7,14 @@ export class TsNull extends TS {
     return TsType.Null;
   }
 
+  public get StructHash() {
+    return TsType.Null.toString();
+  }
+
+  public Equal(ts: TS) {
+    return this.StructHash === ts.StructHash;
+  }
+
   public get IsBasic() {
     return true;
   }

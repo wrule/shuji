@@ -7,6 +7,14 @@ export class TsUndefined extends TS {
     return TsType.Undefined;
   }
 
+  public get StructHash() {
+    return TsType.Undefined.toString();
+  }
+
+  public Equal(ts: TS) {
+    return this.StructHash === ts.StructHash;
+  }
+
   public get IsBasic() {
     return true;
   }

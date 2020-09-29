@@ -7,6 +7,14 @@ export class TsUnknow extends TS {
     return TsType.Unknow;
   }
 
+  public get StructHash() {
+    return TsType.Unknow.toString();
+  }
+
+  public Equal(ts: TS) {
+    return this.StructHash === ts.StructHash;
+  }
+
   public get IsBasic() {
     return true;
   }
