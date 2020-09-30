@@ -1,5 +1,6 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
+import { Hash } from '../../utils';
 
 export class StructUnion extends Struct {
   public get Members() {
@@ -10,9 +11,13 @@ export class StructUnion extends Struct {
     return StructType.Union;
   }
 
-  // TODO
-  public get Hash() {
-    return StructType.Union.toString();
+  public CalcHash() {
+    return Hash(
+      this.Members
+        .map((member) => member.Hash)
+        .sort((a, b) => a.localeCompare(b))
+        .join('|')
+    );
   }
 
   public get IsBasic() {
