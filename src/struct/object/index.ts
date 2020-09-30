@@ -57,9 +57,9 @@ export class StructObject extends Struct {
         const passRate = bothKeys.length / keysCount;
         let sum = 0;
         bothKeys.forEach((key) => {
-          const srcType = this.Fields.get(key) as Struct;
-          const dstType = object.Fields.get(key) as Struct;
-          sum += (0.2 + srcType.Compare(dstType) * 0.8);
+          const srcStruct = this.Fields.get(key) as Struct;
+          const dstStruct = object.Fields.get(key) as Struct;
+          sum += (0.2 + srcStruct.Compare(dstStruct) * 0.8);
         });
         return (sum / bothKeys.length) * passRate;
       } else {
@@ -79,9 +79,9 @@ export class StructObject extends Struct {
       ));
       const undefinedType = new StructUndefined();
       return new StructObject(new Map(allKeys.map((key) => {
-        const srcType = this.Fields.get(key) || undefinedType;
-        const dstType = object.Fields.get(key) || undefinedType;
-        return [key, srcType.Merge(dstType)];
+        const srcStruct = this.Fields.get(key) || undefinedType;
+        const dstStruct = object.Fields.get(key) || undefinedType;
+        return [key, srcStruct.Merge(dstStruct)];
       })));
     } else {
       return new StructUnion([this, ts]);
