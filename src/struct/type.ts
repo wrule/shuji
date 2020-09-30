@@ -1,49 +1,49 @@
 /**
- * Ts值类型
+ * Struct值类型
  */
 export enum StructType {
   /**
-   * Ts 未知的类型
+   * Struct 未知的类型
    */
   Unknow = 'Unknow',
   /**
-   * Ts Undefined类型
+   * Struct Undefined类型
    */
   Undefined = 'Undefined',
   /**
-   * Ts Null类型
+   * Struct Null类型
    */
   Null = 'Null',
   /**
-   * Ts Boolean类型
+   * Struct Boolean类型
    */
   Boolean = 'Boolean',
   /**
-   * Ts Number类型
+   * Struct Number类型
    */
   Number = 'Number',
   /**
-   * Ts String类型
+   * Struct String类型
    */
   String = 'String',
   /**
-   * Ts Date类型
+   * Struct Date类型
    */
   Date = 'Date',
   /**
-   * Ts 对象类型
+   * Struct 对象类型
    */
   Object = 'Object',
   /**
-   * Ts 数组类型
+   * Struct 数组类型
    */
   Array = 'Array',
   /**
-   * Ts 元组类型
+   * Struct 元组类型
    */
   Tuple = 'Tuple',
   /**
-   * Ts 联合类型
+   * Struct 联合类型
    */
   Union = 'Union',
 }

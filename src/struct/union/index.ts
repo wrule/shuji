@@ -1,7 +1,7 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
 
-export class TsUnion extends Struct {
+export class StructUnion extends Struct {
   public get Type() {
     return StructType.Union;
   }
@@ -24,7 +24,7 @@ export class TsUnion extends Struct {
 
   public Contain(ts: Struct): boolean {
     if (ts.Type === StructType.Union) {
-      return (ts as TsUnion).Members.every((member) => this.Contain(member));
+      return (ts as StructUnion).Members.every((member) => this.Contain(member));
     } else {
       return this.Members.some((member) => member.Contain(ts));
     }
@@ -38,7 +38,7 @@ export class TsUnion extends Struct {
     if (ts.Type === this.Type) {
       return this;
     } else {
-      return new TsUnion([this, ts]);
+      return new StructUnion([this, ts]);
     }
   }
 

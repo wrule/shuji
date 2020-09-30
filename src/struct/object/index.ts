@@ -1,9 +1,9 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
-import { TsUnion } from '../union';
-import { TsUndefined } from '../undefined';
+import { StructUnion } from '../union';
+import { StructUndefined } from '../undefined';
 
-export class TsObject extends Struct {
+export class StructObject extends Struct {
   public get Type() {
     return StructType.Object;
   }
@@ -22,7 +22,7 @@ export class TsObject extends Struct {
 
   public Compare(ts: Struct): number {
     if (ts.Type === StructType.Object) {
-      const object = ts as TsObject;
+      const object = ts as StructObject;
       const srcKeys = Array.from(this.Fields.keys());
       const bothKeys = srcKeys.filter((key) => object.Fields.has(key));
       if (bothKeys.length > 0) {
@@ -46,7 +46,7 @@ export class TsObject extends Struct {
 
   public Contain(ts: Struct): boolean {
     if (ts.Type === StructType.Object) {
-      const object = ts as TsObject;
+      const object = ts as StructObject;
       return Array.from(object.Fields).every((ary) => {
         const key = ary[0];
         const dstType = ary[1];
@@ -68,19 +68,19 @@ export class TsObject extends Struct {
 
   public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
-      const object = ts as TsObject;
+      const object = ts as StructObject;
       const allKeys = Array.from(new Set(
         Array.from(this.Fields.keys())
           .concat(Array.from(object.Fields.keys()))
       ));
-      const undefinedType = new TsUndefined();
-      return new TsObject(new Map(allKeys.map((key) => {
+      const undefinedType = new StructUndefined();
+      return new StructObject(new Map(allKeys.map((key) => {
         const srcType = this.Fields.get(key) || undefinedType;
         const dstType = object.Fields.get(key) || undefinedType;
         return [key, srcType.Merge(dstType)];
       })));
     } else {
-      return new TsUnion([this, ts]);
+      return new StructUnion([this, ts]);
     }
   }
 

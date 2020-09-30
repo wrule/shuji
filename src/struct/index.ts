@@ -1,5 +1,5 @@
 import { StructType } from "./type";
-import { TsUnion } from "./union";
+import { StructUnion } from "./union";
 
 export abstract class Struct {
   /**
@@ -60,7 +60,7 @@ export abstract class Struct {
         if (this.Compare(ts) > 0.1) {
           return this.Merge(ts);
         } else {
-          return new TsUnion([this, ts]);
+          return new StructUnion([this, ts]);
         }
       }
     }

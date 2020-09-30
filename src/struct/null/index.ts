@@ -1,8 +1,8 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
-import { TsUnion } from '../union';
+import { StructUnion } from '../union';
 
-export class TsNull extends Struct {
+export class StructNull extends Struct {
   public get Type() {
     return StructType.Null;
   }
@@ -31,7 +31,7 @@ export class TsNull extends Struct {
     if (ts.Type === this.Type) {
       return this;
     } else {
-      return new TsUnion([this, ts]);
+      return new StructUnion([this, ts]);
     }
   }
 }

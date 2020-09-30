@@ -1,8 +1,8 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
-import { TsUnion } from '../union';
+import { StructUnion } from '../union';
 
-export class TsTuple extends Struct {
+export class StructTuple extends Struct {
   public get Type() {
     return StructType.Tuple;
   }
@@ -25,7 +25,7 @@ export class TsTuple extends Struct {
 
   public Contain(ts: Struct): boolean {
     if (ts.Type === StructType.Tuple) {
-      const tuple = ts as TsTuple;
+      const tuple = ts as StructTuple;
       if (this.Members.length >= tuple.Members.length) {
         return tuple.Members
           .every((member, index) => this.Members[index].Contain(member));
@@ -45,7 +45,7 @@ export class TsTuple extends Struct {
     if (ts.Type === this.Type) {
       return this;
     } else {
-      return new TsUnion([this, ts]);
+      return new StructUnion([this, ts]);
     }
   }
 

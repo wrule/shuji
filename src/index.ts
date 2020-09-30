@@ -1,5 +1,5 @@
 // import { JsField } from "./js/field";
-// import { TsField } from "./ts/field";
+// import { StructField } from "./ts/field";
 
 // const jsObj: any = {
 //   name: '小明',
@@ -8,7 +8,7 @@
 // };
 
 // const field = new JsField('ni', jsObj);
-// const ts = new TsField(field);
+// const ts = new StructField(field);
 
 // console.log(ts.StructHash);
 
