@@ -2,6 +2,7 @@ import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructUndefined } from '../undefined';
+import { Hash } from '../../utils';
 
 export class StructObject extends Struct {
   /**
@@ -15,9 +16,13 @@ export class StructObject extends Struct {
     return StructType.Object;
   }
 
-  // TODO
-  public get Hash() {
-    return StructType.Object.toString();
+  public CalcHash() {
+    return Hash(
+      Array.from(this.Fields)
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map((ary) => `${ary[0]}:${ary[1].Hash}`)
+      .join(',')
+    );
   }
 
   public get IsBasic() {
