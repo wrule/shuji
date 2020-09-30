@@ -47,7 +47,7 @@ export class StructObject extends Struct {
   }
 
   public Compare(ts: Struct): number {
-    if (ts.Type === StructType.Object) {
+    if (ts.Type === this.Type) {
       const object = ts as StructObject;
       const srcKeys = Array.from(this.Fields.keys());
       const bothKeys = srcKeys.filter((key) => object.Fields.has(key));
