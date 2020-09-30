@@ -5,6 +5,8 @@ import { StructUnion } from './union';
  * 结构抽象类
  */
 export abstract class Struct {
+  private hash: string = '';
+
   /**
    * 结构的类型
    */
@@ -16,9 +18,9 @@ export abstract class Struct {
   public abstract IsBasic: boolean;
 
   /**
-   * 结构Hash
+   * 计算结构Hash的方法
    */
-  public abstract Hash: string;
+  public abstract CalcHash(): string;
 
   /**
    * 判断两个结构是否完全相等
@@ -67,5 +69,9 @@ export abstract class Struct {
         }
       }
     }
+  }
+
+  public constructor() {
+    this.hash = this.CalcHash();
   }
 }
