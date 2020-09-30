@@ -15,7 +15,7 @@ export class StructObject extends Struct {
     return StructType.Object;
   }
 
-  //TODO
+  // TODO
   public get Hash() {
     return StructType.Object.toString();
   }

@@ -1,56 +1,66 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructUnion } from '../union';
+import { StructTuple } from '../tuple';
 
 export class StructArray extends Struct {
+  public get ElementStruct() {
+    return this.elementStruct;
+  }
+
   public get Type() {
     return StructType.Array;
   }
 
+  // TODO
   public get Hash() {
     return StructType.Array.toString();
-  }
-
-  public Equal(ts: Struct) {
-    return this.Hash === ts.Hash;
   }
 
   public get IsBasic() {
     return false;
   }
 
-  public Compare(ts: Struct): number {
-    if (ts.Type === StructType.Array) {
-      const array = ts as StructArray;
-      return this.ElementType.Compare(array.ElementType);
-    } else {
-      return 0;
-    }
+  public Equal(ts: Struct) {
+    return this.Hash === ts.Hash;
   }
 
+  // TODO Tuple如何考虑
   public Contain(ts: Struct): boolean {
-    if (ts.Type === StructType.Array) {
-      return this.ElementType.Contain((ts as StructArray).ElementType);
+    if (ts.Type === this.Type) {
+      const array = ts as StructArray;
+      return this.ElementStruct.Contain(array.ElementStruct);
+    } else if (ts.Type === StructType.Tuple) {
+      const tuple = ts as StructTuple;
+      // TODO
+      return false;
     } else {
       return false;
     }
   }
 
-  public get ElementType() {
-    return this.elementType;
+  // TODO Tuple如何考虑
+  public Compare(ts: Struct): number {
+    if (ts.Type === this.Type) {
+      const array = ts as StructArray;
+      return this.ElementStruct.Compare(array.ElementStruct);
+    } else {
+      return 0;
+    }
   }
 
+  // TODO 如何合并联合类型
   public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;
-      return new StructArray(this.ElementType.Merge(array.ElementType));
+      return new StructArray(this.ElementStruct.Merge(array.ElementStruct));
     } else {
       return new StructUnion([this, ts]);
     }
   }
 
   public constructor(
-    private elementType: Struct,
+    private elementStruct: Struct,
   ) {
     super();
   }
