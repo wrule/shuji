@@ -2,6 +2,7 @@ import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructArray } from '../array';
+import { StructUndefined } from '../undefined';
 
 export class StructTuple extends Struct {
   private get ElementsStruct() {
@@ -65,9 +66,26 @@ export class StructTuple extends Struct {
     }
   }
 
+  // TODO Tuple和Array变换的过程之中是否存在跨类型优化
   public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
-      return this;
+      const tuple = ts as StructTuple;
+      const srcCount = this.ElementsStruct.length;
+      const dstCount = tuple.ElementsStruct.length;
+      const smallStructs = srcCount < dstCount ? this.ElementsStruct : tuple.ElementsStruct;
+      const bigStructs = srcCount >= dstCount ? this.ElementsStruct : tuple.ElementsStruct;
+      const undefinedStruct = new StructUndefined();
+      return new StructTuple(
+        bigStructs.map((struct, index) => {
+          const dstStruct = smallStructs[index] || undefinedStruct;
+          return struct.Merge(dstStruct);
+        })
+      );
+    } else if (ts.Type === StructType.Array) {
+      const array = ts as StructArray;
+      return new StructTuple(
+        this.ElementsStruct.map((struct) => struct.Merge(array.ElementStruct))
+      );
     } else {
       return new StructUnion([this, ts]);
     }
