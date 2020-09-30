@@ -7,6 +7,10 @@ import { StructUnion } from './union';
 export abstract class Struct {
   private hash: string = '';
 
+  public get Hash() {
+    return this.hash;
+  }
+
   /**
    * 结构的类型
    */
