@@ -7,12 +7,12 @@ export class StructArray extends Struct {
     return StructType.Array;
   }
 
-  public get StructHash() {
+  public get Hash() {
     return StructType.Array.toString();
   }
 
   public Equal(ts: Struct) {
-    return this.StructHash === ts.StructHash;
+    return this.Hash === ts.Hash;
   }
 
   public get IsBasic() {

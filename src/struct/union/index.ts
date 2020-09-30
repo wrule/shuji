@@ -6,12 +6,12 @@ export class StructUnion extends Struct {
     return StructType.Union;
   }
 
-  public get StructHash() {
+  public get Hash() {
     return StructType.Union.toString();
   }
 
   public Equal(ts: Struct) {
-    return this.StructHash === ts.StructHash;
+    return this.Hash === ts.Hash;
   }
 
   public get IsBasic() {

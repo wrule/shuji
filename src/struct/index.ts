@@ -18,7 +18,7 @@ export abstract class Struct {
   /**
    * 结构Hash
    */
-  public abstract StructHash: string;
+  public abstract Hash: string;
 
   /**
    * 判断两个结构是否完全相等

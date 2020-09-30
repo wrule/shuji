@@ -7,12 +7,12 @@ export class StructUnknow extends Struct {
     return StructType.Unknow;
   }
 
-  public get StructHash() {
+  public get Hash() {
     return StructType.Unknow.toString();
   }
 
   public Equal(ts: Struct) {
-    return this.StructHash === ts.StructHash;
+    return this.Hash === ts.Hash;
   }
 
   public get IsBasic() {

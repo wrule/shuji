@@ -7,7 +7,7 @@ export class StructBoolean extends Struct {
     return StructType.Boolean;
   }
 
-  public get StructHash() {
+  public get Hash() {
     return StructType.Boolean.toString();
   }
 
@@ -16,7 +16,7 @@ export class StructBoolean extends Struct {
   }
 
   public Equal(ts: Struct) {
-    return this.StructHash === ts.StructHash;
+    return this.Hash === ts.Hash;
   }
 
   public Compare(ts: Struct): number {

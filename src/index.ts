@@ -10,7 +10,7 @@
 // const field = new JsField('ni', jsObj);
 // const ts = new StructField(field);
 
-// console.log(ts.StructHash);
+// console.log(ts.Hash);
 
 import { jqgram as jq } from 'jqgram';
 

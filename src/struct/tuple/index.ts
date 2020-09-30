@@ -7,12 +7,12 @@ export class StructTuple extends Struct {
     return StructType.Tuple;
   }
 
-  public get StructHash() {
+  public get Hash() {
     return StructType.Tuple.toString();
   }
 
   public Equal(ts: Struct) {
-    return this.StructHash === ts.StructHash;
+    return this.Hash === ts.Hash;
   }
 
   public get IsBasic() {

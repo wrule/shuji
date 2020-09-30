@@ -8,12 +8,12 @@ export class StructObject extends Struct {
     return StructType.Object;
   }
 
-  public get StructHash() {
+  public get Hash() {
     return StructType.Object.toString();
   }
 
   public Equal(ts: Struct) {
-    return this.StructHash === ts.StructHash;
+    return this.Hash === ts.Hash;
   }
 
   public get IsBasic() {

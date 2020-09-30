@@ -7,12 +7,12 @@ export class StructUndefined extends Struct {
     return StructType.Undefined;
   }
 
-  public get StructHash() {
+  public get Hash() {
     return StructType.Undefined.toString();
   }
 
   public Equal(ts: Struct) {
-    return this.StructHash === ts.StructHash;
+    return this.Hash === ts.Hash;
   }
 
   public get IsBasic() {

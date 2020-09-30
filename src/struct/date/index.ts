@@ -7,12 +7,12 @@ export class StructDate extends Struct {
     return StructType.Date;
   }
 
-  public get StructHash() {
+  public get Hash() {
     return StructType.Date.toString();
   }
 
   public Equal(ts: Struct) {
-    return this.StructHash === ts.StructHash;
+    return this.Hash === ts.Hash;
   }
 
   public get IsBasic() {

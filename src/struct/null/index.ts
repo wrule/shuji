@@ -7,12 +7,12 @@ export class StructNull extends Struct {
     return StructType.Null;
   }
 
-  public get StructHash() {
+  public get Hash() {
     return StructType.Null.toString();
   }
 
   public Equal(ts: Struct) {
-    return this.StructHash === ts.StructHash;
+    return this.Hash === ts.Hash;
   }
 
   public get IsBasic() {
