@@ -4,20 +4,46 @@ import { StructUnion } from '../union';
 import { StructUndefined } from '../undefined';
 
 export class StructObject extends Struct {
+  /**
+   * 对象结构的字段
+   */
+  public get Fields() {
+    return this.fields;
+  }
+
   public get Type() {
     return StructType.Object;
   }
 
+  //TODO
   public get Hash() {
     return StructType.Object.toString();
+  }
+
+  public get IsBasic() {
+    return false;
   }
 
   public Equal(ts: Struct) {
     return this.Hash === ts.Hash;
   }
 
-  public get IsBasic() {
-    return false;
+  public Contain(ts: Struct): boolean {
+    if (ts.Type === this.Type) {
+      const object = ts as StructObject;
+      return Array.from(object.Fields).every((ary) => {
+        const key = ary[0];
+        const dstStruct = ary[1];
+        const srcStruct = this.Fields.get(key);
+        if (srcStruct) {
+          return srcStruct.Contain(dstStruct);
+        } else {
+          return false;
+        }
+      });
+    } else {
+      return false;
+    }
   }
 
   public Compare(ts: Struct): number {
@@ -42,28 +68,6 @@ export class StructObject extends Struct {
     } else {
       return 0;
     }
-  }
-
-  public Contain(ts: Struct): boolean {
-    if (ts.Type === StructType.Object) {
-      const object = ts as StructObject;
-      return Array.from(object.Fields).every((ary) => {
-        const key = ary[0];
-        const dstType = ary[1];
-        const srcType = this.Fields.get(key);
-        if (srcType) {
-          return srcType.Contain(dstType);
-        } else {
-          return false;
-        }
-      });
-    } else {
-      return false;
-    }
-  }
-
-  public get Fields() {
-    return this.fields;
   }
 
   public Merge(ts: Struct): Struct {
