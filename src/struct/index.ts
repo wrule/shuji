@@ -1,7 +1,7 @@
 import { TsType } from "./type";
 import { TsUnion } from "./union";
 
-export abstract class TS {
+export abstract class Struct {
   /**
    * 类型
    */
@@ -22,35 +22,35 @@ export abstract class TS {
    * @param ts 目标类型
    * @returns 是否完全相等
    */
-  public abstract Equal(ts: TS): boolean;
+  public abstract Equal(ts: Struct): boolean;
 
   /**
    * 判断此类型是否包含目标类型
    * @param ts 目标类型
    * @returns 是否包含
    */
-  public abstract Contain(ts: TS): boolean;
+  public abstract Contain(ts: Struct): boolean;
 
   /**
    * 类型相似度对比
    * @param ts 目标类型
    * @returns [0, 1]区间的值,代表相似度
    */
-  public abstract Compare(ts: TS): number;
+  public abstract Compare(ts: Struct): number;
 
   /**
    * 合并两个类型
    * @param ts 目标类型
    * @returns 合并之后的类型
    */
-  public abstract Merge(ts: TS): TS;
+  public abstract Merge(ts: Struct): Struct;
 
   /**
    * 类型更新
    * @param ts 目标类型
    * @returns 更新之后的类型
    */
-  public Update(ts: TS): TS {
+  public Update(ts: Struct): Struct {
     if (this.Equal(ts)) {
       return this;
     } else {

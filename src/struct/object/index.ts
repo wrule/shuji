@@ -1,9 +1,9 @@
-import { TS } from '../index';
+import { Struct } from '../index';
 import { TsType } from '../type';
 import { TsUnion } from '../union';
 import { TsUndefined } from '../undefined';
 
-export class TsObject extends TS {
+export class TsObject extends Struct {
   public get Type() {
     return TsType.Object;
   }
@@ -12,7 +12,7 @@ export class TsObject extends TS {
     return TsType.Object.toString();
   }
 
-  public Equal(ts: TS) {
+  public Equal(ts: Struct) {
     return this.StructHash === ts.StructHash;
   }
 
@@ -20,7 +20,7 @@ export class TsObject extends TS {
     return false;
   }
 
-  public Compare(ts: TS): number {
+  public Compare(ts: Struct): number {
     if (ts.Type === TsType.Object) {
       const object = ts as TsObject;
       const srcKeys = Array.from(this.Fields.keys());
@@ -31,8 +31,8 @@ export class TsObject extends TS {
         const passRate = bothKeys.length / keysCount;
         let sum = 0;
         bothKeys.forEach((key) => {
-          const srcType = this.Fields.get(key) as TS;
-          const dstType = object.Fields.get(key) as TS;
+          const srcType = this.Fields.get(key) as Struct;
+          const dstType = object.Fields.get(key) as Struct;
           sum += (0.2 + srcType.Compare(dstType) * 0.8);
         });
         return (sum / bothKeys.length) * passRate;
@@ -44,7 +44,7 @@ export class TsObject extends TS {
     }
   }
 
-  public Contain(ts: TS): boolean {
+  public Contain(ts: Struct): boolean {
     if (ts.Type === TsType.Object) {
       const object = ts as TsObject;
       return Array.from(object.Fields).every((ary) => {
@@ -66,7 +66,7 @@ export class TsObject extends TS {
     return this.fields;
   }
 
-  public Merge(ts: TS): TS {
+  public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const object = ts as TsObject;
       const allKeys = Array.from(new Set(
@@ -85,7 +85,7 @@ export class TsObject extends TS {
   }
 
   public constructor(
-    private fields: Map<string, TS>,
+    private fields: Map<string, Struct>,
   ) {
     super();
   }

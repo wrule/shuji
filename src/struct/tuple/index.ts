@@ -1,8 +1,8 @@
-import { TS } from '../index';
+import { Struct } from '../index';
 import { TsType } from '../type';
 import { TsUnion } from '../union';
 
-export class TsTuple extends TS {
+export class TsTuple extends Struct {
   public get Type() {
     return TsType.Tuple;
   }
@@ -11,7 +11,7 @@ export class TsTuple extends TS {
     return TsType.Tuple.toString();
   }
 
-  public Equal(ts: TS) {
+  public Equal(ts: Struct) {
     return this.StructHash === ts.StructHash;
   }
 
@@ -19,11 +19,11 @@ export class TsTuple extends TS {
     return false;
   }
 
-  public Compare(ts: TS): number {
+  public Compare(ts: Struct): number {
     return 0;
   }
 
-  public Contain(ts: TS): boolean {
+  public Contain(ts: Struct): boolean {
     if (ts.Type === TsType.Tuple) {
       const tuple = ts as TsTuple;
       if (this.Members.length >= tuple.Members.length) {
@@ -41,7 +41,7 @@ export class TsTuple extends TS {
     return this.members;
   }
 
-  public Merge(ts: TS): TS {
+  public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       return this;
     } else {
@@ -50,7 +50,7 @@ export class TsTuple extends TS {
   }
 
   public constructor(
-    private members: TS[],
+    private members: Struct[],
   ) {
     super();
   }

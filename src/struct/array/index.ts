@@ -1,8 +1,8 @@
-import { TS } from '../index';
+import { Struct } from '../index';
 import { TsType } from '../type';
 import { TsUnion } from '../union';
 
-export class TsArray extends TS {
+export class TsArray extends Struct {
   public get Type() {
     return TsType.Array;
   }
@@ -11,7 +11,7 @@ export class TsArray extends TS {
     return TsType.Array.toString();
   }
 
-  public Equal(ts: TS) {
+  public Equal(ts: Struct) {
     return this.StructHash === ts.StructHash;
   }
 
@@ -19,7 +19,7 @@ export class TsArray extends TS {
     return false;
   }
 
-  public Compare(ts: TS): number {
+  public Compare(ts: Struct): number {
     if (ts.Type === TsType.Array) {
       const array = ts as TsArray;
       return this.ElementType.Compare(array.ElementType);
@@ -28,7 +28,7 @@ export class TsArray extends TS {
     }
   }
 
-  public Contain(ts: TS): boolean {
+  public Contain(ts: Struct): boolean {
     if (ts.Type === TsType.Array) {
       return this.ElementType.Contain((ts as TsArray).ElementType);
     } else {
@@ -40,7 +40,7 @@ export class TsArray extends TS {
     return this.elementType;
   }
 
-  public Merge(ts: TS): TS {
+  public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const array = ts as TsArray;
       return new TsArray(this.ElementType.Merge(array.ElementType));
@@ -50,7 +50,7 @@ export class TsArray extends TS {
   }
 
   public constructor(
-    private elementType: TS,
+    private elementType: Struct,
   ) {
     super();
   }
