@@ -1,14 +1,14 @@
 import { Struct } from '../index';
-import { TsType } from '../type';
+import { StructType } from '../type';
 import { TsUnion } from '../union';
 
 export class TsUndefined extends Struct {
   public get Type() {
-    return TsType.Undefined;
+    return StructType.Undefined;
   }
 
   public get StructHash() {
-    return TsType.Undefined.toString();
+    return StructType.Undefined.toString();
   }
 
   public Equal(ts: Struct) {

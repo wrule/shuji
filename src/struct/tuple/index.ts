@@ -1,14 +1,14 @@
 import { Struct } from '../index';
-import { TsType } from '../type';
+import { StructType } from '../type';
 import { TsUnion } from '../union';
 
 export class TsTuple extends Struct {
   public get Type() {
-    return TsType.Tuple;
+    return StructType.Tuple;
   }
 
   public get StructHash() {
-    return TsType.Tuple.toString();
+    return StructType.Tuple.toString();
   }
 
   public Equal(ts: Struct) {
@@ -24,7 +24,7 @@ export class TsTuple extends Struct {
   }
 
   public Contain(ts: Struct): boolean {
-    if (ts.Type === TsType.Tuple) {
+    if (ts.Type === StructType.Tuple) {
       const tuple = ts as TsTuple;
       if (this.Members.length >= tuple.Members.length) {
         return tuple.Members

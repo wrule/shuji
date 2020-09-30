@@ -1,15 +1,15 @@
 import { Struct } from '../index';
-import { TsType } from '../type';
+import { StructType } from '../type';
 import { TsUnion } from '../union';
 import { TsUndefined } from '../undefined';
 
 export class TsObject extends Struct {
   public get Type() {
-    return TsType.Object;
+    return StructType.Object;
   }
 
   public get StructHash() {
-    return TsType.Object.toString();
+    return StructType.Object.toString();
   }
 
   public Equal(ts: Struct) {
@@ -21,7 +21,7 @@ export class TsObject extends Struct {
   }
 
   public Compare(ts: Struct): number {
-    if (ts.Type === TsType.Object) {
+    if (ts.Type === StructType.Object) {
       const object = ts as TsObject;
       const srcKeys = Array.from(this.Fields.keys());
       const bothKeys = srcKeys.filter((key) => object.Fields.has(key));
@@ -45,7 +45,7 @@ export class TsObject extends Struct {
   }
 
   public Contain(ts: Struct): boolean {
-    if (ts.Type === TsType.Object) {
+    if (ts.Type === StructType.Object) {
       const object = ts as TsObject;
       return Array.from(object.Fields).every((ary) => {
         const key = ary[0];

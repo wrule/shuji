@@ -1,14 +1,14 @@
 import { Struct } from '../index';
-import { TsType } from '../type';
+import { StructType } from '../type';
 import { TsUnion } from '../union';
 
 export class TsBoolean extends Struct {
   public get Type() {
-    return TsType.Boolean;
+    return StructType.Boolean;
   }
 
   public get StructHash() {
-    return TsType.Boolean.toString();
+    return StructType.Boolean.toString();
   }
 
   public get IsBasic() {

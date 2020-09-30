@@ -1,11 +1,11 @@
-import { TsType } from "./type";
+import { StructType } from "./type";
 import { TsUnion } from "./union";
 
 export abstract class Struct {
   /**
    * 类型
    */
-  public abstract Type: TsType;
+  public abstract Type: StructType;
 
   /**
    * 是否是基础类型

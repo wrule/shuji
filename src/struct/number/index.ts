@@ -1,14 +1,14 @@
 import { Struct } from '../index';
-import { TsType } from '../type';
+import { StructType } from '../type';
 import { TsUnion } from '../union';
 
 export class TsNumber extends Struct {
   public get Type() {
-    return TsType.Number;
+    return StructType.Number;
   }
 
   public get StructHash() {
-    return TsType.Number.toString();
+    return StructType.Number.toString();
   }
 
   public Equal(ts: Struct) {

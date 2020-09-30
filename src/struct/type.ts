@@ -1,7 +1,7 @@
 /**
  * Ts值类型
  */
-export enum TsType {
+export enum StructType {
   /**
    * Ts 未知的类型
    */

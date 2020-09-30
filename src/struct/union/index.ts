@@ -1,13 +1,13 @@
 import { Struct } from '../index';
-import { TsType } from '../type';
+import { StructType } from '../type';
 
 export class TsUnion extends Struct {
   public get Type() {
-    return TsType.Union;
+    return StructType.Union;
   }
 
   public get StructHash() {
-    return TsType.Union.toString();
+    return StructType.Union.toString();
   }
 
   public Equal(ts: Struct) {
@@ -23,7 +23,7 @@ export class TsUnion extends Struct {
   }
 
   public Contain(ts: Struct): boolean {
-    if (ts.Type === TsType.Union) {
+    if (ts.Type === StructType.Union) {
       return (ts as TsUnion).Members.every((member) => this.Contain(member));
     } else {
       return this.Members.some((member) => member.Contain(ts));
