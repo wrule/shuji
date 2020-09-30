@@ -1,8 +1,13 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructUnion } from '../union';
+import { StructArray } from '../array';
 
 export class StructTuple extends Struct {
+  private get ElementsStruct() {
+    return this.elementsStruct;
+  }
+
   public get Type() {
     return StructType.Tuple;
   }
@@ -11,24 +16,21 @@ export class StructTuple extends Struct {
     return StructType.Tuple.toString();
   }
 
-  public Equal(ts: Struct) {
-    return this.Hash === ts.Hash;
-  }
-
   public get IsBasic() {
     return false;
   }
 
-  public Compare(ts: Struct): number {
-    return 0;
+  public Equal(ts: Struct) {
+    return this.Hash === ts.Hash;
   }
 
+  // TODO Array怎么做
   public Contain(ts: Struct): boolean {
-    if (ts.Type === StructType.Tuple) {
+    if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;
-      if (this.Members.length >= tuple.Members.length) {
-        return tuple.Members
-          .every((member, index) => this.Members[index].Contain(member));
+      if (this.ElementsStruct.length >= tuple.ElementsStruct.length) {
+        return tuple.ElementsStruct
+          .every((struct, index) => this.ElementsStruct[index].Contain(struct));
       } else {
         return false;
       }
@@ -37,8 +39,30 @@ export class StructTuple extends Struct {
     }
   }
 
-  private get Members() {
-    return this.members;
+  // TODO Array怎么做
+  public Compare(ts: Struct): number {
+    if (ts.Type === this.Type) {
+      const tuple = ts as StructTuple;
+      const srcCount = this.ElementsStruct.length;
+      const dstCount = tuple.ElementsStruct.length;
+      const smallStructs = srcCount < dstCount ? this.ElementsStruct : tuple.ElementsStruct;
+      const bigStructs = srcCount >= dstCount ? this.ElementsStruct : tuple.ElementsStruct;
+      const passRate = smallStructs.length / bigStructs.length;
+      let sum = 0;
+      smallStructs.forEach((struct, index) => {
+        sum += struct.Compare(bigStructs[index]);
+      });
+      return (sum / smallStructs.length) * passRate;
+    } else if (ts.Type === StructType.Array) {
+      const array = ts as StructArray;
+      let sum = 0;
+      this.ElementsStruct.forEach((struct) => {
+        sum += struct.Compare(array.ElementStruct);
+      });
+      return sum /= this.ElementsStruct.length;
+    } else {
+      return 0;
+    }
   }
 
   public Merge(ts: Struct): Struct {
@@ -50,7 +74,7 @@ export class StructTuple extends Struct {
   }
 
   public constructor(
-    private members: Struct[],
+    private elementsStruct: Struct[],
   ) {
     super();
   }
