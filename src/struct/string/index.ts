@@ -7,7 +7,7 @@ export class StructString extends Struct {
     return StructType.String
   }
 
-  public get Hash() {
+  protected CalcHash() {
     return StructType.String.toString();
   }
 

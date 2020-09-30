@@ -7,7 +7,7 @@ export class StructUnknow extends Struct {
     return StructType.Unknow;
   }
 
-  public get Hash() {
+  protected CalcHash() {
     return StructType.Unknow.toString();
   }
 

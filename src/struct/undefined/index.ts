@@ -7,7 +7,7 @@ export class StructUndefined extends Struct {
     return StructType.Undefined;
   }
 
-  public get Hash() {
+  protected CalcHash() {
     return StructType.Undefined.toString();
   }
 

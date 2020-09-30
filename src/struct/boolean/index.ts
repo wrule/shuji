@@ -7,7 +7,7 @@ export class StructBoolean extends Struct {
     return StructType.Boolean;
   }
 
-  public get Hash() {
+  protected CalcHash() {
     return StructType.Boolean.toString();
   }
 

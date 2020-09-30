@@ -24,7 +24,7 @@ export abstract class Struct {
   /**
    * 计算结构Hash的方法
    */
-  public abstract CalcHash(): string;
+  protected abstract CalcHash(): string;
 
   /**
    * 判断两个结构是否完全相等

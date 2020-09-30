@@ -7,7 +7,7 @@ export class StructNumber extends Struct {
     return StructType.Number;
   }
 
-  public get Hash() {
+  protected CalcHash() {
     return StructType.Number.toString();
   }
 

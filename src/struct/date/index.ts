@@ -7,7 +7,7 @@ export class StructDate extends Struct {
     return StructType.Date;
   }
 
-  public get Hash() {
+  protected CalcHash() {
     return StructType.Date.toString();
   }
 

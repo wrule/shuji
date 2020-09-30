@@ -7,7 +7,7 @@ export class StructNull extends Struct {
     return StructType.Null;
   }
 
-  public get Hash() {
+  protected CalcHash() {
     return StructType.Null.toString();
   }
 
