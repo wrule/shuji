@@ -19,16 +19,16 @@ export class StructBoolean extends Struct {
     return this.Hash === ts.Hash;
   }
 
-  public Compare(ts: Struct): number {
-    return ts.Type === this.Type ? 1 : 0;
+  public Contain(ts: Struct): boolean {
+    return this.Equal(ts);
   }
 
-  public Contain(ts: Struct): boolean {
-    return ts.Type === this.Type;
+  public Compare(ts: Struct): number {
+    return this.Equal(ts) ? 1 : 0;
   }
 
   public Merge(ts: Struct): Struct {
-    if (ts.Type === this.Type) {
+    if (this.Equal(ts)) {
       return this;
     } else {
       return new StructUnion([this, ts]);
