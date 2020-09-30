@@ -2,6 +2,7 @@ import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructTuple } from '../tuple';
+import { Hash } from '../../utils';
 
 export class StructArray extends Struct {
   public get ElementStruct() {
@@ -12,9 +13,8 @@ export class StructArray extends Struct {
     return StructType.Array;
   }
 
-  // TODO
-  public get Hash() {
-    return StructType.Array.toString();
+  public CalcHash() {
+    return Hash(`${this.ElementStruct.Hash}[]`);
   }
 
   public get IsBasic() {

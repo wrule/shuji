@@ -3,6 +3,7 @@ import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructArray } from '../array';
 import { StructUndefined } from '../undefined';
+import { Hash } from '../../utils';
 
 export class StructTuple extends Struct {
   private get ElementsStruct() {
@@ -13,8 +14,8 @@ export class StructTuple extends Struct {
     return StructType.Tuple;
   }
 
-  public get Hash() {
-    return StructType.Tuple.toString();
+  public CalcHash() {
+    return Hash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
   }
 
   public get IsBasic() {
