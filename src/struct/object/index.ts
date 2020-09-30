@@ -70,6 +70,7 @@ export class StructObject extends Struct {
     }
   }
 
+  // TODO 如何合并联合类型
   public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const object = ts as StructObject;
@@ -78,11 +79,13 @@ export class StructObject extends Struct {
           .concat(Array.from(object.Fields.keys()))
       ));
       const undefinedType = new StructUndefined();
-      return new StructObject(new Map(allKeys.map((key) => {
-        const srcStruct = this.Fields.get(key) || undefinedType;
-        const dstStruct = object.Fields.get(key) || undefinedType;
-        return [key, srcStruct.Merge(dstStruct)];
-      })));
+      return new StructObject(new Map(
+        allKeys.map((key) => {
+          const srcStruct = this.Fields.get(key) || undefinedType;
+          const dstStruct = object.Fields.get(key) || undefinedType;
+          return [key, srcStruct.Merge(dstStruct)];
+        })
+      ));
     } else {
       return new StructUnion([this, ts]);
     }
