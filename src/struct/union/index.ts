@@ -2,24 +2,25 @@ import { Struct } from '../index';
 import { StructType } from '../type';
 
 export class StructUnion extends Struct {
+  public get Members() {
+    return this.members;
+  }
+
   public get Type() {
     return StructType.Union;
   }
 
+  // TODO
   public get Hash() {
     return StructType.Union.toString();
-  }
-
-  public Equal(ts: Struct) {
-    return this.Hash === ts.Hash;
   }
 
   public get IsBasic() {
     return false;
   }
 
-  public Compare(ts: Struct): number {
-    return 0;
+  public Equal(ts: Struct) {
+    return this.Hash === ts.Hash;
   }
 
   public Contain(ts: Struct): boolean {
@@ -30,8 +31,8 @@ export class StructUnion extends Struct {
     }
   }
 
-  public get Members() {
-    return this.members;
+  public Compare(ts: Struct): number {
+    return 0;
   }
 
   public Merge(ts: Struct): Struct {
