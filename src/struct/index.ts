@@ -56,6 +56,10 @@ export abstract class Struct {
   public abstract iCompare(ts: Struct): number;
 
   public Merge(ts: Struct): Struct {
+    // 若完全相等则直接返回
+    if (this.Equal(ts)) {
+      return this;
+    }
     // 若有包含关系则直接返回
     if (this.Contain(ts)) {
       return this;
