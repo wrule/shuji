@@ -19,9 +19,9 @@ export class StructObject extends Struct {
   public CalcHash() {
     return Hash(
       Array.from(this.Fields)
-      .sort((a, b) => a[0].localeCompare(b[0]))
-      .map((ary) => `${ary[0]}:${ary[1].Hash}`)
-      .join(',')
+        .sort((a, b) => a[0].localeCompare(b[0]))
+        .map((ary) => `${ary[0]}:${ary[1].Hash}`)
+        .join(',')
     );
   }
 
@@ -64,7 +64,7 @@ export class StructObject extends Struct {
         bothKeys.forEach((key) => {
           const srcStruct = this.Fields.get(key) as Struct;
           const dstStruct = object.Fields.get(key) as Struct;
-          sum += (0.2 + srcStruct.Compare(dstStruct) * 0.8);
+          sum += srcStruct.Compare(dstStruct);
         });
         return (sum / bothKeys.length) * passRate;
       } else {
@@ -75,7 +75,6 @@ export class StructObject extends Struct {
     }
   }
 
-  // TODO 如何合并联合类型
   public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const object = ts as StructObject;
