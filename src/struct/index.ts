@@ -56,10 +56,25 @@ export abstract class Struct {
   public abstract iCompare(ts: Struct): number;
 
   public Merge(ts: Struct): Struct {
-    if (ts.Type === StructType.Union) {
+    // 若有包含关系则直接返回
+    if (this.Contain(ts)) {
+      return this;
+    }
+    if (ts.Contain(this)) {
+      return ts;
+    }
+    // 合并的两方之中若有一方为联合,则直接合并
+    if (
+      this.Type === StructType.Union ||
+      ts.Type === StructType.Union
+    ) {
       return ts.iMerge(this);
-    } else {
+    }
+    // 结构相似度对比
+    if (this.Compare(ts) > 0.1) {
       return this.iMerge(ts);
+    } else {
+      return new StructUnion([this, ts]);
     }
   }
 
