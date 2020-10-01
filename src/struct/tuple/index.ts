@@ -25,7 +25,7 @@ export class StructTuple extends Struct {
     return this.Hash === ts.Hash;
   }
 
-  public Contain(ts: Struct): boolean {
+  public iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;
       if (this.ElementsStruct.length >= tuple.ElementsStruct.length) {

@@ -25,7 +25,7 @@ export class StructArray extends Struct {
     return this.Hash === ts.Hash;
   }
 
-  public Contain(ts: Struct): boolean {
+  public iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;
       return this.ElementStruct.Contain(array.ElementStruct);

@@ -19,7 +19,7 @@ export class StructNumber extends Struct {
     return this.Hash === ts.Hash;
   }
 
-  public Contain(ts: Struct): boolean {
+  public iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
 

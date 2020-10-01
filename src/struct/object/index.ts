@@ -33,7 +33,7 @@ export class StructObject extends Struct {
     return this.Hash === ts.Hash;
   }
 
-  public Contain(ts: Struct): boolean {
+  public iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const object = ts as StructObject;
       return Array.from(object.Fields).every((ary) => {

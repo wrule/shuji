@@ -33,12 +33,16 @@ export abstract class Struct {
    */
   public abstract Equal(ts: Struct): boolean;
 
+  public Contain(ts: Struct): boolean {
+    return this.iContain(ts);
+  }
+
   /**
    * 判断此结构是否包含目标结构
    * @param ts 目标结构
    * @returns 是否包含
    */
-  public abstract Contain(ts: Struct): boolean;
+  public abstract iContain(ts: Struct): boolean;
 
   /**
    * 结构相似度对比

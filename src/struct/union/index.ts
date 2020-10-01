@@ -28,7 +28,7 @@ export class StructUnion extends Struct {
     return this.Hash === ts.Hash;
   }
 
-  public Contain(ts: Struct): boolean {
+  public iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const union = ts as StructUnion;
       return union.Members.every((member) => this.Contain(member));
