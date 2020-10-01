@@ -40,7 +40,6 @@ export class StructTuple extends Struct {
     }
   }
 
-  // TODO Array怎么做
   public Compare(ts: Struct): number {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;
