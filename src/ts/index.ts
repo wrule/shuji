@@ -34,6 +34,9 @@ function test(value: JsValue): Struct {
       } else {
         result = new StructUnknow();
       }
+      // 1.非union数组
+      // 2.tuple
+      // 3.union数组
     };
     default: return new StructUnknow();
   }
