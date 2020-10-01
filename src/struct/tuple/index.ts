@@ -5,7 +5,7 @@ import { StructUndefined } from '../undefined';
 import { Hash } from '../../utils';
 
 export class StructTuple extends Struct {
-  private get ElementsStruct() {
+  public get ElementsStruct() {
     return this.elementsStruct;
   }
 

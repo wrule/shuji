@@ -25,21 +25,18 @@ export class StructArray extends Struct {
     return this.Hash === ts.Hash;
   }
 
-  // TODO Tuple如何考虑
   public Contain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;
       return this.ElementStruct.Contain(array.ElementStruct);
     } else if (ts.Type === StructType.Tuple) {
       const tuple = ts as StructTuple;
-      // TODO
-      return false;
+      return tuple.ElementsStruct.every((struct) => this.ElementStruct.Contain(struct));
     } else {
       return false;
     }
   }
 
-  // TODO Tuple如何考虑
   public Compare(ts: Struct): number {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;
