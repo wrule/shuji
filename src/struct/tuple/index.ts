@@ -1,7 +1,6 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructUnion } from '../union';
-import { StructArray } from '../array';
 import { StructUndefined } from '../undefined';
 import { Hash } from '../../utils';
 
