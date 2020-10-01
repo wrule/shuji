@@ -58,7 +58,7 @@ export class StructTuple extends Struct {
   }
 
   // TODO
-  public Merge(ts: Struct): Struct {
+  public iMerge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;
       const srcCount = this.ElementsStruct.length;

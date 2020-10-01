@@ -46,7 +46,7 @@ export class StructUnion extends Struct {
     return this.Equal(ts) ? 1 : 0;
   }
 
-  public Merge(ts: Struct): Struct {
+  public iMerge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const union = ts as StructUnion;
       let result: Struct = this;

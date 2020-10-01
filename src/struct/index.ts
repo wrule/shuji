@@ -47,12 +47,16 @@ export abstract class Struct {
    */
   public abstract Compare(ts: Struct): number;
 
+  public Merge(ts: Struct): Struct {
+    return this.iMerge(ts);
+  }
+
   /**
    * 合并两个结构
    * @param ts 目标结构
    * @returns 合并之后的结构
    */
-  public abstract Merge(ts: Struct): Struct;
+  public abstract iMerge(ts: Struct): Struct;
 
   /**
    * 结构更新

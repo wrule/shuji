@@ -47,7 +47,7 @@ export class StructArray extends Struct {
   }
 
   // TODO
-  public Merge(ts: Struct): Struct {
+  public iMerge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;
       return new StructArray(this.ElementStruct.Merge(array.ElementStruct));

@@ -27,7 +27,7 @@ export class StructNumber extends Struct {
     return this.Equal(ts) ? 1 : 0;
   }
 
-  public Merge(ts: Struct): Struct {
+  public iMerge(ts: Struct): Struct {
     if (this.Equal(ts)) {
       return this;
     } else {
