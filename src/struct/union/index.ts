@@ -37,13 +37,23 @@ export class StructUnion extends Struct {
     }
   }
 
+  /**
+   * 联合结构的相似度
+   * 只要不完全一致,相似度都为0
+   * @param ts 目标结构
+   */
   public Compare(ts: Struct): number {
     return this.Equal(ts) ? 1 : 0;
   }
 
   public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
-      return this;
+      const union = ts as StructUnion;
+      let result: Struct = this;
+      union.Members.forEach((member) => {
+        result = result.Merge(member);
+      });
+      return result;
     } else {
       const nums = this.Members.map((member) => member.Compare(ts));
       const maxNum = Math.max(...nums);
