@@ -38,14 +38,24 @@ export class StructUnion extends Struct {
   }
 
   public Compare(ts: Struct): number {
-    return 0;
+    return this.Equal(ts) ? 1 : 0;
   }
 
   public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       return this;
     } else {
-      return new StructUnion([this, ts]);
+      const nums = this.Members.map((member) => member.Compare(ts));
+      const maxNum = Math.max(...nums);
+      if (maxNum > 0.1) {
+        const maxIndex = nums.findIndex((num) => num === maxNum);
+        const newMembers = this.Members.slice(0);
+        const newStruct = newMembers[maxIndex].Merge(ts);
+        newMembers.splice(maxIndex, 1, newStruct);
+        return new StructUnion(newMembers);
+      } else {
+        return new StructUnion(this.Members.concat([ts]));
+      }
     }
   }
 
