@@ -57,7 +57,6 @@ export class StructTuple extends Struct {
     }
   }
 
-  // TODO Tuple和Array变换的过程之中是否存在跨类型优化
   public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;
