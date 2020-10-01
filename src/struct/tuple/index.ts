@@ -26,7 +26,6 @@ export class StructTuple extends Struct {
     return this.Hash === ts.Hash;
   }
 
-  // TODO Array怎么做
   public Contain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;
@@ -55,13 +54,6 @@ export class StructTuple extends Struct {
         sum += struct.Compare(bigStructs[index]);
       });
       return (sum / smallStructs.length) * passRate;
-    } else if (ts.Type === StructType.Array) {
-      const array = ts as StructArray;
-      let sum = 0;
-      this.ElementsStruct.forEach((struct) => {
-        sum += struct.Compare(array.ElementStruct);
-      });
-      return sum /= this.ElementsStruct.length;
     } else {
       return 0;
     }
