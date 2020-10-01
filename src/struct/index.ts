@@ -48,7 +48,11 @@ export abstract class Struct {
   public abstract Compare(ts: Struct): number;
 
   public Merge(ts: Struct): Struct {
-    return this.iMerge(ts);
+    if (ts.Type === StructType.Union) {
+      return ts.iMerge(this);
+    } else {
+      return this.iMerge(ts);
+    }
   }
 
   /**
