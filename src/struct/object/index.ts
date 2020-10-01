@@ -51,7 +51,7 @@ export class StructObject extends Struct {
     }
   }
 
-  public Compare(ts: Struct): number {
+  public iCompare(ts: Struct): number {
     if (ts.Type === this.Type) {
       const object = ts as StructObject;
       const srcKeys = Array.from(this.Fields.keys());

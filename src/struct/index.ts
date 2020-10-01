@@ -44,12 +44,16 @@ export abstract class Struct {
    */
   public abstract iContain(ts: Struct): boolean;
 
+  public Compare(ts: Struct): number {
+    return this.iCompare(ts);
+  }
+
   /**
    * 结构相似度对比
    * @param ts 目标结构
    * @returns [0, 1]区间的值,代表相似度
    */
-  public abstract Compare(ts: Struct): number;
+  public abstract iCompare(ts: Struct): number;
 
   public Merge(ts: Struct): Struct {
     if (ts.Type === StructType.Union) {

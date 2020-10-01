@@ -23,7 +23,7 @@ export class StructBoolean extends Struct {
     return this.Equal(ts);
   }
 
-  public Compare(ts: Struct): number {
+  public iCompare(ts: Struct): number {
     return this.Equal(ts) ? 1 : 0;
   }
 

@@ -42,7 +42,7 @@ export class StructUnion extends Struct {
    * 只要不完全一致,相似度都为0
    * @param ts 目标结构
    */
-  public Compare(ts: Struct): number {
+  public iCompare(ts: Struct): number {
     return this.Equal(ts) ? 1 : 0;
   }
 

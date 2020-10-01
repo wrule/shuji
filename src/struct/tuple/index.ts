@@ -39,7 +39,7 @@ export class StructTuple extends Struct {
     }
   }
 
-  public Compare(ts: Struct): number {
+  public iCompare(ts: Struct): number {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;
       const srcCount = this.ElementsStruct.length;
