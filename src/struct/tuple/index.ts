@@ -73,11 +73,6 @@ export class StructTuple extends Struct {
           return struct.Merge(dstStruct);
         })
       );
-    } else if (ts.Type === StructType.Array) {
-      const array = ts as StructArray;
-      return new StructTuple(
-        this.ElementsStruct.map((struct) => struct.Merge(array.ElementStruct))
-      );
     } else {
       return new StructUnion([this, ts]);
     }
