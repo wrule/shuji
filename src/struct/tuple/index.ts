@@ -57,6 +57,7 @@ export class StructTuple extends Struct {
     }
   }
 
+  // TODO
   public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;

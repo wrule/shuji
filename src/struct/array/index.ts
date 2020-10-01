@@ -46,7 +46,7 @@ export class StructArray extends Struct {
     }
   }
 
-  // TODO 如何合并联合类型
+  // TODO
   public Merge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;
