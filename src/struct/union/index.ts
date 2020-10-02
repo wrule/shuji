@@ -55,7 +55,7 @@ export class StructUnion extends Struct {
       const nums = this.Members.map((struct) => struct.Compare(ts));
       // TODO 空状态?
       const maxNum = Math.max(...nums);
-      if (maxNum > 0.3) {
+      if (maxNum >= 0.3) {
         const maxIndex = nums.findIndex((num) => num === maxNum);
         const newMembers = this.Members.slice(0);
         const newStruct = newMembers[maxIndex].Merge(ts);
