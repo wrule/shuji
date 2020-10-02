@@ -19,7 +19,7 @@ export class StructUnknow extends Struct {
     return this.Equal(ts);
   }
 
-  public iCompare(ts: Struct): number {
+  protected iCompare(ts: Struct): number {
     return this.Equal(ts) ? 1 : 0;
   }
 

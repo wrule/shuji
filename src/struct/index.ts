@@ -61,7 +61,7 @@ export abstract class Struct {
    * @param ts 目标结构
    * @returns [0, 1]区间的值,代表相似度
    */
-  public abstract iCompare(ts: Struct): number;
+  protected abstract iCompare(ts: Struct): number;
 
   public Merge(ts: Struct): Struct {
     // 若完全相等则直接返回

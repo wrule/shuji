@@ -33,7 +33,7 @@ export class StructArray extends Struct {
     }
   }
 
-  public iCompare(ts: Struct): number {
+  protected iCompare(ts: Struct): number {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;
       return this.ElementStruct.Compare(array.ElementStruct);
