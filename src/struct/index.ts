@@ -36,7 +36,13 @@ export abstract class Struct {
   }
 
   public Contain(ts: Struct): boolean {
-    return this.iContain(ts);
+    // 判断本结构是否包含联合的所有可能性
+    if (ts.Type === StructType.Union) {
+      const union = ts as StructUnion;
+      return union.Members.every((struct) => this.Contain(struct));
+    } else {
+      return this.iContain(ts);
+    }
   }
 
   /**
