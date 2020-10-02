@@ -10,8 +10,9 @@ import { StructNumber } from '../struct/number';
 import { StructString } from '../struct/string';
 import { StructDate } from '../struct/date';
 import { StructObject } from '../struct/object';
+import { StructArray } from '../struct/array';
 
-function test(value: JsValue): Struct {
+function Infer(value: JsValue): Struct {
   switch (value.Type) {
     case JsType.Unknow: return new StructUnknow();
     case JsType.Undefined: return new StructUndefined();
@@ -21,10 +22,10 @@ function test(value: JsValue): Struct {
     case JsType.String: return new StructString();
     case JsType.Date: return new StructDate();
     case JsType.Object: return new StructObject(
-      new Map(value.ObjectFields.map((field) => [field.Name, test(field.Value)]))
+      new Map(value.ObjectFields.map((field) => [field.Name, Infer(field.Value)]))
     );
     case JsType.Array: {
-      const structs = value.ArrayValues.map((item) => test(item));
+      const structs = value.ArrayValues.map((item) => Infer(item));
       let result: Struct;
       if (structs.length > 0) {
         result = structs[0];
@@ -34,6 +35,7 @@ function test(value: JsValue): Struct {
       } else {
         result = new StructUnknow();
       }
+      return new StructArray(result);
       // 1.非union数组
       // 2.tuple
       // 3.union数组
