@@ -1,46 +1,24 @@
-// import { JsField } from "./js/field";
-// import { StructField } from "./ts/field";
+import { Infer } from './ts/index';
+import { JsField } from './js/field';
 
-// const jsObj: any = {
-//   name: '小明',
-//   age: '233',
-//   address: '中国',
-// };
+const object = {
+  name: 'gushi',
+  age: 27,
+  sex: true,
+  address: '浙江省杭州市',
+  // meta: {
+  //   like: ['家人', '健康', '美女'],
+  //   data: [
+  //     ['身高', 186],
+  //     ['体重', 220],
+  //     ['智商', 120],
+  //   ],
+  // },
+};
 
-// const field = new JsField('ni', jsObj);
-// const ts = new StructField(field);
+const jsField = new JsField('me', object);
 
-// console.log(ts.Hash);
+const struct = Infer(jsField.Value);
 
-import { jqgram as jq } from 'jqgram';
-
-var root1 = {
-  name: "a",
-  children: [
-    { name: "b" },
-  ]
-}
-
-var root2 = {
-  name: "a",
-  children: [
-    { name: "c" },
-  ]
-}
-
-jq.distance({
-  root: root1,
-  lfn: function(node: any){ return node.name; },
-  cfn: function(node: any){ return node.children; }
-}, {
-  root: root2,
-  lfn: function(node: any){ return node.name; },
-  cfn: function(node: any){ return node.children; }
-}, {
-  p: 2,
-  q: 3,
-  depth:10,
-}, function (result: any) {
-  console.log(result.distance);
-});
+console.log(struct);
 

@@ -46,7 +46,7 @@ function InferArray(value: JsValue): Struct {
   }
 }
 
-function Infer(value: JsValue): Struct {
+export function Infer(value: JsValue): Struct {
   switch (value.Type) {
     case JsType.Unknow: return new StructUnknow();
     case JsType.Undefined: return new StructUndefined();
