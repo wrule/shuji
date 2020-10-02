@@ -11,6 +11,40 @@ import { StructString } from '../struct/string';
 import { StructDate } from '../struct/date';
 import { StructObject } from '../struct/object';
 import { StructArray } from '../struct/array';
+import { StructType } from '../struct/type';
+import { StructTuple } from '../struct/tuple';
+
+function InferObject(value: JsValue): Struct {
+  return new StructObject(
+    new Map(value.ObjectFields.map((field) => [field.Name, Infer(field.Value)]))
+  );
+}
+
+function InferArray(value: JsValue): Struct {
+  if (value.ArrayValues.length > 0) {
+    const structs = value.ArrayValues.map((item) => Infer(item));
+    // 尝试合并所有元素
+    let result = structs[0];
+    structs.slice(1).forEach((struct) => {
+      result = result.Merge(struct);
+    });
+    // 如果合并出来的结果是联合结构
+    if (result.Type === StructType.Union) {
+      const union = result as StructUnion;
+      const structCount = union.Members.length;
+      const arrayLength = value.ArrayValues.length;
+      if (arrayLength / structCount <= 3) {
+        return new StructTuple(structs);
+      } else {
+        return new StructArray(result);
+      }
+    } else {
+      return new StructArray(result);
+    }
+  } else {
+    return new StructArray(new StructUnknow());
+  }
+}
 
 function Infer(value: JsValue): Struct {
   switch (value.Type) {
@@ -21,25 +55,8 @@ function Infer(value: JsValue): Struct {
     case JsType.Number: return  new StructNumber();
     case JsType.String: return new StructString();
     case JsType.Date: return new StructDate();
-    case JsType.Object: return new StructObject(
-      new Map(value.ObjectFields.map((field) => [field.Name, Infer(field.Value)]))
-    );
-    case JsType.Array: {
-      const structs = value.ArrayValues.map((item) => Infer(item));
-      let result: Struct;
-      if (structs.length > 0) {
-        result = structs[0];
-        structs.slice(1).forEach((struct) => {
-          result = result.Merge(struct);
-        });
-      } else {
-        result = new StructUnknow();
-      }
-      return new StructArray(result);
-      // 1.非union数组
-      // 2.tuple
-      // 3.union数组
-    };
+    case JsType.Object: return InferObject(value);
+    case JsType.Array: return InferArray(value);
     default: return new StructUnknow();
   }
 }
