@@ -18,7 +18,7 @@ export class StructUnion extends Struct {
   protected CalcHash() {
     return Hash(
       this.Members
-        .map((member) => member.Hash)
+        .map((struct) => struct.Hash)
         .sort((a, b) => a.localeCompare(b))
         .join('|')
     );
@@ -33,6 +33,7 @@ export class StructUnion extends Struct {
     }
   }
 
+  // TODO
   /**
    * 联合结构的相似度
    * 只要不完全一致,相似度都为0
@@ -46,14 +47,15 @@ export class StructUnion extends Struct {
     if (ts.Type === this.Type) {
       const union = ts as StructUnion;
       let result: Struct = this;
-      union.Members.forEach((member) => {
-        result = result.Merge(member);
+      union.Members.forEach((struct) => {
+        result = result.Merge(struct);
       });
       return result;
     } else {
-      const nums = this.Members.map((member) => member.Compare(ts));
+      const nums = this.Members.map((struct) => struct.Compare(ts));
+      // TODO 空状态?
       const maxNum = Math.max(...nums);
-      if (maxNum > 0.1) {
+      if (maxNum > 0.3) {
         const maxIndex = nums.findIndex((num) => num === maxNum);
         const newMembers = this.Members.slice(0);
         const newStruct = newMembers[maxIndex].Merge(ts);
