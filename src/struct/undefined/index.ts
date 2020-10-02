@@ -15,7 +15,7 @@ export class StructUndefined extends Struct {
     return StructType.Undefined.toString();
   }
 
-  public iContain(ts: Struct): boolean {
+  protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
 

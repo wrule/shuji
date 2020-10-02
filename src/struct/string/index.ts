@@ -15,7 +15,7 @@ export class StructString extends Struct {
     return StructType.String.toString();
   }
 
-  public iContain(ts: Struct): boolean {
+  protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
 

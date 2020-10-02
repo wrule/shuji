@@ -21,7 +21,7 @@ export class StructTuple extends Struct {
     return Hash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
   }
 
-  public iContain(ts: Struct): boolean {
+  protected iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;
       if (this.ElementsStruct.length >= tuple.ElementsStruct.length) {

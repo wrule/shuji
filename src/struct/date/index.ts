@@ -15,7 +15,7 @@ export class StructDate extends Struct {
     return StructType.Date.toString();
   }
 
-  public iContain(ts: Struct): boolean {
+  protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
 

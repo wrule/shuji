@@ -29,7 +29,7 @@ export class StructObject extends Struct {
     );
   }
 
-  public iContain(ts: Struct): boolean {
+  protected iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const object = ts as StructObject;
       return Array.from(object.Fields).every((ary) => {

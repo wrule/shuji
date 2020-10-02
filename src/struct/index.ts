@@ -50,7 +50,7 @@ export abstract class Struct {
    * @param ts 目标结构
    * @returns 是否包含
    */
-  public abstract iContain(ts: Struct): boolean;
+  protected abstract iContain(ts: Struct): boolean;
 
   public Compare(ts: Struct): number {
     return this.iCompare(ts);
