@@ -53,7 +53,7 @@ export class StructTuple extends Struct {
     }
   }
 
-  // TODO
+  // TODO Array能不能和Tuple合并
   protected iMerge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;
