@@ -17,7 +17,7 @@ export class StructTuple extends Struct {
     return false;
   }
 
-  public CalcHash() {
+  protected CalcHash() {
     return Hash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
   }
 
@@ -77,5 +77,6 @@ export class StructTuple extends Struct {
     private elementsStruct: Struct[],
   ) {
     super();
+    this.hash = this.CalcHash();
   }
 }

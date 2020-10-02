@@ -30,4 +30,9 @@ export class StructUndefined extends Struct {
       return new StructUnion([this, ts]);
     }
   }
+
+  public constructor() {
+    super();
+    this.hash = this.CalcHash();
+  }
 }

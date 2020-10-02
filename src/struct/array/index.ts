@@ -17,7 +17,7 @@ export class StructArray extends Struct {
     return false;
   }
 
-  public CalcHash() {
+  protected CalcHash() {
     return Hash(`${this.ElementStruct.Hash}[]`);
   }
 
@@ -56,5 +56,6 @@ export class StructArray extends Struct {
     private elementStruct: Struct,
   ) {
     super();
+    this.hash = this.CalcHash();
   }
 }

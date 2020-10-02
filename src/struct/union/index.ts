@@ -15,7 +15,7 @@ export class StructUnion extends Struct {
     return false;
   }
 
-  public CalcHash() {
+  protected CalcHash() {
     return Hash(
       this.Members
         .map((member) => member.Hash)
@@ -69,5 +69,6 @@ export class StructUnion extends Struct {
     private members: Struct[],
   ) {
     super();
+    this.hash = this.CalcHash();
   }
 }

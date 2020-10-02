@@ -20,7 +20,7 @@ export class StructObject extends Struct {
     return false;
   }
 
-  public CalcHash() {
+  protected CalcHash() {
     return Hash(
       Array.from(this.Fields)
         .sort((a, b) => a[0].localeCompare(b[0]))
@@ -95,5 +95,6 @@ export class StructObject extends Struct {
     private fields: Map<string, Struct>,
   ) {
     super();
+    this.hash = this.CalcHash();
   }
 }

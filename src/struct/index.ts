@@ -4,7 +4,7 @@ import { StructType } from './type';
  * 结构抽象类
  */
 export abstract class Struct {
-  private hash: string = '';
+  protected hash: string = '';
 
   public get Hash() {
     return this.hash;
@@ -91,8 +91,4 @@ export abstract class Struct {
    * @returns 合并之后的结构
    */
   public abstract iMerge(ts: Struct): Struct;
-
-  public constructor() {
-    this.hash = this.CalcHash();
-  }
 }
