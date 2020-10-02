@@ -77,6 +77,5 @@ export class StructTuple extends Struct {
     private elementsStruct: Struct[],
   ) {
     super();
-    this.hash = this.CalcHash();
   }
 }

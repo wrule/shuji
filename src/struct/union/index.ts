@@ -69,6 +69,5 @@ export class StructUnion extends Struct {
     private members: Struct[],
   ) {
     super();
-    this.hash = this.CalcHash();
   }
 }

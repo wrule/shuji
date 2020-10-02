@@ -95,6 +95,5 @@ export class StructObject extends Struct {
     private fields: Map<string, Struct>,
   ) {
     super();
-    this.hash = this.CalcHash();
   }
 }

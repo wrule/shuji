@@ -56,6 +56,5 @@ export class StructArray extends Struct {
     private elementStruct: Struct,
   ) {
     super();
-    this.hash = this.CalcHash();
   }
 }

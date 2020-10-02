@@ -6,7 +6,13 @@ import { StructType } from './type';
 export abstract class Struct {
   protected hash: string = '';
 
+  /**
+   * 获取结构Hash(即时计算且缓存)
+   */
   public get Hash() {
+    if (!this.hash) {
+      this.hash = this.CalcHash();
+    }
     return this.hash;
   }
 
