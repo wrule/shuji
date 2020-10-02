@@ -7,12 +7,12 @@ export class StructNull extends Struct {
     return StructType.Null;
   }
 
-  protected CalcHash() {
-    return StructType.Null.toString();
-  }
-
   public get IsBasic() {
     return true;
+  }
+
+  protected CalcHash() {
+    return StructType.Null.toString();
   }
 
   public iContain(ts: Struct): boolean {

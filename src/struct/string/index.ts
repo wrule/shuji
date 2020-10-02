@@ -7,12 +7,12 @@ export class StructString extends Struct {
     return StructType.String
   }
 
-  protected CalcHash() {
-    return StructType.String.toString();
-  }
-
   public get IsBasic() {
     return true;
+  }
+
+  protected CalcHash() {
+    return StructType.String.toString();
   }
 
   public iContain(ts: Struct): boolean {

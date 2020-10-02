@@ -7,12 +7,12 @@ export class StructNumber extends Struct {
     return StructType.Number;
   }
 
-  protected CalcHash() {
-    return StructType.Number.toString();
-  }
-
   public get IsBasic() {
     return true;
+  }
+
+  protected CalcHash() {
+    return StructType.Number.toString();
   }
 
   public iContain(ts: Struct): boolean {

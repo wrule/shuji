@@ -7,12 +7,12 @@ export class StructDate extends Struct {
     return StructType.Date;
   }
 
-  protected CalcHash() {
-    return StructType.Date.toString();
-  }
-
   public get IsBasic() {
     return true;
+  }
+
+  protected CalcHash() {
+    return StructType.Date.toString();
   }
 
   public iContain(ts: Struct): boolean {

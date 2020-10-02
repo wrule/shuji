@@ -7,12 +7,12 @@ export class StructBoolean extends Struct {
     return StructType.Boolean;
   }
 
-  protected CalcHash() {
-    return StructType.Boolean.toString();
-  }
-
   public get IsBasic() {
     return true;
+  }
+
+  protected CalcHash() {
+    return StructType.Boolean.toString();
   }
 
   public iContain(ts: Struct): boolean {

@@ -7,12 +7,12 @@ export class StructUnknow extends Struct {
     return StructType.Unknow;
   }
 
-  protected CalcHash() {
-    return StructType.Unknow.toString();
-  }
-
   public get IsBasic() {
     return true;
+  }
+
+  protected CalcHash() {
+    return StructType.Unknow.toString();
   }
 
   public iContain(ts: Struct): boolean {

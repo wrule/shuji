@@ -7,12 +7,12 @@ export class StructUndefined extends Struct {
     return StructType.Undefined;
   }
 
-  protected CalcHash() {
-    return StructType.Undefined.toString();
-  }
-
   public get IsBasic() {
     return true;
+  }
+
+  protected CalcHash() {
+    return StructType.Undefined.toString();
   }
 
   public iContain(ts: Struct): boolean {
