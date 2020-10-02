@@ -96,5 +96,5 @@ export abstract class Struct {
    * @param ts 目标结构
    * @returns 合并之后的结构
    */
-  public abstract iMerge(ts: Struct): Struct;
+  protected abstract iMerge(ts: Struct): Struct;
 }

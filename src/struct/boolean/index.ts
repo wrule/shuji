@@ -23,7 +23,7 @@ export class StructBoolean extends Struct {
     return this.Equal(ts) ? 1 : 0;
   }
 
-  public iMerge(ts: Struct): Struct {
+  protected iMerge(ts: Struct): Struct {
     if (this.Equal(ts)) {
       return this;
     } else {
