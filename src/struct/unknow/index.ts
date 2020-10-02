@@ -1,6 +1,5 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
-import { StructUnion } from '../union';
 
 export class StructUnknow extends Struct {
   public get Type() {
@@ -24,10 +23,6 @@ export class StructUnknow extends Struct {
   }
 
   protected iMerge(ts: Struct): Struct {
-    if (this.Equal(ts)) {
-      return this;
-    } else {
-      return new StructUnion([this, ts]);
-    }
+    return ts;
   }
 }
