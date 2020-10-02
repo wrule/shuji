@@ -31,7 +31,9 @@ export abstract class Struct {
    * @param ts 目标结构
    * @returns 是否完全相等
    */
-  public abstract Equal(ts: Struct): boolean;
+  public Equal(ts: Struct) {
+    return this.Hash === ts.Hash;
+  }
 
   public Contain(ts: Struct): boolean {
     return this.iContain(ts);

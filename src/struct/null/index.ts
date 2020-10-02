@@ -15,10 +15,6 @@ export class StructNull extends Struct {
     return true;
   }
 
-  public Equal(ts: Struct) {
-    return this.Hash === ts.Hash;
-  }
-
   public iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }

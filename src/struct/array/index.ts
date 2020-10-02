@@ -21,10 +21,6 @@ export class StructArray extends Struct {
     return false;
   }
 
-  public Equal(ts: Struct) {
-    return this.Hash === ts.Hash;
-  }
-
   public iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;
