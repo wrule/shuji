@@ -72,7 +72,7 @@ export class StructObject extends Struct {
   }
 
   protected iMerge(ts: Struct): Struct {
-    if (ts.Type === this.Type) {
+    if (ts.Type === this.Type && this.Compare(ts) >= 0.3) {
       const object = ts as StructObject;
       const allKeys = Array.from(new Set(
         Array.from(this.Fields.keys())
