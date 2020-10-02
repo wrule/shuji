@@ -1,5 +1,4 @@
 import { StructType } from './type';
-import { StructUnion } from './union';
 
 /**
  * 结构抽象类
@@ -36,13 +35,8 @@ export abstract class Struct {
   }
 
   public Contain(ts: Struct): boolean {
-    // 判断本结构是否包含联合的所有可能性
-    if (ts.Type === StructType.Union) {
-      const union = ts as StructUnion;
-      return union.Members.every((struct) => this.Contain(struct));
-    } else {
-      return this.iContain(ts);
-    }
+    // 判断本结构是否包含联合的所有可能性这个逻辑需要不需要呢
+    return this.iContain(ts);
   }
 
   /**
@@ -83,11 +77,12 @@ export abstract class Struct {
       return ts.iMerge(this);
     }
     // 结构相似度对比
-    if (this.Compare(ts) > 0.1) {
-      return this.iMerge(ts);
-    } else {
-      return new StructUnion([this, ts]);
-    }
+    // if (this.Compare(ts) > 0.1) {
+    //   return this.iMerge(ts);
+    // } else {
+    //   return new StructUnion([this, ts]);
+    // }
+    return this.iMerge(ts);
   }
 
   /**
@@ -96,27 +91,6 @@ export abstract class Struct {
    * @returns 合并之后的结构
    */
   public abstract iMerge(ts: Struct): Struct;
-
-  /**
-   * 结构更新
-   * @param ts 目标结构
-   * @returns 更新之后的结构
-   */
-  public Update(ts: Struct): Struct {
-    if (this.Equal(ts)) {
-      return this;
-    } else {
-      if (this.Contain(ts)) {
-        return this;
-      } else {
-        if (this.Compare(ts) > 0.1) {
-          return this.Merge(ts);
-        } else {
-          return new StructUnion([this, ts]);
-        }
-      }
-    }
-  }
 
   public constructor() {
     this.hash = this.CalcHash();

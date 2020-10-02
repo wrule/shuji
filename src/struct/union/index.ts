@@ -25,7 +25,12 @@ export class StructUnion extends Struct {
   }
 
   public iContain(ts: Struct): boolean {
-    return this.Members.some((struct) => struct.Contain(ts));
+    if (ts.Type === this.Type) {
+      const union = ts as StructUnion;
+      return union.Members.every((struct) => this.Contain(struct));
+    } else {
+      return this.Members.some((struct) => struct.Contain(ts));
+    }
   }
 
   /**
