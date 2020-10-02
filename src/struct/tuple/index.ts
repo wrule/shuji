@@ -13,12 +13,12 @@ export class StructTuple extends Struct {
     return StructType.Tuple;
   }
 
-  public CalcHash() {
-    return Hash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
-  }
-
   public get IsBasic() {
     return false;
+  }
+
+  public CalcHash() {
+    return Hash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
   }
 
   public iContain(ts: Struct): boolean {

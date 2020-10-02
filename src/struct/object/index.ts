@@ -16,6 +16,10 @@ export class StructObject extends Struct {
     return StructType.Object;
   }
 
+  public get IsBasic() {
+    return false;
+  }
+
   public CalcHash() {
     return Hash(
       Array.from(this.Fields)
@@ -23,10 +27,6 @@ export class StructObject extends Struct {
         .map((ary) => `${ary[0]}:${ary[1].Hash}`)
         .join(',')
     );
-  }
-
-  public get IsBasic() {
-    return false;
   }
 
   public iContain(ts: Struct): boolean {

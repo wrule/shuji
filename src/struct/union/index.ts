@@ -11,6 +11,10 @@ export class StructUnion extends Struct {
     return StructType.Union;
   }
 
+  public get IsBasic() {
+    return false;
+  }
+
   public CalcHash() {
     return Hash(
       this.Members
@@ -18,10 +22,6 @@ export class StructUnion extends Struct {
         .sort((a, b) => a.localeCompare(b))
         .join('|')
     );
-  }
-
-  public get IsBasic() {
-    return false;
   }
 
   public iContain(ts: Struct): boolean {

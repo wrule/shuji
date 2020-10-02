@@ -13,12 +13,12 @@ export class StructArray extends Struct {
     return StructType.Array;
   }
 
-  public CalcHash() {
-    return Hash(`${this.ElementStruct.Hash}[]`);
-  }
-
   public get IsBasic() {
     return false;
+  }
+
+  public CalcHash() {
+    return Hash(`${this.ElementStruct.Hash}[]`);
   }
 
   public iContain(ts: Struct): boolean {
