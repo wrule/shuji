@@ -49,6 +49,9 @@ export class StructUnion extends Struct {
   }
 
   protected iMerge(ts: Struct): Struct {
+    if (this.Members.length < 1) {
+      return ts;
+    }
     if (ts.Type === this.Type) {
       const union = ts as StructUnion;
       let result: Struct = this;
@@ -58,7 +61,6 @@ export class StructUnion extends Struct {
       return result;
     } else {
       const nums = this.Members.map((struct) => struct.Compare(ts));
-      // TODO 空状态?
       const maxNum = Math.max(...nums);
       if (maxNum >= 0.3) {
         const maxIndex = nums.findIndex((num) => num === maxNum);
