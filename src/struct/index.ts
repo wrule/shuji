@@ -85,20 +85,12 @@ export abstract class Struct {
     if (ts.Contain(this)) {
       return ts;
     }
-    // 合并的两方之中若有一方为联合,则直接合并
-    if (
-      this.Type === StructType.Union ||
-      ts.Type === StructType.Union
-    ) {
+    // Union前置合并
+    if (ts.Type === StructType.Union) {
       return ts.iMerge(this);
+    } else {
+      return this.iMerge(ts);
     }
-    // 结构相似度对比
-    // if (this.Compare(ts) > 0.1) {
-    //   return this.iMerge(ts);
-    // } else {
-    //   return new StructUnion([this, ts]);
-    // }
-    return this.iMerge(ts);
   }
 
   /**
