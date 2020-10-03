@@ -1,4 +1,5 @@
 import { StructType } from './type';
+import { StructUnion } from './union';
 
 /**
  * 结构抽象类
@@ -41,8 +42,13 @@ export abstract class Struct {
   }
 
   public Contain(ts: Struct): boolean {
-    // 判断本结构是否包含联合的所有可能性这个逻辑需要不需要呢
-    return this.iContain(ts);
+    // 联合前置包含判断
+    if (ts.Type === StructType.Union) {
+      const unoin = ts as StructUnion;
+      return unoin.Members.every((struct) => this.Contain(struct));
+    } else {
+      return this.iContain(ts);
+    }
   }
 
   /**
