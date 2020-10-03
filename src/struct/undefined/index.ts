@@ -24,10 +24,6 @@ export class StructUndefined extends Struct {
   }
 
   protected iMerge(ts: Struct): Struct {
-    if (this.Equal(ts)) {
-      return this;
-    } else {
-      return new StructUnion([this, ts]);
-    }
+    return new StructUnion([this, ts]);
   }
 }
