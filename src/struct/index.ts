@@ -59,7 +59,11 @@ export abstract class Struct {
   protected abstract iContain(ts: Struct): boolean;
 
   public Compare(ts: Struct): number {
-    return this.iCompare(ts);
+    if (ts.Type === StructType.Union) {
+      return ts.iCompare(this);
+    } else {
+      return this.iCompare(ts);
+    }
   }
 
   /**
