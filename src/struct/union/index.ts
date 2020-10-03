@@ -33,14 +33,19 @@ export class StructUnion extends Struct {
     }
   }
 
-  // TODO
-  /**
-   * 联合结构的相似度
-   * 只要不完全一致,相似度都为0
-   * @param ts 目标结构
-   */
   protected iCompare(ts: Struct): number {
-    return this.Equal(ts) ? 1 : 0;
+    let nums: number[] = [];
+    if (ts.Type === this.Type) {
+      const union = ts as StructUnion;
+      nums = union.Members.map((struct) => this.Compare(struct));
+    } else {
+      nums = this.Members.map((struct) => struct.Compare(ts));
+    }
+    if (nums.length > 0) {
+      return Math.max(...nums);
+    } else {
+      return 0;
+    }
   }
 
   protected iMerge(ts: Struct): Struct {
