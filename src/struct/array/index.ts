@@ -47,6 +47,13 @@ export class StructArray extends Struct {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;
       return new StructArray(this.ElementStruct.Merge(array.ElementStruct));
+    } else if (ts.Type === StructType.Tuple) {
+      const tuple = ts as StructTuple;
+      let result = this.ElementStruct;
+      tuple.ElementsStruct.forEach((struct) => {
+        result = result.Merge(struct);
+      });
+      return new StructArray(result);
     } else {
       return new StructUnion([this, ts]);
     }
