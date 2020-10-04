@@ -1,4 +1,4 @@
-import { Infer } from './ts/index';
+import { Infer } from './infer/index';
 import { JsField } from './js/field';
 import { StructObject } from './struct/object';
 import object from './test/index.json';
