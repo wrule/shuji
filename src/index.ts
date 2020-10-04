@@ -2,6 +2,11 @@ import { Infer } from './infer/index';
 import { JsField } from './js/field';
 import { StructObject } from './struct/object';
 import object from './test/index.json';
+import API from './namespace/api';
+
+console.log(API.Response.Object.num);
+
+
 
 // const object = {
 //   name: 'gushi',
