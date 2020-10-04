@@ -1,6 +1,7 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructUnion } from '../union';
+import { JsValue } from '../../js/value';
 
 export class StructBoolean extends Struct {
   public get Type() {
@@ -26,4 +27,8 @@ export class StructBoolean extends Struct {
   protected iMerge(ts: Struct): Struct {
     return new StructUnion([this, ts]);
   }
+
+  // protected iUpdate(value: JsValue): Struct {
+  //   return this.
+  // }
 }

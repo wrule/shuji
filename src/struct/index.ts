@@ -1,5 +1,6 @@
 import { StructType } from './type';
 import { StructUnion } from './union';
+import { JsValue } from '../js/value';
 
 /**
  * 结构抽象类
@@ -99,4 +100,10 @@ export abstract class Struct {
    * @returns 合并之后的结构
    */
   protected abstract iMerge(ts: Struct): Struct;
+
+  // public Update(value: JsValue): Struct {
+  //   return this.iUpdate(value);
+  // }
+
+  // protected abstract iUpdate(value: JsValue): Struct;
 }
