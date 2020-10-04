@@ -101,9 +101,9 @@ export abstract class Struct {
    */
   protected abstract iMerge(ts: Struct): Struct;
 
-  // public Update(value: JsValue): Struct {
-  //   return this.iUpdate(value);
-  // }
+  public Update(value: JsValue): Struct {
+    return this.iUpdate(value);
+  }
 
-  // protected abstract iUpdate(value: JsValue): Struct;
+  protected abstract iUpdate(value: JsValue): Struct;
 }

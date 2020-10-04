@@ -3,6 +3,8 @@ import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructUndefined } from '../undefined';
 import { Hash } from '../../utils';
+import { JsValue } from '../../js/value';
+import { Infer } from '../../infer';
 
 export class StructObject extends Struct {
   /**
@@ -89,6 +91,10 @@ export class StructObject extends Struct {
     } else {
       return new StructUnion([this, ts]);
     }
+  }
+
+  protected iUpdate(value: JsValue): Struct {
+    return this.Merge(Infer(value));
   }
 
   public constructor(

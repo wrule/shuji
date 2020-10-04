@@ -1,6 +1,8 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
 import { Hash } from '../../utils';
+import { JsValue } from '../../js/value';
+import { Infer } from '../../infer';
 
 export class StructUnion extends Struct {
   public get Members() {
@@ -72,6 +74,10 @@ export class StructUnion extends Struct {
         return new StructUnion(this.Members.concat([ts]));
       }
     }
+  }
+
+  protected iUpdate(value: JsValue): Struct {
+    return this.Merge(Infer(value));
   }
 
   public constructor(

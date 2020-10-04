@@ -1,5 +1,7 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
+import { JsValue } from '../../js/value';
+import { Infer } from '../../infer';
 
 export class StructUnknow extends Struct {
   public get Type() {
@@ -24,5 +26,9 @@ export class StructUnknow extends Struct {
 
   protected iMerge(ts: Struct): Struct {
     return ts;
+  }
+
+  protected iUpdate(value: JsValue): Struct {
+    return this.Merge(Infer(value));
   }
 }
