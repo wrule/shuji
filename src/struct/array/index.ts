@@ -5,6 +5,7 @@ import { StructTuple } from '../tuple';
 import { Hash } from '../../utils';
 import { JsValue } from '../../js/value';
 import { Infer } from '../../infer';
+import { JsType } from '../../js/type';
 
 export class StructArray extends Struct {
   public get ElementStruct() {
@@ -61,7 +62,15 @@ export class StructArray extends Struct {
   }
 
   protected iUpdate(value: JsValue): Struct {
-    return this.Merge(Infer(value));
+    if (value.Type === JsType.Array) {
+      let result = this.ElementStruct;
+      value.ArrayValues.forEach((value) => {
+        result.Update(value);
+      });
+      return this.Merge(Infer(value));
+    } else {
+      return this.Merge(Infer(value));
+    }
   }
 
   public constructor(
