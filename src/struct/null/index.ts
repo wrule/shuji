@@ -15,6 +15,10 @@ export class StructNull extends Struct {
     return StructType.Null.toString();
   }
 
+  protected iTsName() {
+    return 'null';
+  }
+
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }

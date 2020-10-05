@@ -15,6 +15,10 @@ export class StructDate extends Struct {
     return StructType.Date.toString();
   }
 
+  protected iTsName() {
+    return 'Date';
+  }
+
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }

@@ -15,6 +15,10 @@ export class StructUndefined extends Struct {
     return StructType.Undefined.toString();
   }
 
+  protected iTsName() {
+    return 'undefined';
+  }
+
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }

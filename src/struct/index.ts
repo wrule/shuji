@@ -99,4 +99,10 @@ export abstract class Struct {
    * @returns 合并之后的结构
    */
   protected abstract iMerge(ts: Struct): Struct;
+
+  public TsName(name: string = '', index: number = 0): string {
+    return this.iTsName(name, index);
+  }
+
+  protected abstract iTsName(name: string, index: number): string;
 }
