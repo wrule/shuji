@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@types/lodash@^4.14.161":
+  version "4.14.161"
+  resolved "http://npm.perfma-inc.net:80/@types%2flodash/-/lodash-4.14.161.tgz#a21ca0777dabc6e4f44f3d07f37b765f54188b18"
+  integrity sha512-EP6O3Jkr7bXvZZSZYlsgt5DIjiGr0dXP1/jVEwVLTFgg0d+3lWVQkRavYVQszV7dYUwvg0B8R0MBDpcmXg7XIA==
+
 hasha@^5.2.0:
   version "5.2.0"
   resolved "http://npm.perfma-inc.net:80/hasha/-/hasha-5.2.0.tgz#33094d1f69c40a4a6ac7be53d5fe3ff95a269e0c"
@@ -22,6 +27,11 @@ jqgram@^0.2.5:
   dependencies:
     node-clone "~0.1.1"
     setimmediate "~1.0.1"
+
+lodash@^4.17.20:
+  version "4.17.20"
+  resolved "http://npm.perfma-inc.net:80/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
 
 node-clone@~0.1.1:
   version "0.1.1"

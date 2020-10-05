@@ -21,6 +21,10 @@ export class StructArray extends Struct {
     return Hash(`${this.ElementStruct.Hash}[]`);
   }
 
+  protected iTsName(name: string) {
+    return `${this.ElementStruct.TsName(name)}[]`;
+  }
+
   protected iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;

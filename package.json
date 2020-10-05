@@ -13,8 +13,10 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "@types/lodash": "^4.14.161",
     "hasha": "^5.2.0",
     "jqgram": "^0.2.5",
+    "lodash": "^4.17.20",
     "string-similarity": "^4.0.2"
   }
 }

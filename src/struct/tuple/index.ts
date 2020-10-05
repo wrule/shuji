@@ -21,6 +21,13 @@ export class StructTuple extends Struct {
     return Hash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
   }
 
+  protected iTsName(name: string) {
+    const inner = this.ElementsStruct
+      .map((struct, index) => struct.TsName(name, index + 1))
+      .join(', ');
+    return `[${inner}]`;
+  }
+
   protected iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;

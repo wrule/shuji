@@ -3,6 +3,7 @@ import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructUndefined } from '../undefined';
 import { Hash } from '../../utils';
+import Lodash from 'lodash';
 
 export class StructObject extends Struct {
   /**
@@ -27,6 +28,10 @@ export class StructObject extends Struct {
         .map((ary) => `${ary[0]}:${ary[1].Hash}`)
         .join(',')
     );
+  }
+
+  protected iTsName(name: string, index: number) {
+    return `I${Lodash.upperFirst(name)}${index || ''}`;
   }
 
   protected iContain(ts: Struct): boolean {

@@ -24,6 +24,13 @@ export class StructUnion extends Struct {
     );
   }
 
+  protected iTsName(name: string) {
+    const inner = this.Members
+      .map((struct, index) => struct.TsName(name, index + 1))
+      .join(' | ');
+    return `(${inner})`;
+  }
+
   protected iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const union = ts as StructUnion;
