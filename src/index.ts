@@ -3,6 +3,7 @@ import { JsField } from './js/field';
 import { StructObject } from './struct/object';
 import object from './test/index.json';
 import API from './namespace/api';
+import { IResponse, Response } from './namespace/api2';
 
 console.log(API.Response.Object.num);
 
