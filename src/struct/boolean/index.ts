@@ -34,4 +34,8 @@ export class StructBoolean extends Struct {
   public get iOwnObjects() {
     return [];
   }
+
+  public constructor(name: string = '') {
+    super(name);
+  }
 }

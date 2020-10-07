@@ -130,4 +130,8 @@ export abstract class Struct {
       return this.OwnObjects;
     }
   }
+
+  public constructor(
+    private name: string,
+  ) { }
 }
