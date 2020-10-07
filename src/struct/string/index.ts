@@ -15,7 +15,7 @@ export class StructString extends Struct {
     return StructType.String.toString();
   }
 
-  protected iTsName() {
+  protected get iTsName() {
     return 'string';
   }
 

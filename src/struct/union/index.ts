@@ -25,9 +25,9 @@ export class StructUnion extends Struct {
     );
   }
 
-  protected iTsName(name: string) {
+  protected get iTsName() {
     const inner = this.Members
-      .map((struct, index) => struct.TsName(`${name}UM${index + 1}`))
+      .map((struct) => struct.TsName)
       .join(' | ');
     return `(${inner})`;
   }

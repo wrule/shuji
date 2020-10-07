@@ -15,7 +15,7 @@ export class StructDate extends Struct {
     return StructType.Date.toString();
   }
 
-  protected iTsName() {
+  protected get iTsName() {
     return 'Date';
   }
 

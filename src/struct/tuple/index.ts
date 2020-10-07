@@ -22,9 +22,9 @@ export class StructTuple extends Struct {
     return Hash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
   }
 
-  protected iTsName(name: string) {
+  protected get iTsName() {
     const inner = this.ElementsStruct
-      .map((struct, index) => struct.TsName(`${name}TE${index + 1}`))
+      .map((struct) => struct.TsName)
       .join(', ');
     return `[${inner}]`;
   }

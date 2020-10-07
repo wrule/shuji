@@ -15,7 +15,7 @@ export class StructNull extends Struct {
     return StructType.Null.toString();
   }
 
-  protected iTsName() {
+  protected get iTsName() {
     return 'null';
   }
 

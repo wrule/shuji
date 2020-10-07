@@ -30,19 +30,19 @@ export class StructObject extends Struct {
     );
   }
 
-  protected iTsName(name: string) {
-    return Lodash.upperFirst(name);
+  protected get iTsName() {
+    return Lodash.upperFirst(this.name);
   }
 
   public TsDef(name: string = '') {
     return `
-export interface I${this.TsName(name)} {
+export interface I${this.TsName} {
 ${Array.from(this.Fields)
-  .map(([name, struct]) => `  '${name}': ${struct.TsName(name)};`)
+  .map(([name, struct]) => `  '${name}': ${struct.TsName};`)
   .join('\n')}
 }
 
-export module ${this.TsName(name)} {
+export module ${this.TsName} {
 
 }
 `.trim();
@@ -104,7 +104,7 @@ export module ${this.TsName(name)} {
           const dstStruct = object.Fields.get(key) || undefinedType;
           return [key, srcStruct.Merge(dstStruct)];
         })
-      ));
+      ), this.name);
     } else {
       return new StructUnion([this, ts]);
     }
@@ -112,20 +112,12 @@ export module ${this.TsName(name)} {
 
   public get iOwnObjects() {
     return [this];
-    // let result: StructObject[] = [];
-    // Array.from(this.Fields).forEach(([name, struct]) => {
-    //   if (struct.Type === StructType.Object) {
-    //     result.push(struct as StructObject);
-    //   } else {
-    //     result.push(...struct.OwnObjects);
-    //   }
-    // });
-    // return result;
   }
 
   public constructor(
     private fields: Map<string, Struct>,
+    name: string,
   ) {
-    super('');
+    super(name);
   }
 }
