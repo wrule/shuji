@@ -14,15 +14,15 @@ import { StructArray } from '../struct/array';
 import { StructType } from '../struct/type';
 import { StructTuple } from '../struct/tuple';
 
-function InferObject(value: JsValue): Struct {
+function InferObject(value: JsValue, name: string): Struct {
   return new StructObject(
-    new Map(value.ObjectFields.map((field) => [field.Name, Infer(field.Value)]))
+    new Map(value.ObjectFields.map((field) => [field.Name, Infer(field.Value, field.Name)]))
   );
 }
 
-function InferArray(value: JsValue): Struct {
+function InferArray(value: JsValue, name: string): Struct {
   if (value.ArrayValues.length > 0) {
-    const structs = value.ArrayValues.map((item) => Infer(item));
+    const structs = value.ArrayValues.map((item) => Infer(item, name));
     // 尝试合并所有元素
     let result = structs[0];
     structs.slice(1).forEach((struct) => {
@@ -46,7 +46,7 @@ function InferArray(value: JsValue): Struct {
   }
 }
 
-export function Infer(value: JsValue): Struct {
+export function Infer(value: JsValue, name: string): Struct {
   switch (value.Type) {
     case JsType.Unknow: return new StructUnknow();
     case JsType.Undefined: return new StructUndefined();
@@ -55,8 +55,8 @@ export function Infer(value: JsValue): Struct {
     case JsType.Number: return  new StructNumber();
     case JsType.String: return new StructString();
     case JsType.Date: return new StructDate();
-    case JsType.Object: return InferObject(value);
-    case JsType.Array: return InferArray(value);
+    case JsType.Object: return InferObject(value, name);
+    case JsType.Array: return InferArray(value, name);
     default: return new StructUnknow();
   }
 }
