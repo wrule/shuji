@@ -5,7 +5,7 @@ import object from './test/index.json';
 import API from './namespace/api';
 import { IResponse, Response } from './namespace/api2';
 
-console.log(API.Response.Object.num);
+// console.log(API.Response.Object.num);
 
 
 
@@ -30,6 +30,8 @@ const jsField = new JsField('me', object);
 
 const oldTime = Number(new Date());
 const struct = Infer(jsField.Value);
+const tss = struct as StructObject;
 console.log(Number(new Date()) - oldTime);
 console.log(struct.Hash);
+console.log(tss.TsDef('gu'));
 

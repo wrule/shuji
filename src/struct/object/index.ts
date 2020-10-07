@@ -31,7 +31,21 @@ export class StructObject extends Struct {
   }
 
   protected iTsName(name: string) {
-    return `I${Lodash.upperFirst(name)}`;
+    return Lodash.upperFirst(name);
+  }
+
+  public TsDef(name: string = '') {
+    return `
+export interface I${this.TsName(name)} {
+${Array.from(this.Fields)
+  .map(([name, struct]) => `  '${name}': ${struct.TsName(name)};`)
+  .join('\n')}
+}
+
+export module ${this.TsName(name)} {
+
+}
+`.trim();
   }
 
   protected iContain(ts: Struct): boolean {
