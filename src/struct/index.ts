@@ -1,5 +1,6 @@
 import { StructType } from './type';
 import { StructUnion } from './union';
+import { StructObject } from './object';
 
 /**
  * 结构抽象类
@@ -105,4 +106,6 @@ export abstract class Struct {
   }
 
   protected abstract iTsName(name: string): string;
+
+  public abstract OwnObjects: StructObject[];
 }

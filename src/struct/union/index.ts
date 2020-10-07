@@ -1,6 +1,7 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
 import { Hash } from '../../utils';
+import { StructObject } from '../object';
 
 export class StructUnion extends Struct {
   public get Members() {
@@ -79,6 +80,14 @@ export class StructUnion extends Struct {
         return new StructUnion(this.Members.concat([ts]));
       }
     }
+  }
+
+  public get OwnObjects() {
+    const result: StructObject[] = [];
+    this.Members.forEach((struct) => {
+      result.push(...struct.OwnObjects);
+    });
+    return result;
   }
 
   public constructor(

@@ -30,4 +30,8 @@ export class StructUndefined extends Struct {
   protected iMerge(ts: Struct): Struct {
     return new StructUnion([this, ts]);
   }
+
+  public get OwnObjects() {
+    return [];
+  }
 }

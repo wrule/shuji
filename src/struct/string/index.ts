@@ -30,4 +30,8 @@ export class StructString extends Struct {
   protected iMerge(ts: Struct): Struct {
     return new StructUnion([this, ts]);
   }
+
+  public get OwnObjects() {
+    return [];
+  }
 }

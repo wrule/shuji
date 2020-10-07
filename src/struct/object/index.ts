@@ -110,6 +110,19 @@ export module ${this.TsName(name)} {
     }
   }
 
+  public get OwnObjects() {
+    return [this];
+    // let result: StructObject[] = [];
+    // Array.from(this.Fields).forEach(([name, struct]) => {
+    //   if (struct.Type === StructType.Object) {
+    //     result.push(struct as StructObject);
+    //   } else {
+    //     result.push(...struct.OwnObjects);
+    //   }
+    // });
+    // return result;
+  }
+
   public constructor(
     private fields: Map<string, Struct>,
   ) {

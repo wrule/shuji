@@ -62,6 +62,10 @@ export class StructArray extends Struct {
     }
   }
 
+  public get OwnObjects() {
+    return this.ElementStruct.OwnObjects;
+  }
+
   public constructor(
     private elementStruct: Struct,
   ) {

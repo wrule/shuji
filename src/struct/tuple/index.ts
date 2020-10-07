@@ -3,6 +3,7 @@ import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructUndefined } from '../undefined';
 import { Hash } from '../../utils';
+import { StructObject } from '../object';
 
 export class StructTuple extends Struct {
   public get ElementsStruct() {
@@ -79,6 +80,14 @@ export class StructTuple extends Struct {
     } else {
       return new StructUnion([this, ts]);
     }
+  }
+
+  public get OwnObjects() {
+    const result: StructObject[] = [];
+    this.ElementsStruct.forEach((struct) => {
+      result.push(...struct.OwnObjects);
+    });
+    return result;
   }
 
   public constructor(

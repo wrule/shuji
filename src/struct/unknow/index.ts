@@ -29,4 +29,8 @@ export class StructUnknow extends Struct {
   protected iMerge(ts: Struct): Struct {
     return ts;
   }
+
+  public get OwnObjects() {
+    return [];
+  }
 }
