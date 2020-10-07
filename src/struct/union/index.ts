@@ -26,7 +26,7 @@ export class StructUnion extends Struct {
 
   protected iTsName(name: string) {
     const inner = this.Members
-      .map((struct, index) => struct.TsName(name, index + 1))
+      .map((struct, index) => struct.TsName(`${name}UM${index + 1}`))
       .join(' | ');
     return `(${inner})`;
   }

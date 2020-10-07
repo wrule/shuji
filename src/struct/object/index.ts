@@ -30,8 +30,8 @@ export class StructObject extends Struct {
     );
   }
 
-  protected iTsName(name: string, index: number) {
-    return `I${Lodash.upperFirst(name)}${index || ''}`;
+  protected iTsName(name: string) {
+    return `I${Lodash.upperFirst(name)}`;
   }
 
   protected iContain(ts: Struct): boolean {

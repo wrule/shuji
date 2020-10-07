@@ -100,9 +100,9 @@ export abstract class Struct {
    */
   protected abstract iMerge(ts: Struct): Struct;
 
-  public TsName(name: string = '', index: number = 0): string {
-    return this.iTsName(name, index);
+  public TsName(name: string = ''): string {
+    return this.iTsName(name);
   }
 
-  protected abstract iTsName(name: string, index: number): string;
+  protected abstract iTsName(name: string): string;
 }

@@ -23,7 +23,7 @@ export class StructTuple extends Struct {
 
   protected iTsName(name: string) {
     const inner = this.ElementsStruct
-      .map((struct, index) => struct.TsName(name, index + 1))
+      .map((struct, index) => struct.TsName(`${name}TE${index + 1}`))
       .join(', ');
     return `[${inner}]`;
   }
