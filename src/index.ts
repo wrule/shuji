@@ -35,4 +35,3 @@ console.log(Number(new Date()) - oldTime);
 console.log(struct.Hash);
 console.log(tss.TsDef('gu'));
 console.log(tss.SpaceObjects.length);
-
