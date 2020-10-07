@@ -29,7 +29,7 @@ import { IResponse, Response } from './namespace/api2';
 const jsField = new JsField('me', object);
 
 const oldTime = Number(new Date());
-const struct = Infer(jsField.Value);
+const struct = Infer(jsField.Value, 'rsp');
 const tss = struct as StructObject;
 console.log(Number(new Date()) - oldTime);
 console.log(struct.Hash);

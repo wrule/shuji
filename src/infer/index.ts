@@ -16,7 +16,7 @@ import { StructTuple } from '../struct/tuple';
 
 function InferObject(value: JsValue, name: string): Struct {
   return new StructObject(
-    new Map(value.ObjectFields.map((field) => [field.Name, Infer(field.Value, field.Name)]))
+    new Map(value.ObjectFields.map((field) => [field.Name, Infer(field.Value, field.Name)])),
   );
 }
 
