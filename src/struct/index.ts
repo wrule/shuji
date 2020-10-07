@@ -107,9 +107,27 @@ export abstract class Struct {
 
   protected abstract iTsName(name: string): string;
 
-  public get OwnObjects() {
-    return this.iOwnObjects;
-  }
+  private ownObjects: StructObject[] | null = null;
 
   protected abstract iOwnObjects: StructObject[];
+
+  public get OwnObjects() {
+    if (!this.ownObjects) {
+      this.ownObjects = this.iOwnObjects;
+    }
+    return this.ownObjects;
+  }
+
+  public get SpaceObjects() {
+    if (this.Type === StructType.Object) {
+      const object = (this as unknown) as StructObject;
+      let result: StructObject[] = [];
+      Array.from(object.Fields).forEach(([name, struct]) => {
+        result.push(...struct.OwnObjects);
+      });
+      return result;
+    } else {
+      return this.OwnObjects;
+    }
+  }
 }
