@@ -110,7 +110,7 @@ export module ${this.TsName(name)} {
     }
   }
 
-  public get OwnObjects() {
+  public get iOwnObjects() {
     return [this];
     // let result: StructObject[] = [];
     // Array.from(this.Fields).forEach(([name, struct]) => {

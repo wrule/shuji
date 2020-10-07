@@ -82,7 +82,7 @@ export class StructTuple extends Struct {
     }
   }
 
-  public get OwnObjects() {
+  public get iOwnObjects() {
     const result: StructObject[] = [];
     this.ElementsStruct.forEach((struct) => {
       result.push(...struct.OwnObjects);

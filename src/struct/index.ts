@@ -107,5 +107,9 @@ export abstract class Struct {
 
   protected abstract iTsName(name: string): string;
 
-  public abstract OwnObjects: StructObject[];
+  public get OwnObjects() {
+    return this.iOwnObjects;
+  }
+
+  protected abstract iOwnObjects: StructObject[];
 }

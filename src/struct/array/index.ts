@@ -62,7 +62,7 @@ export class StructArray extends Struct {
     }
   }
 
-  public get OwnObjects() {
+  public get iOwnObjects() {
     return this.ElementStruct.OwnObjects;
   }
 

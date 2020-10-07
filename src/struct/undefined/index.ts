@@ -31,7 +31,7 @@ export class StructUndefined extends Struct {
     return new StructUnion([this, ts]);
   }
 
-  public get OwnObjects() {
+  public get iOwnObjects() {
     return [];
   }
 }
