@@ -126,6 +126,6 @@ export module ${this.TsName(name)} {
   public constructor(
     private fields: Map<string, Struct>,
   ) {
-    super();
+    super('');
   }
 }

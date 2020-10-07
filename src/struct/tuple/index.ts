@@ -93,6 +93,6 @@ export class StructTuple extends Struct {
   public constructor(
     private elementsStruct: Struct[],
   ) {
-    super();
+    super('');
   }
 }

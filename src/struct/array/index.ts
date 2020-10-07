@@ -69,6 +69,6 @@ export class StructArray extends Struct {
   public constructor(
     private elementStruct: Struct,
   ) {
-    super();
+    super('');
   }
 }
