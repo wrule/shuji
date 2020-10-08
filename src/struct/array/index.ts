@@ -21,7 +21,7 @@ export class StructArray extends Struct {
     return Hash(`${this.ElementStruct.Hash}[]`);
   }
 
-  protected get iTsName() {
+  protected iTsName() {
     return `${this.ElementStruct.TsName}[]`;
   }
 

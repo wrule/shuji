@@ -22,7 +22,7 @@ export class StructTuple extends Struct {
     return Hash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
   }
 
-  protected get iTsName() {
+  protected iTsName() {
     const inner = this.ElementsStruct
       .map((struct) => struct.TsName)
       .join(', ');

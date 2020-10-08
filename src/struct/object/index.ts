@@ -30,7 +30,7 @@ export class StructObject extends Struct {
     );
   }
 
-  protected get iTsName() {
+  protected iTsName() {
     return Lodash.upperFirst(this.name);
   }
 
