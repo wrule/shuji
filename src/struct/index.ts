@@ -101,11 +101,20 @@ export abstract class Struct {
    */
   protected abstract iMerge(ts: Struct): Struct;
 
+  private tsName: string | null = null;
+
+  protected abstract iTsName(): string;
+
   public get TsName(): string {
-    return this.iTsName;
+    if (this.tsName === null) {
+      this.tsName = this.iTsName();
+    }
+    return this.tsName;
   }
 
-  protected abstract iTsName: string;
+  public UpdateName(name: string) {
+
+  }
 
   private ownObjects: StructObject[] | null = null;
 

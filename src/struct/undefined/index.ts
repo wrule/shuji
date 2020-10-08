@@ -15,7 +15,7 @@ export class StructUndefined extends Struct {
     return StructType.Undefined.toString();
   }
 
-  protected get iTsName() {
+  protected iTsName() {
     return 'undefined';
   }
 
