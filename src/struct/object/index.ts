@@ -106,7 +106,7 @@ export module ${this.TsName} {
         })
       ), this.name);
     } else {
-      return new StructUnion([this, ts]);
+      return new StructUnion([this, ts], this.Name);
     }
   }
 

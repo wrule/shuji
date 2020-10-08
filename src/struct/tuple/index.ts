@@ -73,12 +73,13 @@ export class StructTuple extends Struct {
         bigStructs.map((struct, index) => {
           const dstStruct = smallStructs[index] || undefinedStruct;
           return struct.Merge(dstStruct);
-        })
+        }),
+        this.Name,
       );
     } else if (ts.Type === StructType.Array) {
       return ts.Merge(this);
     } else {
-      return new StructUnion([this, ts]);
+      return new StructUnion([this, ts], this.Name);
     }
   }
 
@@ -92,8 +93,11 @@ export class StructTuple extends Struct {
 
   public constructor(
     private elementsStruct: Struct[],
-    name: string = '',
+    name: string,
   ) {
     super(name);
+    this.ElementsStruct.forEach((struct, index) => {
+      struct.UpdateName(`${name}TE${index + 1}`);
+    });
   }
 }

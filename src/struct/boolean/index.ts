@@ -28,7 +28,7 @@ export class StructBoolean extends Struct {
   }
 
   protected iMerge(ts: Struct): Struct {
-    return new StructUnion([this, ts]);
+    return new StructUnion([this, ts], this.Name);
   }
 
   public get iOwnObjects() {

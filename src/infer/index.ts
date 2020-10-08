@@ -35,15 +35,15 @@ function InferArray(value: JsValue, name: string): Struct {
       const structCount = union.Members.length;
       const arrayLength = value.ArrayValues.length;
       if (arrayLength / structCount <= 3) {
-        return new StructTuple(structs);
+        return new StructTuple(structs, name);
       } else {
-        return new StructArray(result);
+        return new StructArray(result, name);
       }
     } else {
-      return new StructArray(result);
+      return new StructArray(result, name);
     }
   } else {
-    return new StructArray(new StructUnknow());
+    return new StructArray(new StructUnknow(), name);
   }
 }
 

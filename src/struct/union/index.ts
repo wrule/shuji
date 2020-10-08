@@ -75,9 +75,9 @@ export class StructUnion extends Struct {
         const newMembers = this.Members.slice(0);
         const newStruct = newMembers[maxIndex].Merge(ts);
         newMembers.splice(maxIndex, 1, newStruct);
-        return new StructUnion(newMembers);
+        return new StructUnion(newMembers, this.Name);
       } else {
-        return new StructUnion(this.Members.concat([ts]));
+        return new StructUnion(this.Members.concat([ts]), this.Name);
       }
     }
   }
@@ -92,8 +92,11 @@ export class StructUnion extends Struct {
 
   public constructor(
     private members: Struct[],
-    name: string = '',
+    name: string,
   ) {
     super(name);
+    this.Members.forEach((struct, index) => {
+      struct.UpdateName(`${name}UM${index + 1}`);
+    });
   }
 }

@@ -49,16 +49,16 @@ export class StructArray extends Struct {
   protected iMerge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;
-      return new StructArray(this.ElementStruct.Merge(array.ElementStruct));
+      return new StructArray(this.ElementStruct.Merge(array.ElementStruct), this.Name);
     } else if (ts.Type === StructType.Tuple) {
       const tuple = ts as StructTuple;
       let result = this.ElementStruct;
       tuple.ElementsStruct.forEach((struct) => {
         result = result.Merge(struct);
       });
-      return new StructArray(result);
+      return new StructArray(result, this.Name);
     } else {
-      return new StructUnion([this, ts]);
+      return new StructUnion([this, ts], this.Name);
     }
   }
 
@@ -68,8 +68,9 @@ export class StructArray extends Struct {
 
   public constructor(
     private elementStruct: Struct,
-    name: string = '',
+    name: string,
   ) {
     super(name);
+    this.ElementStruct.UpdateName(`${name}AE`);
   }
 }
