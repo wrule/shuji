@@ -92,7 +92,8 @@ export class StructUnion extends Struct {
 
   public constructor(
     private members: Struct[],
+    name: string = '',
   ) {
-    super('');
+    super(name);
   }
 }

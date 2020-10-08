@@ -68,7 +68,8 @@ export class StructArray extends Struct {
 
   public constructor(
     private elementStruct: Struct,
+    name: string = '',
   ) {
-    super('');
+    super(name);
   }
 }
