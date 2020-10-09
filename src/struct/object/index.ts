@@ -104,7 +104,7 @@ export module ${this.TsName} {
           const dstStruct = object.Fields.get(key) || undefinedType;
           return [key, srcStruct.Merge(dstStruct)];
         })
-      ), this.name);
+      ), this.Name);
     } else {
       return new StructUnion([this, ts], this.Name);
     }
