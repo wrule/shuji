@@ -35,8 +35,8 @@ export class StructNull extends Struct {
     this.tsName = 'null';
   }
 
-  public constructor(name: string) {
-    super(name);
-    this.iUpdateDesc(name);
+  public constructor(desc: string) {
+    super(desc);
+    this.iUpdateDesc(desc);
   }
 }

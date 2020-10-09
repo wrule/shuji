@@ -118,9 +118,9 @@ export module ${this.TsName} {
 
   public constructor(
     private fields: Map<string, Struct>,
-    name: string,
+    desc: string,
   ) {
-    super(name);
-    this.iUpdateDesc(name);
+    super(desc);
+    this.iUpdateDesc(desc);
   }
 }

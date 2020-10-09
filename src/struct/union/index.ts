@@ -95,9 +95,9 @@ export class StructUnion extends Struct {
 
   public constructor(
     private members: Struct[],
-    name: string,
+    desc: string,
   ) {
-    super(name);
-    this.iUpdateDesc(name);
+    super(desc);
+    this.iUpdateDesc(desc);
   }
 }

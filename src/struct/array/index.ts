@@ -69,9 +69,9 @@ export class StructArray extends Struct {
 
   public constructor(
     private elementStruct: Struct,
-    name: string,
+    desc: string,
   ) {
-    super(name);
-    this.iUpdateDesc(name);
+    super(desc);
+    this.iUpdateDesc(desc);
   }
 }

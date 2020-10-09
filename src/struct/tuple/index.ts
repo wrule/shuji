@@ -96,9 +96,9 @@ export class StructTuple extends Struct {
 
   public constructor(
     private elementsStruct: Struct[],
-    name: string,
+    desc: string,
   ) {
-    super(name);
-    this.iUpdateDesc(name);
+    super(desc);
+    this.iUpdateDesc(desc);
   }
 }

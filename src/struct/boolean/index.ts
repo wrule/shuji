@@ -35,8 +35,8 @@ export class StructBoolean extends Struct {
     this.tsName = 'boolean';
   }
 
-  public constructor(name: string) {
-    super(name);
-    this.iUpdateDesc(name);
+  public constructor(desc: string) {
+    super(desc);
+    this.iUpdateDesc(desc);
   }
 }

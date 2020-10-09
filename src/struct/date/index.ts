@@ -35,8 +35,8 @@ export class StructDate extends Struct {
     this.tsName = 'Date';
   }
 
-  public constructor(name: string) {
-    super(name);
-    this.iUpdateDesc(name);
+  public constructor(desc: string) {
+    super(desc);
+    this.iUpdateDesc(desc);
   }
 }
