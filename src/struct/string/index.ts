@@ -35,7 +35,7 @@ export class StructString extends Struct {
     return [];
   }
 
-  public constructor(name: string = '') {
+  public constructor(name: string) {
     super(name);
   }
 }

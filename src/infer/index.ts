@@ -43,21 +43,21 @@ function InferArray(value: JsValue, name: string): Struct {
       return new StructArray(result, name);
     }
   } else {
-    return new StructArray(new StructUnknow(), name);
+    return new StructArray(new StructUnknow(''), name);
   }
 }
 
 export function Infer(value: JsValue, name: string): Struct {
   switch (value.Type) {
-    case JsType.Unknow: return new StructUnknow();
-    case JsType.Undefined: return new StructUndefined();
-    case JsType.Null: return new StructNull();
-    case JsType.Boolean: return new StructBoolean();
-    case JsType.Number: return  new StructNumber();
-    case JsType.String: return new StructString();
-    case JsType.Date: return new StructDate();
+    case JsType.Unknow: return new StructUnknow(name);
+    case JsType.Undefined: return new StructUndefined(name);
+    case JsType.Null: return new StructNull(name);
+    case JsType.Boolean: return new StructBoolean(name);
+    case JsType.Number: return  new StructNumber(name);
+    case JsType.String: return new StructString(name);
+    case JsType.Date: return new StructDate(name);
     case JsType.Object: return InferObject(value, name);
     case JsType.Array: return InferArray(value, name);
-    default: return new StructUnknow();
+    default: return new StructUnknow(name);
   }
 }

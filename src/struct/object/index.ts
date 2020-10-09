@@ -97,7 +97,7 @@ export module ${this.TsName} {
         Array.from(this.Fields.keys())
           .concat(Array.from(object.Fields.keys()))
       ));
-      const undefinedType = new StructUndefined();
+      const undefinedType = new StructUndefined('');
       return new StructObject(new Map(
         allKeys.map((key) => {
           const srcStruct = this.Fields.get(key) || undefinedType;

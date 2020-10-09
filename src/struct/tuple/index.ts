@@ -68,7 +68,7 @@ export class StructTuple extends Struct {
       const dstCount = tuple.ElementsStruct.length;
       const smallStructs = srcCount < dstCount ? this.ElementsStruct : tuple.ElementsStruct;
       const bigStructs = srcCount >= dstCount ? this.ElementsStruct : tuple.ElementsStruct;
-      const undefinedStruct = new StructUndefined();
+      const undefinedStruct = new StructUndefined('');
       return new StructTuple(
         bigStructs.map((struct, index) => {
           const dstStruct = smallStructs[index] || undefinedStruct;
