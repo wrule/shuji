@@ -30,18 +30,22 @@ export class StructObject extends Struct {
     );
   }
 
-  public TsDef(name: string = '') {
-    return `
-export interface I${this.TsName} {
+  public get TsDef() {
+    let result = ''; 
+    result += `
+export interface ${this.TsName} {
 ${Array.from(this.Fields)
   .map(([name, struct]) => `  '${name}': ${struct.TsName};`)
   .join('\n')}
 }
-
-export module ${this.TsName} {
-
-}
-`.trim();
+`;
+    if (this.SpaceObjects.length > 0) {
+      result += `
+export module ${this.TsName}Mod {
+${this.SpaceObjects.map((struct) => struct.TsDef.map((line) => `  ${line}`).join('\n')).join('\n\n')}
+}`;
+    }
+    return result.trim().split('\n');
   }
 
   protected iContain(ts: Struct): boolean {
@@ -113,7 +117,7 @@ export module ${this.TsName} {
   }
 
   protected iUpdateDesc(name: string) {
-    this.tsName = Lodash.upperFirst(name);
+    this.tsName = `I${Lodash.upperFirst(name)}`;
   }
 
   public constructor(
