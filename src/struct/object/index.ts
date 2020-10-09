@@ -32,7 +32,7 @@ export class StructObject extends Struct {
 
   public TsDef(name: string = '') {
     return `
-export interface ${this.TsName} {
+export interface I${this.TsName} {
 ${Array.from(this.Fields)
   .map(([name, struct]) => `  '${name}': ${struct.TsName};`)
   .join('\n')}
@@ -111,7 +111,7 @@ export module ${this.TsName} {
   }
 
   protected iUpdateName(name: string) {
-    this.tsName = `I${Lodash.upperFirst(name)}`;
+    this.tsName = Lodash.upperFirst(name);
   }
 
   public constructor(
