@@ -75,6 +75,5 @@ export class StructArray extends Struct {
     name: string,
   ) {
     super(name);
-    this.UpdateName(name);
   }
 }

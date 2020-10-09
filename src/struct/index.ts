@@ -150,5 +150,7 @@ export abstract class Struct {
 
   public constructor(
     protected name: string,
-  ) { }
+  ) {
+    this.UpdateName(this.name);
+  }
 }

@@ -101,6 +101,5 @@ export class StructUnion extends Struct {
     name: string,
   ) {
     super(name);
-    this.UpdateName(name);
   }
 }
