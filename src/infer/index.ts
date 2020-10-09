@@ -43,7 +43,7 @@ function InferArray(value: JsValue, name: string): Struct {
       return new StructArray(result, name);
     }
   } else {
-    return new StructArray(new StructUnknow(''), name);
+    return new StructArray(new StructUnknow(), name);
   }
 }
 
