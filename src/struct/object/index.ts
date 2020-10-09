@@ -47,16 +47,18 @@ export module ${this.TsName} {
   protected iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const object = ts as StructObject;
-      return Array.from(object.Fields).every((ary) => {
-        const key = ary[0];
-        const dstStruct = ary[1];
-        const srcStruct = this.Fields.get(key);
-        if (srcStruct) {
-          return srcStruct.Contain(dstStruct);
-        } else {
-          return false;
-        }
-      });
+      if (this.Fields.size === object.Fields.size) {
+        return Array.from(object.Fields).every(([name, dstStruct]) => {
+          const srcStruct = this.Fields.get(name);
+          if (srcStruct) {
+            return srcStruct.Contain(dstStruct);
+          } else {
+            return false;
+          }
+        });
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
