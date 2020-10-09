@@ -79,13 +79,13 @@ export abstract class Struct {
     if (this.Equal(ts)) {
       return this;
     }
-    // 若有包含关系则直接返回
-    if (this.Contain(ts)) {
-      return this;
-    }
-    if (ts.Contain(this)) {
-      return ts;
-    }
+    // // 若有包含关系则直接返回
+    // if (this.Contain(ts)) {
+    //   return this;
+    // }
+    // if (ts.Contain(this)) {
+    //   return ts;
+    // }
     // Union前置合并
     if (ts.Type === StructType.Union) {
       return ts.iMerge(this);
