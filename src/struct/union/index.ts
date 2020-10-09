@@ -90,13 +90,18 @@ export class StructUnion extends Struct {
     return result;
   }
 
+  public UpdateName(name: string) {
+    this.name = name;
+    this.Members.forEach((struct, index) => {
+      struct.UpdateName(`${this.name}UM${index + 1}`);
+    });
+  }
+
   public constructor(
     private members: Struct[],
     name: string,
   ) {
     super(name);
-    this.Members.forEach((struct, index) => {
-      struct.UpdateName(`${name}UM${index + 1}`);
-    });
+    this.UpdateName(name);
   }
 }

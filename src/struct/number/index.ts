@@ -35,6 +35,10 @@ export class StructNumber extends Struct {
     return [];
   }
 
+  public UpdateName(name: string) {
+    this.name = name;
+  }
+
   public constructor(name: string) {
     super(name);
   }

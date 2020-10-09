@@ -116,10 +116,7 @@ export abstract class Struct {
     return this.tsName;
   }
 
-  public UpdateName(name: string) {
-    this.name = name;
-    this.tsName = this.iTsName();
-  }
+  public abstract UpdateName(name: string): void;
 
   private ownObjects: StructObject[] | null = null;
 

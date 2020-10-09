@@ -34,6 +34,10 @@ export class StructUnknow extends Struct {
     return [];
   }
 
+  public UpdateName(name: string) {
+    this.name = name;
+  }
+
   public constructor(name: string) {
     super(name);
   }

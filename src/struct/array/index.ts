@@ -66,11 +66,16 @@ export class StructArray extends Struct {
     return this.ElementStruct.OwnObjects;
   }
 
+  public UpdateName(name: string) {
+    this.name = name;
+    this.ElementStruct.UpdateName(`${this.name}AE`);
+  }
+
   public constructor(
     private elementStruct: Struct,
     name: string,
   ) {
     super(name);
-    this.ElementStruct.UpdateName(`${name}AE`);
+    this.UpdateName(name);
   }
 }

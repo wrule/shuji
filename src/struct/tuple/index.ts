@@ -91,13 +91,18 @@ export class StructTuple extends Struct {
     return result;
   }
 
+  public UpdateName(name: string) {
+    this.name = name;
+    this.ElementsStruct.forEach((struct, index) => {
+      struct.UpdateName(`${this.name}TE${index + 1}`);
+    });
+  }
+
   public constructor(
     private elementsStruct: Struct[],
     name: string,
   ) {
     super(name);
-    this.ElementsStruct.forEach((struct, index) => {
-      struct.UpdateName(`${name}TE${index + 1}`);
-    });
+    this.UpdateName(name);
   }
 }
