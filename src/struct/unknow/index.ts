@@ -34,7 +34,7 @@ export class StructUnknow extends Struct {
     return [];
   }
 
-  public constructor(name: string = '') {
+  public constructor(name: string) {
     super(name);
   }
 }

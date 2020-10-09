@@ -23,7 +23,7 @@ function InferObject(value: JsValue, name: string): Struct {
 
 function InferArray(value: JsValue, name: string): Struct {
   if (value.ArrayValues.length > 0) {
-    const structs = value.ArrayValues.map((item, index) => Infer(item, `${name}TE${index + 1}`));
+    const structs = value.ArrayValues.map((item, index) => Infer(item, ''));
     // 尝试合并所有元素
     let result = structs[0];
     structs.slice(1).forEach((struct) => {
@@ -43,7 +43,7 @@ function InferArray(value: JsValue, name: string): Struct {
       return new StructArray(result, name);
     }
   } else {
-    return new StructArray(new StructUnknow(), name);
+    return new StructArray(new StructUnknow(''), name);
   }
 }
 
