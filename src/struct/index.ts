@@ -147,6 +147,6 @@ export abstract class Struct {
   public constructor(
     name: string,
   ) {
-    this.UpdateName(name);
+    // this.UpdateName(name);
   }
 }

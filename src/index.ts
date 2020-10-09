@@ -31,7 +31,7 @@ const jsField = new JsField('me', object);
 const oldTime = Number(new Date());
 const struct = Infer(jsField.Value, 'rsp');
 const tss = struct as StructObject;
-console.log(Number(new Date()) - oldTime);
+console.log('耗时', Number(new Date()) - oldTime);
 console.log(struct.Hash);
 console.log(tss.TsDef('gu'));
 console.log(tss.SpaceObjects.length);
