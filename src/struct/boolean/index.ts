@@ -15,10 +15,6 @@ export class StructBoolean extends Struct {
     return StructType.Boolean.toString();
   }
 
-  protected iTsName() {
-    return 'boolean';
-  }
-
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
@@ -37,9 +33,5 @@ export class StructBoolean extends Struct {
 
   protected iUpdateName(name: string) {
     this.tsName = 'boolean';
-  }
-
-  public constructor(name: string) {
-    super(name);
   }
 }

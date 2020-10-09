@@ -30,10 +30,6 @@ export class StructObject extends Struct {
     );
   }
 
-  protected iTsName() {
-    return Lodash.upperFirst(this.name);
-  }
-
   public TsDef(name: string = '') {
     return `
 export interface I${this.TsName} {
@@ -114,7 +110,9 @@ export module ${this.TsName} {
     return [this];
   }
 
-  protected iUpdateName(name: string) { }
+  protected iUpdateName(name: string) {
+    this.tsName = Lodash.upperFirst(name);
+  }
 
   public constructor(
     private fields: Map<string, Struct>,

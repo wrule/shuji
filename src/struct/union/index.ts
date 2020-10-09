@@ -25,13 +25,6 @@ export class StructUnion extends Struct {
     );
   }
 
-  protected iTsName() {
-    const inner = this.Members
-      .map((struct) => struct.TsName)
-      .join(' | ');
-    return `(${inner})`;
-  }
-
   protected iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const union = ts as StructUnion;
@@ -94,6 +87,10 @@ export class StructUnion extends Struct {
     this.Members.forEach((struct, index) => {
       struct.UpdateName(`${name}UM${index + 1}`);
     });
+    const inner = this.Members
+      .map((struct) => struct.TsName)
+      .join(' | ');
+    this.tsName = `(${inner})`;
   }
 
   public constructor(

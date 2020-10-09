@@ -15,10 +15,6 @@ export class StructDate extends Struct {
     return StructType.Date.toString();
   }
 
-  protected iTsName() {
-    return 'Date';
-  }
-
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
@@ -37,9 +33,5 @@ export class StructDate extends Struct {
 
   protected iUpdateName(name: string) {
     this.tsName = 'Date';
-  }
-
-  public constructor(name: string) {
-    super(name);
   }
 }

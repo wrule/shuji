@@ -14,10 +14,6 @@ export class StructUnknow extends Struct {
     return StructType.Unknow.toString();
   }
 
-  protected iTsName() {
-    return 'any';
-  }
-
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
@@ -36,9 +32,5 @@ export class StructUnknow extends Struct {
 
   protected iUpdateName(name: string) {
     this.tsName = 'any';
-  }
-
-  public constructor(name: string) {
-    super(name);
   }
 }

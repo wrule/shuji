@@ -15,10 +15,6 @@ export class StructString extends Struct {
     return StructType.String.toString();
   }
 
-  protected iTsName() {
-    return 'string';
-  }
-
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
@@ -37,9 +33,5 @@ export class StructString extends Struct {
 
   protected iUpdateName(name: string) {
     this.tsName = 'string';
-  }
-
-  public constructor(name: string) {
-    super(name);
   }
 }

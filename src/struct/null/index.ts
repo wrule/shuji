@@ -15,10 +15,6 @@ export class StructNull extends Struct {
     return StructType.Null.toString();
   }
 
-  protected iTsName() {
-    return 'null';
-  }
-
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
@@ -37,9 +33,5 @@ export class StructNull extends Struct {
 
   protected iUpdateName(name: string) {
     this.tsName = 'null';
-  }
-
-  public constructor(name: string) {
-    super(name);
   }
 }

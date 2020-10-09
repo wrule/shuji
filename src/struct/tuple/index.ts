@@ -22,13 +22,6 @@ export class StructTuple extends Struct {
     return Hash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
   }
 
-  protected iTsName() {
-    const inner = this.ElementsStruct
-      .map((struct) => struct.TsName)
-      .join(', ');
-    return `[${inner}]`;
-  }
-
   protected iContain(ts: Struct): boolean {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;
@@ -95,6 +88,10 @@ export class StructTuple extends Struct {
     this.ElementsStruct.forEach((struct, index) => {
       struct.UpdateName(`${name}TE${index + 1}`);
     });
+    const inner = this.ElementsStruct
+      .map((struct) => struct.TsName)
+      .join(', ');
+    this.tsName = `[${inner}]`;
   }
 
   public constructor(

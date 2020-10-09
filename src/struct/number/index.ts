@@ -15,10 +15,6 @@ export class StructNumber extends Struct {
     return StructType.Number.toString();
   }
 
-  protected iTsName() {
-    return 'number';
-  }
-
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
@@ -37,9 +33,5 @@ export class StructNumber extends Struct {
 
   protected iUpdateName(name: string) {
     this.tsName = 'number';
-  }
-
-  public constructor(name: string) {
-    super(name);
   }
 }

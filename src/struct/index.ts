@@ -101,25 +101,21 @@ export abstract class Struct {
    */
   protected abstract iMerge(ts: Struct): Struct;
 
+  protected name: string = '';
+
   public get Name() {
     return this.name;
   }
 
-  protected tsName: string | null = null;
-
-  protected abstract iTsName(): string;
+  protected tsName: string = '';
 
   public get TsName(): string {
-    if (this.tsName === null) {
-      this.tsName = this.iTsName();
-    }
     return this.tsName;
   }
 
   public UpdateName(name: string) {
     this.name = name;
     this.iUpdateName(this.name);
-    this.tsName = this.iTsName();
   }
 
   protected abstract iUpdateName(name: string): void;
@@ -149,8 +145,8 @@ export abstract class Struct {
   }
 
   public constructor(
-    protected name: string,
+    name: string,
   ) {
-    this.UpdateName(this.name);
+    this.UpdateName(name);
   }
 }
