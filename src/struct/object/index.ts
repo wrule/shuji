@@ -32,7 +32,7 @@ export class StructObject extends Struct {
 
   public TsDef(name: string = '') {
     return `
-export interface I${this.TsName} {
+export interface ${this.TsName} {
 ${Array.from(this.Fields)
   .map(([name, struct]) => `  '${name}': ${struct.TsName};`)
   .join('\n')}
