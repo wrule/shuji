@@ -45,16 +45,16 @@ export class StructArray extends Struct {
   protected iMerge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const array = ts as StructArray;
-      return new StructArray(this.ElementStruct.Merge(array.ElementStruct), this.Name);
+      return new StructArray(this.ElementStruct.Merge(array.ElementStruct), this.Desc);
     } else if (ts.Type === StructType.Tuple) {
       const tuple = ts as StructTuple;
       let result = this.ElementStruct;
       tuple.ElementsStruct.forEach((struct) => {
         result = result.Merge(struct);
       });
-      return new StructArray(result, this.Name);
+      return new StructArray(result, this.Desc);
     } else {
-      return new StructUnion([this, ts], this.Name);
+      return new StructUnion([this, ts], this.Desc);
     }
   }
 

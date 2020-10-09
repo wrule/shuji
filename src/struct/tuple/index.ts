@@ -63,16 +63,16 @@ export class StructTuple extends Struct {
       const bigStructs = srcCount >= dstCount ? this.ElementsStruct : tuple.ElementsStruct;
       return new StructTuple(
         bigStructs.map((struct, index) => {
-          const undefinedStruct = new StructUndefined(smallStructs[index].Name);
+          const undefinedStruct = new StructUndefined(smallStructs[index].Desc);
           const dstStruct = smallStructs[index] || undefinedStruct;
           return struct.Merge(dstStruct);
         }),
-        this.Name,
+        this.Desc,
       );
     } else if (ts.Type === StructType.Array) {
       return ts.Merge(this);
     } else {
-      return new StructUnion([this, ts], this.Name);
+      return new StructUnion([this, ts], this.Desc);
     }
   }
 

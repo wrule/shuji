@@ -68,9 +68,9 @@ export class StructUnion extends Struct {
         const newMembers = this.Members.slice(0);
         const newStruct = newMembers[maxIndex].Merge(ts);
         newMembers.splice(maxIndex, 1, newStruct);
-        return new StructUnion(newMembers, this.Name);
+        return new StructUnion(newMembers, this.Desc);
       } else {
-        return new StructUnion(this.Members.concat([ts]), this.Name);
+        return new StructUnion(this.Members.concat([ts]), this.Desc);
       }
     }
   }

@@ -102,9 +102,9 @@ export module ${this.TsName} {
           const dstStruct = object.Fields.get(key) || undefinedType;
           return [key, srcStruct.Merge(dstStruct)];
         })
-      ), this.Name);
+      ), this.Desc);
     } else {
-      return new StructUnion([this, ts], this.Name);
+      return new StructUnion([this, ts], this.Desc);
     }
   }
 

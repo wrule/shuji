@@ -6,13 +6,13 @@ import { StructObject } from './object';
  * 结构抽象类
  */
 export abstract class Struct {
-  protected hash: string = '';
+  protected hash: string | null = null;
 
   /**
    * 获取结构Hash(即时计算且缓存)
    */
   public get Hash() {
-    if (!this.hash) {
+    if (this.hash === null) {
       this.hash = this.CalcHash();
     }
     return this.hash;
@@ -101,22 +101,28 @@ export abstract class Struct {
    */
   protected abstract iMerge(ts: Struct): Struct;
 
-  public get Name() {
-    return this.name;
+  /**
+   * 结构的描述
+   */
+  public get Desc() {
+    return this.desc;
   }
 
   protected tsName: string = '';
 
+  /**
+   * 结构在TypeScript中的类型名
+   */
   public get TsName(): string {
     return this.tsName;
   }
 
-  public UpdateName(name: string) {
-    this.name = name;
-    this.iUpdateName(this.name);
-  }
+  protected abstract iUpdateName(desc: string): void;
 
-  protected abstract iUpdateName(name: string): void;
+  public UpdateName(desc: string) {
+    this.desc = desc;
+    this.iUpdateName(this.desc);
+  }
 
   private ownObjects: StructObject[] | null = null;
 
@@ -143,6 +149,6 @@ export abstract class Struct {
   }
 
   public constructor(
-    protected name: string,
+    protected desc: string,
   ) { }
 }

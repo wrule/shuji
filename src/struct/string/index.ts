@@ -24,7 +24,7 @@ export class StructString extends Struct {
   }
 
   protected iMerge(ts: Struct): Struct {
-    return new StructUnion([this, ts], this.Name);
+    return new StructUnion([this, ts], this.Desc);
   }
 
   public get iOwnObjects() {
