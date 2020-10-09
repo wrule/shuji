@@ -119,10 +119,16 @@ export abstract class Struct {
 
   protected abstract iUpdateDesc(desc: string): void;
 
+  /**
+   * 更新结构的描述
+   * 此方法会更新关联的子结构描述以及更新TypeScript类型名
+   * @param desc 结构描述
+   */
   public UpdateDesc(desc: string) {
     this.desc = desc;
     this.iUpdateDesc(this.desc);
   }
+
 
   private ownObjects: StructObject[] | null = null;
 
