@@ -5,6 +5,7 @@ import object from './test/index.json';
 import API from './namespace/api';
 import { IResponse, Response } from './namespace/api2';
 import { StructArray } from './struct/array';
+import fs from 'fs';
 
 // console.log(API.Response.Object.num);
 
@@ -35,4 +36,7 @@ const tss = struct as StructObject;
 console.log('耗时', Number(new Date()) - oldTime);
 console.log(struct.Hash);
 console.log(tss.TsDef.join('\n'));
-console.log(tss.SpaceObjects.length);
+
+fs.writeFileSync('src/test/result/1.ts', tss.TsDef.join('\n'), 'utf8');
+
+// console.log(tss.SpaceObjects.length);

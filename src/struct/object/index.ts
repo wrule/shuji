@@ -35,7 +35,7 @@ export class StructObject extends Struct {
     result += `
 export interface ${this.TsName} {
 ${Array.from(this.Fields)
-  .map(([name, struct]) => `  '${name}': ${struct.TsName};`)
+  .map(([name, struct]) => `  '${name}': ${struct.Type === StructType.Object ? `${this.TsName}Mod.${struct.TsName}` : struct.TsName};`)
   .join('\n')}
 }
 `;
