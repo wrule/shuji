@@ -101,8 +101,6 @@ export abstract class Struct {
    */
   protected abstract iMerge(ts: Struct): Struct;
 
-  protected name: string = '';
-
   public get Name() {
     return this.name;
   }
@@ -145,8 +143,6 @@ export abstract class Struct {
   }
 
   public constructor(
-    name: string,
-  ) {
-    // this.UpdateName(name);
-  }
+    protected name: string,
+  ) { }
 }
