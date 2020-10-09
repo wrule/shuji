@@ -62,8 +62,8 @@ export class StructArray extends Struct {
     return this.ElementStruct.OwnObjects;
   }
 
-  protected iUpdateName(name: string) {
-    this.ElementStruct.UpdateName(`${name}AE`);
+  protected iUpdateDesc(name: string) {
+    this.ElementStruct.UpdateDesc(`${name}AE`);
     this.tsName = `${this.ElementStruct.TsName}[]`;
   }
 
@@ -72,6 +72,6 @@ export class StructArray extends Struct {
     name: string,
   ) {
     super(name);
-    this.iUpdateName(name);
+    this.iUpdateDesc(name);
   }
 }

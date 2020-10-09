@@ -83,9 +83,9 @@ export class StructUnion extends Struct {
     return result;
   }
 
-  protected iUpdateName(name: string) {
+  protected iUpdateDesc(name: string) {
     this.Members.forEach((struct, index) => {
-      struct.UpdateName(`${name}UM${index + 1}`);
+      struct.UpdateDesc(`${name}UM${index + 1}`);
     });
     const inner = this.Members
       .map((struct) => struct.TsName)
@@ -98,6 +98,6 @@ export class StructUnion extends Struct {
     name: string,
   ) {
     super(name);
-    this.iUpdateName(name);
+    this.iUpdateDesc(name);
   }
 }

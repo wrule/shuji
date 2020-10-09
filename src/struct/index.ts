@@ -117,11 +117,11 @@ export abstract class Struct {
     return this.tsName;
   }
 
-  protected abstract iUpdateName(desc: string): void;
+  protected abstract iUpdateDesc(desc: string): void;
 
-  public UpdateName(desc: string) {
+  public UpdateDesc(desc: string) {
     this.desc = desc;
-    this.iUpdateName(this.desc);
+    this.iUpdateDesc(this.desc);
   }
 
   private ownObjects: StructObject[] | null = null;

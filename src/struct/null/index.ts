@@ -31,12 +31,12 @@ export class StructNull extends Struct {
     return [];
   }
 
-  protected iUpdateName(name: string) {
+  protected iUpdateDesc(name: string) {
     this.tsName = 'null';
   }
 
   public constructor(name: string) {
     super(name);
-    this.iUpdateName(name);
+    this.iUpdateDesc(name);
   }
 }

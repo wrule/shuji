@@ -30,12 +30,12 @@ export class StructUnknow extends Struct {
     return [];
   }
 
-  protected iUpdateName(name: string) {
+  protected iUpdateDesc(name: string) {
     this.tsName = 'any';
   }
 
   public constructor(name: string) {
     super(name);
-    this.iUpdateName(name);
+    this.iUpdateDesc(name);
   }
 }

@@ -31,12 +31,12 @@ export class StructUndefined extends Struct {
     return [];
   }
 
-  protected iUpdateName(name: string) {
+  protected iUpdateDesc(name: string) {
     this.tsName = 'undefined';
   }
 
   public constructor(name: string) {
     super(name);
-    this.iUpdateName(name);
+    this.iUpdateDesc(name);
   }
 }

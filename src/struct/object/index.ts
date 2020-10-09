@@ -112,7 +112,7 @@ export module ${this.TsName} {
     return [this];
   }
 
-  protected iUpdateName(name: string) {
+  protected iUpdateDesc(name: string) {
     this.tsName = Lodash.upperFirst(name);
   }
 
@@ -121,6 +121,6 @@ export module ${this.TsName} {
     name: string,
   ) {
     super(name);
-    this.iUpdateName(name);
+    this.iUpdateDesc(name);
   }
 }
