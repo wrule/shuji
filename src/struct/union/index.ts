@@ -90,10 +90,9 @@ export class StructUnion extends Struct {
     return result;
   }
 
-  public UpdateName(name: string) {
-    this.name = name;
+  protected iUpdateName(name: string) {
     this.Members.forEach((struct, index) => {
-      struct.UpdateName(`${this.name}UM${index + 1}`);
+      struct.UpdateName(`${name}UM${index + 1}`);
     });
   }
 

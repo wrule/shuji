@@ -114,9 +114,7 @@ export module ${this.TsName} {
     return [this];
   }
 
-  public UpdateName(name: string) {
-    this.name = name;
-  }
+  protected iUpdateName(name: string) { }
 
   public constructor(
     private fields: Map<string, Struct>,

@@ -91,10 +91,9 @@ export class StructTuple extends Struct {
     return result;
   }
 
-  public UpdateName(name: string) {
-    this.name = name;
+  protected iUpdateName(name: string) {
     this.ElementsStruct.forEach((struct, index) => {
-      struct.UpdateName(`${this.name}TE${index + 1}`);
+      struct.UpdateName(`${name}TE${index + 1}`);
     });
   }
 
