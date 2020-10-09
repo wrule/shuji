@@ -34,4 +34,9 @@ export class StructBoolean extends Struct {
   protected iUpdateName(name: string) {
     this.tsName = 'boolean';
   }
+
+  public constructor(name: string) {
+    super(name);
+    this.UpdateName(name);
+  }
 }

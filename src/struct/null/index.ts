@@ -34,4 +34,9 @@ export class StructNull extends Struct {
   protected iUpdateName(name: string) {
     this.tsName = 'null';
   }
+
+  public constructor(name: string) {
+    super(name);
+    this.UpdateName(name);
+  }
 }

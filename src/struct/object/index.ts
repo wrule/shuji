@@ -119,5 +119,6 @@ export module ${this.TsName} {
     name: string,
   ) {
     super(name);
+    this.UpdateName(name);
   }
 }

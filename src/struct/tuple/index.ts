@@ -99,5 +99,6 @@ export class StructTuple extends Struct {
     name: string,
   ) {
     super(name);
+    this.UpdateName(name);
   }
 }

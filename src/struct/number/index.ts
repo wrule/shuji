@@ -34,4 +34,9 @@ export class StructNumber extends Struct {
   protected iUpdateName(name: string) {
     this.tsName = 'number';
   }
+
+  public constructor(name: string) {
+    super(name);
+    this.UpdateName(name);
+  }
 }
