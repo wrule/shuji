@@ -37,6 +37,6 @@ export class StructDate extends Struct {
 
   public constructor(name: string) {
     super(name);
-    this.UpdateName(name);
+    this.iUpdateName(name);
   }
 }
