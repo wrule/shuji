@@ -111,7 +111,7 @@ export module ${this.TsName} {
   }
 
   protected iUpdateName(name: string) {
-    this.tsName = Lodash.upperFirst(name);
+    this.tsName = `I${Lodash.upperFirst(name)}`;
   }
 
   public constructor(
