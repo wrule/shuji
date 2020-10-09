@@ -105,7 +105,7 @@ export abstract class Struct {
     return this.name;
   }
 
-  private tsName: string | null = null;
+  protected tsName: string | null = null;
 
   protected abstract iTsName(): string;
 

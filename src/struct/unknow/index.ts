@@ -34,7 +34,9 @@ export class StructUnknow extends Struct {
     return [];
   }
 
-  protected iUpdateName(name: string) { }
+  protected iUpdateName(name: string) {
+    this.tsName = 'any';
+  }
 
   public constructor(name: string) {
     super(name);

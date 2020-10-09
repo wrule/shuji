@@ -35,7 +35,9 @@ export class StructString extends Struct {
     return [];
   }
 
-  protected iUpdateName(name: string) { }
+  protected iUpdateName(name: string) {
+    this.tsName = 'string';
+  }
 
   public constructor(name: string) {
     super(name);

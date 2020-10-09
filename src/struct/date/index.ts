@@ -35,7 +35,9 @@ export class StructDate extends Struct {
     return [];
   }
 
-  protected iUpdateName(name: string) { }
+  protected iUpdateName(name: string) {
+    this.tsName = 'Date';
+  }
 
   public constructor(name: string) {
     super(name);

@@ -35,7 +35,9 @@ export class StructUndefined extends Struct {
     return [];
   }
 
-  protected iUpdateName(name: string) { }
+  protected iUpdateName(name: string) {
+    this.tsName = 'undefined';
+  }
 
   public constructor(name: string) {
     super(name);
