@@ -118,6 +118,7 @@ export abstract class Struct {
 
   public UpdateName(name: string) {
     this.name = name;
+    this.tsName = this.iTsName();
   }
 
   private ownObjects: StructObject[] | null = null;
