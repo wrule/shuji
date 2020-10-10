@@ -156,6 +156,10 @@ export abstract class Struct {
     this.iUpdateParent(parent);
   }
 
+  /**
+   * 重新计算结构的TsName
+   * @param desc 结构描述,只有Object结构需要
+   */
   protected abstract iUpdateTsName(desc: string): void;
   //#endregion
 
