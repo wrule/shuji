@@ -1,7 +1,7 @@
 import { Infer } from './infer/index';
 import { JsField } from './js/field';
 import { StructObject } from './struct/object';
-import object from './test/index2.json';
+import object from './test/index.json';
 import API from './namespace/api';
 import { IResponse, Response } from './namespace/api2';
 import { StructArray } from './struct/array';
@@ -40,3 +40,8 @@ console.log(tss.TsDef.join('\n'));
 fs.writeFileSync('src/test/result/1.ts', tss.TsDef.join('\n'), 'utf8');
 
 // console.log(tss.SpaceObjects.length);
+
+import * as TEST from './test/result/1';
+
+const a: TEST.IRsp = {} as any;
+const b: TEST.Rsp.Object.ISceneScriptConfsAE = {} as any;
