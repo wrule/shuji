@@ -93,7 +93,7 @@ export class StructTuple extends Struct {
 
   protected iUpdateDesc(desc: string) {
     this.ElementsStruct.forEach((struct, index) => {
-      struct.UpdateDesc(`${name}TE${index + 1}`);
+      struct.UpdateDesc(`${desc}TE${index + 1}`);
     });
     this.iUpdateTsName(desc);
   }

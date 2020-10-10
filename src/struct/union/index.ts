@@ -92,7 +92,7 @@ export class StructUnion extends Struct {
 
   protected iUpdateDesc(desc: string) {
     this.Members.forEach((struct, index) => {
-      struct.UpdateDesc(`${name}UM${index + 1}`);
+      struct.UpdateDesc(`${desc}UM${index + 1}`);
     });
     this.iUpdateTsName(desc);
   }

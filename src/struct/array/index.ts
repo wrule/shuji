@@ -68,7 +68,7 @@ export class StructArray extends Struct {
   }
 
   protected iUpdateDesc(desc: string) {
-    this.ElementStruct.UpdateDesc(`${name}AE`);
+    this.ElementStruct.UpdateDesc(`${desc}AE`);
     this.iUpdateTsName(desc);
   }
 

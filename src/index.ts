@@ -37,6 +37,6 @@ console.log('耗时', Number(new Date()) - oldTime);
 console.log(struct.Hash);
 console.log(tss.TsDef.join('\n'));
 
-// fs.writeFileSync('src/test/result/1.ts', tss.TsDef.join('\n'), 'utf8');
+fs.writeFileSync('src/test/result/1.ts', tss.TsDef.join('\n'), 'utf8');
 
 // console.log(tss.SpaceObjects.length);
