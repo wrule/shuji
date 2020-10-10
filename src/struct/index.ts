@@ -6,7 +6,17 @@ import { StructObject } from './object';
  * 结构抽象类
  */
 export abstract class Struct {
-  //#region 结构Hash相关
+  //#region 结构基本信息
+  /**
+   * 结构的类型(抽象定义)
+   */
+  public abstract Type: StructType;
+
+  /**
+   * 结构是否是基础类型(抽象定义)
+   */
+  public abstract IsBasic: boolean;
+
   protected hash?: string;
 
   /**
@@ -23,18 +33,6 @@ export abstract class Struct {
     }
     return this.hash;
   }
-  //#endregion
-
-  //#region 结构基本信息
-  /**
-   * 结构的类型(抽象定义)
-   */
-  public abstract Type: StructType;
-
-  /**
-   * 结构是否是基础类型(抽象定义)
-   */
-  public abstract IsBasic: boolean;
 
   /**
    * 结构的原始描述
