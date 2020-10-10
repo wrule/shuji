@@ -159,7 +159,7 @@ export abstract class Struct {
   protected abstract iUpdateTsName(desc: string): void;
   //#endregion
 
-  //#region 相关结构
+  //#region 相关对象结构
   private ownObjects: StructObject[] | null = null;
 
   protected abstract iOwnObjects: StructObject[];
