@@ -136,11 +136,13 @@ export abstract class Struct {
   /**
    * 更新结构的描述
    * 此方法会更新关联的子结构描述以及更新TsName
+   * 此方法产生的需求是因为Array,Tuple,Union的构造函数之中需要更新子结构Desc
    * @param desc 结构描述
    */
   public UpdateDesc(desc: string) {
     this.desc = desc;
     this.iUpdateDesc(this.desc);
+    this.iUpdateTsName(desc);
   }
 
   protected abstract iUpdateParent(parent?: StructObject): void;

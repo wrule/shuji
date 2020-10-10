@@ -94,7 +94,6 @@ export class StructUnion extends Struct {
     this.Members.forEach((struct, index) => {
       struct.UpdateDesc(`${desc}UM${index + 1}`);
     });
-    this.iUpdateTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) {
@@ -109,6 +108,6 @@ export class StructUnion extends Struct {
     desc: string,
   ) {
     super(desc);
-    this.iUpdateDesc(desc);
+    this.UpdateDesc(desc);
   }
 }

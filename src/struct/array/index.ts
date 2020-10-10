@@ -69,7 +69,6 @@ export class StructArray extends Struct {
 
   protected iUpdateDesc(desc: string) {
     this.ElementStruct.UpdateDesc(`${desc}AE`);
-    this.iUpdateTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) {
@@ -82,6 +81,6 @@ export class StructArray extends Struct {
     desc: string,
   ) {
     super(desc);
-    this.iUpdateDesc(desc);
+    this.UpdateDesc(desc);
   }
 }

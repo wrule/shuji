@@ -36,14 +36,12 @@ export class StructDate extends Struct {
     this.tsName = 'Date';
   }
 
-  protected iUpdateDesc(desc: string) {
-    this.iUpdateTsName(desc);
-  }
+  protected iUpdateDesc(desc: string) { }
 
   protected iUpdateParent(parent?: StructObject) { }
 
   public constructor(desc: string) {
     super(desc);
-    this.iUpdateDesc(desc);
+    this.UpdateDesc(desc);
   }
 }
