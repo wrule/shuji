@@ -169,6 +169,10 @@ export abstract class Struct {
 
   protected abstract iOwnObjects(): StructObject[];
 
+  /**
+   * 结构自身携带的对象结构列表(即时计算且缓存)
+   * 内部使用,外部不要使用
+   */
   public get OwnObjects() {
     if (!this.ownObjects) {
       this.ownObjects = this.iOwnObjects();
@@ -176,6 +180,9 @@ export abstract class Struct {
     return this.ownObjects;
   }
 
+  /**
+   * 作用域空间内结构携带的对象结构列表
+   */
   public get SpaceObjects() {
     if (this.Type === StructType.Object) {
       const object = (this as unknown) as StructObject;
