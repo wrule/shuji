@@ -33,11 +33,11 @@ export class StructNull extends Struct {
   }
 
   protected iUpdateTsName(desc: string) {
-    return 'null';
+    this.tsName = 'null';
   }
 
   protected iUpdateDesc(desc: string) {
-    this.tsName = this.iUpdateTsName(desc);
+    this.iUpdateTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) { }

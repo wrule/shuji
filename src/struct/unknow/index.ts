@@ -32,11 +32,11 @@ export class StructUnknow extends Struct {
   }
 
   protected iUpdateTsName(desc: string) {
-    return 'any';
+    this.tsName = 'any';
   }
 
   protected iUpdateDesc(desc: string) {
-    this.tsName = this.iUpdateTsName(desc);
+    this.iUpdateTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) { }

@@ -110,7 +110,7 @@ export abstract class Struct {
 
   protected tsName: string = '';
 
-  protected abstract iUpdateTsName(desc: string): string;
+  protected abstract iUpdateTsName(desc: string): void;
 
   /**
    * 结构在TypeScript中的类型名

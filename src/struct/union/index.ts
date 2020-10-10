@@ -87,14 +87,14 @@ export class StructUnion extends Struct {
     const inner = this.Members
       .map((struct) => struct.TsName)
       .join(' | ');
-    return `(${inner})`;
+    this.tsName = `(${inner})`;
   }
 
   protected iUpdateDesc(desc: string) {
     this.Members.forEach((struct, index) => {
       struct.UpdateDesc(`${name}UM${index + 1}`);
     });
-    this.tsName = this.iUpdateTsName(desc);
+    this.iUpdateTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) {

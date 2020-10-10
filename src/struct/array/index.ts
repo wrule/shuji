@@ -64,12 +64,12 @@ export class StructArray extends Struct {
   }
 
   protected iUpdateTsName(desc: string) {
-    return `${this.ElementStruct.TsName}[]`;
+    this.tsName = `${this.ElementStruct.TsName}[]`;
   }
 
   protected iUpdateDesc(desc: string) {
     this.ElementStruct.UpdateDesc(`${name}AE`);
-    this.tsName = this.iUpdateTsName(desc);
+    this.iUpdateTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) {
