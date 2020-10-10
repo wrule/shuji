@@ -30,6 +30,22 @@ export class StructObject extends Struct {
     );
   }
 
+  public get InterfaceName() {
+    return `I${this.tsName}`;
+  }
+
+  public get ModuleName() {
+    return this.tsName;
+  }
+
+  public get TsName() {
+    if (true) {
+      return `xxx.${this.InterfaceName}`;
+    } else {
+      return this.InterfaceName;
+    }
+  }
+
   public get TsDef() {
     let result = ''; 
     result += `
@@ -117,7 +133,7 @@ ${this.SpaceObjects.map((struct) => struct.TsDef.map((line) => `  ${line}`).join
   }
 
   protected iUpdateDesc(name: string) {
-    this.tsName = `I${Lodash.upperFirst(name)}`;
+    this.tsName = Lodash.upperFirst(name);
   }
 
   public constructor(
