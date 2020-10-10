@@ -84,7 +84,7 @@ export class StructTuple extends Struct {
     return result;
   }
 
-  protected iTsName(desc: string) {
+  protected iUpdateTsName(desc: string) {
     const inner = this.ElementsStruct
       .map((struct) => struct.TsName)
       .join(', ');
@@ -95,7 +95,7 @@ export class StructTuple extends Struct {
     this.ElementsStruct.forEach((struct, index) => {
       struct.UpdateDesc(`${name}TE${index + 1}`);
     });
-    this.tsName = this.iTsName(desc);
+    this.tsName = this.iUpdateTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) {

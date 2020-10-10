@@ -132,12 +132,12 @@ ${this.SpaceObjects.map((struct) => struct.TsDef.map((line) => `  ${line}`).join
     return [this];
   }
 
-  protected iTsName(desc: string) {
+  protected iUpdateTsName(desc: string) {
     return Lodash.upperFirst(desc);
   }
 
   protected iUpdateDesc(desc: string) {
-    this.tsName = this.iTsName(desc);
+    this.tsName = this.iUpdateTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) { }

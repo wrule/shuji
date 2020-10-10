@@ -32,12 +32,12 @@ export class StructString extends Struct {
     return [];
   }
 
-  protected iTsName(desc: string) {
+  protected iUpdateTsName(desc: string) {
     return 'string';
   }
 
   protected iUpdateDesc(desc: string) {
-    this.tsName = this.iTsName(desc);
+    this.tsName = this.iUpdateTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) { }
