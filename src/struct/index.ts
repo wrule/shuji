@@ -154,6 +154,19 @@ export abstract class Struct {
     }
   }
 
+  protected parent?: StructObject;
+
+  public get Parent() {
+    return this.parent;
+  }
+
+  protected abstract iUpdateParent(parent?: StructObject): void;
+
+  public UpdateParent(parent?: StructObject) {
+    this.parent = parent;
+    this.iUpdateParent(parent);
+  }
+
   public constructor(
     protected desc: string,
   ) { }

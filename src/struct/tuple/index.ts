@@ -94,6 +94,12 @@ export class StructTuple extends Struct {
     this.tsName = `[${inner}]`;
   }
 
+  protected iUpdateParent(parent?: StructObject) {
+    this.ElementsStruct.forEach((struct) => {
+      struct.UpdateParent(parent);
+    });
+  }
+
   public constructor(
     private elementsStruct: Struct[],
     desc: string,

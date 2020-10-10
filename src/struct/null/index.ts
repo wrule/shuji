@@ -1,6 +1,7 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructUnion } from '../union';
+import { StructObject } from '../object';
 
 export class StructNull extends Struct {
   public get Type() {
@@ -34,6 +35,8 @@ export class StructNull extends Struct {
   protected iUpdateDesc(name: string) {
     this.tsName = 'null';
   }
+
+  protected iUpdateParent(parent?: StructObject) { }
 
   public constructor(desc: string) {
     super(desc);

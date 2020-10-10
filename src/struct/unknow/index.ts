@@ -1,5 +1,6 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
+import { StructObject } from '../object';
 
 export class StructUnknow extends Struct {
   public get Type() {
@@ -33,6 +34,8 @@ export class StructUnknow extends Struct {
   protected iUpdateDesc(name: string) {
     this.tsName = 'any';
   }
+
+  protected iUpdateParent(parent?: StructObject) { }
 
   public constructor(desc: string) {
     super(desc);

@@ -136,11 +136,16 @@ ${this.SpaceObjects.map((struct) => struct.TsDef.map((line) => `  ${line}`).join
     this.tsName = Lodash.upperFirst(name);
   }
 
+  protected iUpdateParent(parent?: StructObject) { }
+
   public constructor(
     private fields: Map<string, Struct>,
     desc: string,
   ) {
     super(desc);
     this.iUpdateDesc(desc);
+    Array.from(this.Fields).map(([name, struct]) => {
+      struct.UpdateParent(this);
+    });
   }
 }

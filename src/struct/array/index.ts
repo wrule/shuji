@@ -3,6 +3,7 @@ import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructTuple } from '../tuple';
 import { Hash } from '../../utils';
+import { StructObject } from '../object';
 
 export class StructArray extends Struct {
   public get ElementStruct() {
@@ -65,6 +66,10 @@ export class StructArray extends Struct {
   protected iUpdateDesc(name: string) {
     this.ElementStruct.UpdateDesc(`${name}AE`);
     this.tsName = `${this.ElementStruct.TsName}[]`;
+  }
+
+  protected iUpdateParent(parent?: StructObject) {
+    this.ElementStruct.UpdateParent(parent);
   }
 
   public constructor(

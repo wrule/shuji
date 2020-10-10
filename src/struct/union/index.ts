@@ -93,6 +93,12 @@ export class StructUnion extends Struct {
     this.tsName = `(${inner})`;
   }
 
+  protected iUpdateParent(parent?: StructObject) {
+    this.Members.forEach((struct) => {
+      struct.UpdateParent(parent);
+    });
+  }
+
   public constructor(
     private members: Struct[],
     desc: string,
