@@ -1,7 +1,7 @@
 import { Infer } from './infer/index';
 import { JsField } from './js/field';
 import { StructObject } from './struct/object';
-import object from './test/index.json';
+import object from './test/index4.json';
 import API from './namespace/api';
 import { IResponse, Response } from './namespace/api2';
 import { StructArray } from './struct/array';
@@ -32,16 +32,17 @@ const jsField = new JsField('me', object);
 
 const oldTime = Number(new Date());
 const struct = Infer(jsField.Value, 'rsp');
-const tss = struct as StructObject;
 console.log('耗时', Number(new Date()) - oldTime);
-console.log(struct.Hash);
-console.log(tss.TsDef.join('\n'));
+console.log(((struct as StructArray).ElementStruct as StructObject).TsDef.join('\n'));
+// const object = (struct as StructArray).ElementStruct;
+// console.log(object.Type, object.Hash);
+// console.log(tss.TsDef.join('\n'));
 
-fs.writeFileSync('src/test/result/1.ts', tss.TsDef.join('\n'), 'utf8');
+// fs.writeFileSync('src/test/result/1.ts', tss.TsDef.join('\n'), 'utf8');
 
 // console.log(tss.SpaceObjects.length);
 
-import * as TEST from './test/result/1';
+// import * as TEST from './test/result/1';
 
-const a: TEST.IRsp = {} as any;
-const b: TEST.Rsp.Object.ISceneScriptConfsAE = {} as any;
+// const a: TEST.IRsp = {} as any;
+// const b: TEST.Rsp.Object.ISceneScriptConfsAE = {} as any;
