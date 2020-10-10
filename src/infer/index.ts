@@ -14,14 +14,14 @@ import { StructArray } from '../struct/array';
 import { StructType } from '../struct/type';
 import { StructTuple } from '../struct/tuple';
 
-function InferObject(value: JsValue, name: string): Struct {
+function InferObject(value: JsValue, desc: string): Struct {
   return new StructObject(
     new Map(value.ObjectFields.map((field) => [field.Name, Infer(field.Value, field.Name)])),
-    name,
+    desc,
   );
 }
 
-function InferArray(value: JsValue, name: string): Struct {
+function InferArray(value: JsValue, desc: string): Struct {
   if (value.ArrayValues.length > 0) {
     const structs = value.ArrayValues.map((item, index) => Infer(item, ''));
     // 尝试合并所有元素
@@ -35,29 +35,29 @@ function InferArray(value: JsValue, name: string): Struct {
       const structCount = union.Members.length;
       const arrayLength = value.ArrayValues.length;
       if (arrayLength / structCount <= 3) {
-        return new StructTuple(structs, name);
+        return new StructTuple(structs, desc);
       } else {
-        return new StructArray(result, name);
+        return new StructArray(result, desc);
       }
     } else {
-      return new StructArray(result, name);
+      return new StructArray(result, desc);
     }
   } else {
-    return new StructArray(new StructUnknow(''), name);
+    return new StructArray(new StructUnknow(''), desc);
   }
 }
 
-export function Infer(value: JsValue, name: string): Struct {
+export function Infer(value: JsValue, desc: string): Struct {
   switch (value.Type) {
-    case JsType.Unknow: return new StructUnknow(name);
-    case JsType.Undefined: return new StructUndefined(name);
-    case JsType.Null: return new StructNull(name);
-    case JsType.Boolean: return new StructBoolean(name);
-    case JsType.Number: return  new StructNumber(name);
-    case JsType.String: return new StructString(name);
-    case JsType.Date: return new StructDate(name);
-    case JsType.Object: return InferObject(value, name);
-    case JsType.Array: return InferArray(value, name);
-    default: return new StructUnknow(name);
+    case JsType.Unknow: return new StructUnknow(desc);
+    case JsType.Undefined: return new StructUndefined(desc);
+    case JsType.Null: return new StructNull(desc);
+    case JsType.Boolean: return new StructBoolean(desc);
+    case JsType.Number: return  new StructNumber(desc);
+    case JsType.String: return new StructString(desc);
+    case JsType.Date: return new StructDate(desc);
+    case JsType.Object: return InferObject(value, desc);
+    case JsType.Array: return InferArray(value, desc);
+    default: return new StructUnknow(desc);
   }
 }
