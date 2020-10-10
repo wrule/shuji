@@ -165,7 +165,7 @@ export abstract class Struct {
   //#endregion
 
   //#region 相关对象结构
-  private ownObjects: StructObject[] | null = null;
+  private ownObjects?: StructObject[];
 
   protected abstract iOwnObjects: StructObject[];
 
