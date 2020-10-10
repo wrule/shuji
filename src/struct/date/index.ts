@@ -28,7 +28,7 @@ export class StructDate extends Struct {
     return new StructUnion([this, ts], this.Desc);
   }
 
-  public get iOwnObjects() {
+  public iOwnObjects() {
     return [];
   }
 

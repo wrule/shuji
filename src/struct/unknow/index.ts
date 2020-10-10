@@ -27,7 +27,7 @@ export class StructUnknow extends Struct {
     return ts;
   }
 
-  public get iOwnObjects() {
+  public iOwnObjects() {
     return [];
   }
 

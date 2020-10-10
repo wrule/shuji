@@ -28,7 +28,7 @@ export class StructBoolean extends Struct {
     return new StructUnion([this, ts], this.Desc);
   }
 
-  public get iOwnObjects() {
+  public iOwnObjects() {
     return [];
   }
 

@@ -167,11 +167,11 @@ export abstract class Struct {
   //#region 相关对象结构
   private ownObjects?: StructObject[];
 
-  protected abstract iOwnObjects: StructObject[];
+  protected abstract iOwnObjects(): StructObject[];
 
   public get OwnObjects() {
     if (!this.ownObjects) {
-      this.ownObjects = this.iOwnObjects;
+      this.ownObjects = this.iOwnObjects();
     }
     return this.ownObjects;
   }

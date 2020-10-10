@@ -75,7 +75,7 @@ export class StructUnion extends Struct {
     }
   }
 
-  public get iOwnObjects() {
+  public iOwnObjects() {
     const result: StructObject[] = [];
     this.Members.forEach((struct) => {
       result.push(...struct.OwnObjects);

@@ -128,7 +128,7 @@ ${this.SpaceObjects.map((struct) => struct.TsDef.map((line) => `  ${line}`).join
     }
   }
 
-  public get iOwnObjects() {
+  public iOwnObjects() {
     return [this];
   }
 
