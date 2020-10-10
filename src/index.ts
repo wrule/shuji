@@ -1,7 +1,7 @@
 import { Infer } from './infer/index';
 import { JsField } from './js/field';
 import { StructObject } from './struct/object';
-import object from './test/index.json';
+import object from './test/index2.json';
 import API from './namespace/api';
 import { IResponse, Response } from './namespace/api2';
 import { StructArray } from './struct/array';
@@ -37,6 +37,6 @@ console.log('耗时', Number(new Date()) - oldTime);
 console.log(struct.Hash);
 console.log(tss.TsDef.join('\n'));
 
-fs.writeFileSync('src/test/result/1.ts', tss.TsDef.join('\n'), 'utf8');
+// fs.writeFileSync('src/test/result/1.ts', tss.TsDef.join('\n'), 'utf8');
 
 // console.log(tss.SpaceObjects.length);
