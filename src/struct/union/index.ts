@@ -101,6 +101,7 @@ export class StructUnion extends Struct {
     this.Members.forEach((struct) => {
       struct.UpdateParent(parent);
     });
+    this.iUpdateTsName(this.Desc);
   }
 
   public constructor(

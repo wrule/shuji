@@ -102,6 +102,7 @@ export class StructTuple extends Struct {
     this.ElementsStruct.forEach((struct) => {
       struct.UpdateParent(parent);
     });
+    this.iUpdateTsName(this.Desc);
   }
 
   public constructor(
