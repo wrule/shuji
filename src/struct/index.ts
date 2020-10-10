@@ -6,124 +6,138 @@ import { StructObject } from './object';
  * 结构抽象类
  */
 export abstract class Struct {
-  protected hash: string | null = null;
+  //#region 结构Hash相关
+  protected hash?: string;
+
+  /**
+   * 计算结构Hash的方法(抽象定义)
+   */
+  protected abstract CalcHash(): string;
 
   /**
    * 获取结构Hash(即时计算且缓存)
    */
   public get Hash() {
-    if (this.hash === null) {
+    if (!this.hash) {
       this.hash = this.CalcHash();
     }
     return this.hash;
   }
+  //#endregion
 
+  //#region 结构基本信息
   /**
-   * 结构的类型
+   * 结构的类型(抽象定义)
    */
   public abstract Type: StructType;
 
   /**
-   * 结构是否是基础类型
+   * 结构是否是基础类型(抽象定义)
    */
   public abstract IsBasic: boolean;
 
   /**
-   * 计算结构Hash的方法
-   */
-  protected abstract CalcHash(): string;
-
-  /**
-   * 判断两个结构是否完全相等
-   * @param ts 目标结构
-   * @returns 是否完全相等
-   */
-  public Equal(ts: Struct) {
-    return this.Hash === ts.Hash;
-  }
-
-  public Contain(ts: Struct): boolean {
-    // 联合前置包含判断
-    if (ts.Type === StructType.Union) {
-      const unoin = ts as StructUnion;
-      return unoin.Members.every((struct) => this.Contain(struct));
-    } else {
-      return this.iContain(ts);
-    }
-  }
-
-  /**
-   * 判断此结构是否包含目标结构
-   * @param ts 目标结构
-   * @returns 是否包含
-   */
-  protected abstract iContain(ts: Struct): boolean;
-
-  public Compare(ts: Struct): number {
-    if (ts.Type === StructType.Union) {
-      return ts.iCompare(this);
-    } else {
-      return this.iCompare(ts);
-    }
-  }
-
-  /**
-   * 结构相似度对比
-   * @param ts 目标结构
-   * @returns [0, 1]区间的值,代表相似度
-   */
-  protected abstract iCompare(ts: Struct): number;
-
-  public Merge(ts: Struct): Struct {
-    // 若完全相等则直接返回
-    if (this.Equal(ts)) {
-      return this;
-    }
-    // 若有包含关系则直接返回
-    if (this.Contain(ts)) {
-      return this;
-    }
-    if (ts.Contain(this)) {
-      return ts;
-    }
-    // Union前置合并
-    if (ts.Type === StructType.Union) {
-      return ts.iMerge(this);
-    } else {
-      return this.iMerge(ts);
-    }
-  }
-
-  /**
-   * 合并两个结构
-   * @param ts 目标结构
-   * @returns 合并之后的结构
-   */
-  protected abstract iMerge(ts: Struct): Struct;
-
-  /**
-   * 结构的描述
+   * 结构的原始描述
    */
   public get Desc() {
     return this.desc;
   }
 
   protected tsName: string = '';
-
-  protected abstract iUpdateTsName(desc: string): void;
-
+  
   /**
-   * 结构在TypeScript中的类型名
+   * 可在TypeScript代码中描述此结构的名称
    */
   public get TsName(): string {
     return this.tsName;
   }
 
+  protected parent?: StructObject;
+
+  /**
+   * 结构的父级结构(生成代码的时候可提供模块引用信息)
+   */
+  public get Parent() {
+    return this.parent;
+  }
+  //#endregion
+
+  //#region 结构之间的交互方法
+  /**
+   * 判断两个结构是否完全相等
+   * @param struct 目标结构
+   * @returns 是否完全相等
+   */
+  public Equal(struct: Struct) {
+    return this.Hash === struct.Hash;
+  }
+
+  protected abstract iContain(struct: Struct): boolean;
+
+  /**
+   * 判断此结构是否包含目标结构
+   * @param struct 目标结构
+   * @returns 是否包含
+   */
+  public Contain(struct: Struct): boolean {
+    // 联合前置包含判断
+    if (struct.Type === StructType.Union) {
+      const unoin = struct as StructUnion;
+      return unoin.Members.every((struct) => this.Contain(struct));
+    } else {
+      return this.iContain(struct);
+    }
+  }
+
+  protected abstract iCompare(struct: Struct): number;
+
+  /**
+   * 结构相似度对比
+   * @param struct 目标结构
+   * @returns [0, 1]区间的值,代表相似度
+   */
+  public Compare(struct: Struct): number {
+    if (struct.Type === StructType.Union) {
+      return struct.iCompare(this);
+    } else {
+      return this.iCompare(struct);
+    }
+  }
+
+  protected abstract iMerge(struct: Struct): Struct;
+
+  /**
+   * 合并两个结构
+   * @param struct 目标结构
+   * @returns 合并之后的结构
+   */
+  public Merge(struct: Struct): Struct {
+    // 若完全相等则直接返回
+    if (this.Equal(struct)) {
+      return this;
+    }
+    // 若有包含关系则直接返回
+    if (this.Contain(struct)) {
+      return this;
+    }
+    if (struct.Contain(this)) {
+      return struct;
+    }
+    // Union前置合并
+    if (struct.Type === StructType.Union) {
+      return struct.iMerge(this);
+    } else {
+      return this.iMerge(struct);
+    }
+  }
+  //#endregion
+
+  //#region 结构基本信息更新方法
   protected abstract iUpdateDesc(desc: string): void;
 
   /**
    * 更新结构的描述
-   * 此方法会更新关联的子结构描述以及更新TypeScript类型名
+   * 此方法会更新关联的子结构描述以及更新TsName
    * @param desc 结构描述
    */
   public UpdateDesc(desc: string) {
@@ -131,7 +145,21 @@ export abstract class Struct {
     this.iUpdateDesc(this.desc);
   }
 
+  protected abstract iUpdateParent(parent?: StructObject): void;
 
+  /**
+   * 更新结构的父级结构
+   * @param parent 父级结构
+   */
+  public UpdateParent(parent?: StructObject) {
+    this.parent = parent;
+    this.iUpdateParent(parent);
+  }
+
+  protected abstract iUpdateTsName(desc: string): void;
+  //#endregion
+
+  //#region 相关结构
   private ownObjects: StructObject[] | null = null;
 
   protected abstract iOwnObjects: StructObject[];
@@ -155,19 +183,7 @@ export abstract class Struct {
       return this.OwnObjects;
     }
   }
-
-  protected parent?: StructObject;
-
-  public get Parent() {
-    return this.parent;
-  }
-
-  protected abstract iUpdateParent(parent?: StructObject): void;
-
-  public UpdateParent(parent?: StructObject) {
-    this.parent = parent;
-    this.iUpdateParent(parent);
-  }
+  //#endregion
 
   public constructor(
     protected desc: string,
