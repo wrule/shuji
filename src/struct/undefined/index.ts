@@ -32,8 +32,12 @@ export class StructUndefined extends Struct {
     return [];
   }
 
-  protected iUpdateDesc(name: string) {
-    this.tsName = 'undefined';
+  protected iTsName(desc: string) {
+    return 'undefined';
+  }
+
+  protected iUpdateDesc(desc: string) {
+    this.tsName = this.iTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) { }

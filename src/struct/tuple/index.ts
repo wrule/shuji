@@ -84,14 +84,18 @@ export class StructTuple extends Struct {
     return result;
   }
 
-  protected iUpdateDesc(name: string) {
-    this.ElementsStruct.forEach((struct, index) => {
-      struct.UpdateDesc(`${name}TE${index + 1}`);
-    });
+  protected iTsName(desc: string) {
     const inner = this.ElementsStruct
       .map((struct) => struct.TsName)
       .join(', ');
-    this.tsName = `[${inner}]`;
+    return `[${inner}]`;
+  }
+
+  protected iUpdateDesc(desc: string) {
+    this.ElementsStruct.forEach((struct, index) => {
+      struct.UpdateDesc(`${name}TE${index + 1}`);
+    });
+    this.tsName = this.iTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) {

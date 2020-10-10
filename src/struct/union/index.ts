@@ -83,14 +83,18 @@ export class StructUnion extends Struct {
     return result;
   }
 
-  protected iUpdateDesc(name: string) {
-    this.Members.forEach((struct, index) => {
-      struct.UpdateDesc(`${name}UM${index + 1}`);
-    });
+  protected iTsName(desc: string) {
     const inner = this.Members
       .map((struct) => struct.TsName)
       .join(' | ');
-    this.tsName = `(${inner})`;
+    return `(${inner})`;
+  }
+
+  protected iUpdateDesc(desc: string) {
+    this.Members.forEach((struct, index) => {
+      struct.UpdateDesc(`${name}UM${index + 1}`);
+    });
+    this.tsName = this.iTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) {

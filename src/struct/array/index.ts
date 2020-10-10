@@ -63,9 +63,13 @@ export class StructArray extends Struct {
     return this.ElementStruct.OwnObjects;
   }
 
-  protected iUpdateDesc(name: string) {
+  protected iTsName(desc: string) {
+    return `${this.ElementStruct.TsName}[]`;
+  }
+
+  protected iUpdateDesc(desc: string) {
     this.ElementStruct.UpdateDesc(`${name}AE`);
-    this.tsName = `${this.ElementStruct.TsName}[]`;
+    this.tsName = this.iTsName(desc);
   }
 
   protected iUpdateParent(parent?: StructObject) {
