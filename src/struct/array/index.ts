@@ -73,7 +73,6 @@ export class StructArray extends Struct {
 
   protected iUpdateParent(parent?: StructObject) {
     this.ElementStruct.UpdateParent(parent);
-    this.iUpdateTsName(this.Desc);
   }
 
   public constructor(

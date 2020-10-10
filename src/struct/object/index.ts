@@ -140,14 +140,18 @@ ${this.SpaceObjects.map((struct) => struct.TsDef.map((line) => `  ${line}`).join
 
   protected iUpdateParent(parent?: StructObject) { }
 
+  protected initFieldsParent() {
+    Array.from(this.Fields).map(([name, struct]) => {
+      struct.UpdateParent(this);
+    });
+  }
+
   public constructor(
     private fields: Map<string, Struct>,
     desc: string,
   ) {
     super(desc);
     this.UpdateDesc(desc);
-    Array.from(this.Fields).map(([name, struct]) => {
-      struct.UpdateParent(this);
-    });
+    this.initFieldsParent();
   }
 }

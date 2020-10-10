@@ -154,6 +154,7 @@ export abstract class Struct {
   public UpdateParent(parent?: StructObject) {
     this.parent = parent;
     this.iUpdateParent(parent);
+    this.iUpdateTsName(this.Desc);
   }
 
   /**
