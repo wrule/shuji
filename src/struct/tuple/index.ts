@@ -104,12 +104,14 @@ export class StructTuple extends Struct {
   }
 
   public TsDef() {
-    let result = ``;
-    result = `
-${this.ElementsStruct
-  .map((struct) => struct.TsDef().join('\n'))
-  .filter((text) => text.trim())
-  .join('\n\n')}
+    let result =
+`
+${
+  this.ElementsStruct
+    .map((struct) => struct.TsDef().join('\n'))
+    .filter((text) => text.trim())
+    .join('\n\n')
+}
 `;
     return result.trim().split('\n');
   }
