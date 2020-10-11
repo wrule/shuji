@@ -9,7 +9,7 @@ const jsField = new JsField('me', object);
 const oldTime = Number(new Date());
 const struct = Infer(jsField.Value, 'rsp');
 console.log('耗时', Number(new Date()) - oldTime);
-console.log(struct.TsCode);
-console.log(struct.TsName);
+// console.log(struct.TsCode);
+// console.log(struct.TsName);
 
 fs.writeFileSync('src/test/result/1.ts', struct.TsCode, 'utf8');
