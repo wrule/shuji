@@ -60,6 +60,13 @@ export abstract class Struct {
   }
 
   public abstract TsDef(): string[];
+
+  /**
+   * 结构TypeScript定义代码
+   */
+  public get TsCode() {
+    return this.TsDef().join('\n');
+  }
   //#endregion
 
   //#region 结构之间的交互方法
