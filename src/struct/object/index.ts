@@ -47,19 +47,27 @@ export class StructObject extends Struct {
   }
 
   public TsDef() {
-    let result = ''; 
-    result += `
+    let result =
+`
 export interface ${this.InterfaceName} {
-${Array.from(this.Fields)
-  .map(([name, struct]) => `  '${name}': ${struct.TsName};`)
-  .join('\n')}
+${
+  Array.from(this.Fields)
+    .map(([name, struct]) => `  '${name}': ${struct.TsName};`)
+    .join('\n')
+}
 }
 `;
     if (this.SpaceObjects.length > 0) {
-      result += `
+      result +=
+`
 export module ${this.ModuleName} {
-${this.SpaceObjects.map((struct) => struct.TsDef().map((line) => `  ${line}`).join('\n')).join('\n\n')}
-}`;
+${
+  this.SpaceObjects
+    .map((struct) => struct.TsDef().map((line) => `  ${line}`).join('\n'))
+    .join('\n\n')
+}
+}
+`;
     }
     return result.trim().split('\n');
   }
