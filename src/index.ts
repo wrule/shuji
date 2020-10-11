@@ -33,7 +33,7 @@ const jsField = new JsField('me', object);
 const oldTime = Number(new Date());
 const struct = Infer(jsField.Value, 'rsp');
 console.log('耗时', Number(new Date()) - oldTime);
-console.log(((struct as StructArray).ElementStruct as StructObject).TsDef.join('\n'));
+console.log(((struct as StructArray).ElementStruct as StructObject).TsDef().join('\n'));
 // const object = (struct as StructArray).ElementStruct;
 // console.log(object.Type, object.Hash);
 // console.log(tss.TsDef.join('\n'));

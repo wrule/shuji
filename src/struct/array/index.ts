@@ -75,6 +75,10 @@ export class StructArray extends Struct {
     this.ElementStruct.UpdateParent(parent);
   }
 
+  public TsDef() {
+    return this.ElementStruct.TsDef();
+  }
+
   public constructor(
     private elementStruct: Struct,
     desc: string,

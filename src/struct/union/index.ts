@@ -102,6 +102,17 @@ export class StructUnion extends Struct {
     });
   }
 
+  public TsDef() {
+    let result = ``;
+    result = `
+${this.Members
+  .map((struct) => struct.TsDef().join('\n'))
+  .filter((text) => text.trim())
+  .join('\n\n')}
+`;
+    return result.trim().split('\n');
+  }
+
   public constructor(
     private members: Struct[],
     desc: string,
