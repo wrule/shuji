@@ -58,6 +58,8 @@ export abstract class Struct {
   public get Parent() {
     return this.parent;
   }
+
+  public abstract TsDef(): string[];
   //#endregion
 
   //#region 结构之间的交互方法

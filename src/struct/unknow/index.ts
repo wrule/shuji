@@ -39,6 +39,10 @@ export class StructUnknow extends Struct {
 
   protected iUpdateParent(parent?: StructObject) { }
 
+  public TsDef() {
+    return [];
+  }
+
   public constructor(desc: string) {
     super(desc);
     this.UpdateDesc(desc);

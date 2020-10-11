@@ -40,6 +40,10 @@ export class StructUndefined extends Struct {
 
   protected iUpdateParent(parent?: StructObject) { }
 
+  public TsDef() {
+    return [];
+  }
+
   public constructor(desc: string) {
     super(desc);
     this.UpdateDesc(desc);

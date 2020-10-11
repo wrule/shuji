@@ -46,7 +46,7 @@ export class StructObject extends Struct {
     }
   }
 
-  public get TsDef() {
+  public TsDef() {
     let result = ''; 
     result += `
 export interface ${this.InterfaceName} {
@@ -58,7 +58,7 @@ ${Array.from(this.Fields)
     if (this.SpaceObjects.length > 0) {
       result += `
 export module ${this.ModuleName} {
-${this.SpaceObjects.map((struct) => struct.TsDef.map((line) => `  ${line}`).join('\n')).join('\n\n')}
+${this.SpaceObjects.map((struct) => struct.TsDef().map((line) => `  ${line}`).join('\n')).join('\n\n')}
 }`;
     }
     return result.trim().split('\n');

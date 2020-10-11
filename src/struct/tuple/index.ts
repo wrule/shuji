@@ -103,6 +103,10 @@ export class StructTuple extends Struct {
     });
   }
 
+  public TsDef() {
+    return [];
+  }
+
   public constructor(
     private elementsStruct: Struct[],
     desc: string,
