@@ -19,3 +19,11 @@ export module Rsp {
     'sceneId': string;
   }
 }
+
+export interface Call {
+  
+}
+
+export default function Call(req: any): IRsp {
+  return {} as any;
+}

@@ -42,7 +42,4 @@ console.log(((struct as StructArray).ElementStruct as StructObject).TsDef.join('
 
 // console.log(tss.SpaceObjects.length);
 
-// import * as TEST from './test/result/1';
-
-// const a: TEST.IRsp = {} as any;
-// const b: TEST.Rsp.Object.ISceneScriptConfsAE = {} as any;
+import TEST, { IRsp } from './test/result/1';
