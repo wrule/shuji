@@ -12,4 +12,4 @@ console.log('耗时', Number(new Date()) - oldTime);
 // console.log(struct.TsCode);
 // console.log(struct.TsName);
 
-fs.writeFileSync('src/test/result/1.ts', struct.TsCode, 'utf8');
+fs.writeFileSync('output/1.ts', struct.TsCode, 'utf8');
