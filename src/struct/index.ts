@@ -47,6 +47,7 @@ export abstract class Struct {
    * 可在TypeScript代码中描述此结构的名称
    */
   public get TsName(): string {
+    this.iUpdateTsName(this.Desc);
     return this.tsName;
   }
 
