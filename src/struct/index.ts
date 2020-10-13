@@ -43,10 +43,13 @@ export abstract class Struct {
 
   protected tsName?: string;
   
+  /**
+   * 计算结构TypeScript描述的方法(抽象定义)
+   */
   protected abstract iTsName(desc: string): string;
 
   /**
-   * 可在TypeScript代码中描述此结构的名称
+   * 可在TypeScript代码中描述此结构的名称(即时计算且缓存)
    */
   public get TsName(): string {
     if (!this.tsName) {
@@ -64,10 +67,13 @@ export abstract class Struct {
     return this.parent;
   }
 
+  /**
+   * 结构TypeScript定义代码(字符串数组形式)
+   */
   public abstract TsDef(): string[];
 
   /**
-   * 结构TypeScript定义代码
+   * 结构TypeScript定义代码(文本形式)
    */
   public get TsCode() {
     return this.TsDef().join('\n');
@@ -203,7 +209,9 @@ export abstract class Struct {
   }
   //#endregion
 
+  //#region 构造函数,必须传入描述
   public constructor(
     protected desc: string,
   ) { }
+  //#endregion
 }
