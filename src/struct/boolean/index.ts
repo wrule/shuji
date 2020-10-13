@@ -32,8 +32,8 @@ export class StructBoolean extends Struct {
     return [];
   }
 
-  protected iUpdateTsName(desc: string) {
-    this.tsName = 'boolean';
+  protected iTsName(desc: string) {
+    return 'boolean';
   }
 
   protected iUpdateDesc(desc: string) { }

@@ -140,8 +140,8 @@ ${
     return [this];
   }
 
-  protected iUpdateTsName(desc: string) {
-    this.tsName = Lodash.upperFirst(desc);
+  protected iTsName(desc: string) {
+    return Lodash.upperFirst(desc);
   }
 
   protected iUpdateDesc(desc: string) { }

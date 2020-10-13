@@ -32,8 +32,8 @@ export class StructNumber extends Struct {
     return [];
   }
 
-  protected iUpdateTsName(desc: string) {
-    this.tsName = 'number';
+  protected iTsName(desc: string) {
+    return 'number';
   }
 
   protected iUpdateDesc(desc: string) { }

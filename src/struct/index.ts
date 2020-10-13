@@ -41,13 +41,17 @@ export abstract class Struct {
     return this.desc;
   }
 
-  protected tsName: string = '';
+  protected tsName?: string;
   
+  public abstract iTsName(desc: string): string;
+
   /**
    * 可在TypeScript代码中描述此结构的名称
    */
   public get TsName(): string {
-    // this.iUpdateTsName(this.Desc);
+    if (!this.tsName) {
+      this.tsName = this.iTsName(this.Desc);
+    }
     return this.tsName;
   }
 

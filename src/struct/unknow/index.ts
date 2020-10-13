@@ -31,8 +31,8 @@ export class StructUnknow extends Struct {
     return [];
   }
 
-  protected iUpdateTsName(desc: string) {
-    this.tsName = 'any';
+  protected iTsName(desc: string) {
+    return 'any';
   }
 
   protected iUpdateDesc(desc: string) { }

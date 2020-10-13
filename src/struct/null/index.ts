@@ -32,8 +32,8 @@ export class StructNull extends Struct {
     return [];
   }
 
-  protected iUpdateTsName(desc: string) {
-    this.tsName = 'null';
+  protected iTsName(desc: string) {
+    return 'null';
   }
 
   protected iUpdateDesc(desc: string) { }

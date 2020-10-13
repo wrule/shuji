@@ -84,11 +84,11 @@ export class StructTuple extends Struct {
     return result;
   }
 
-  protected iUpdateTsName(desc: string) {
+  protected iTsName(desc: string) {
     const inner = this.ElementsStruct
       .map((struct) => struct.TsName)
       .join(', ');
-    this.tsName = `[${inner}]`;
+    return `[${inner}]`;
   }
 
   protected iUpdateDesc(desc: string) {
