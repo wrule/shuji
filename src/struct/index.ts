@@ -78,6 +78,13 @@ export abstract class Struct {
   public get TsCode() {
     return this.TsDef().join('\n');
   }
+
+  /**
+   * 可用于测试的代码
+   */
+  public get TsTestCode() {
+    return `${this.TsDef().join('\n')}\n\nlet a: ${this.TsName} = { } as any;\n\n`;
+  }
   //#endregion
 
   //#region 结构之间的交互方法
