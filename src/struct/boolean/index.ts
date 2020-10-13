@@ -16,6 +16,10 @@ export class StructBoolean extends Struct {
     return StructType.Boolean.toString();
   }
 
+  protected iTsName(desc: string) {
+    return 'boolean';
+  }
+
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
@@ -28,17 +32,13 @@ export class StructBoolean extends Struct {
     return new StructUnion([this, ts], this.Desc);
   }
 
-  public iOwnObjects() {
-    return [];
-  }
-
-  protected iTsName(desc: string) {
-    return 'boolean';
-  }
-
   protected iUpdateDesc(desc: string) { }
 
   protected iUpdateParent(parent?: StructObject) { }
+
+  public iOwnObjects() {
+    return [];
+  }
 
   public TsDef() {
     return [];
