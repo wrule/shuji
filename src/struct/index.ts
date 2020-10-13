@@ -1,6 +1,7 @@
 import { StructType } from './type';
 import { StructUnion } from './union';
 import { StructObject } from './object';
+import { ContainCache } from '../cache/struct/contain';
 
 /**
  * 结构抽象类
@@ -105,13 +106,20 @@ export abstract class Struct {
    * @returns 是否包含
    */
   public Contain(struct: Struct): boolean {
+    const containCache = new ContainCache(this, struct);
+    if (containCache.Value !== undefined) {
+      return containCache.Value;
+    }
+    let result = false;
     // 联合前置包含判断
     if (struct.Type === StructType.Union) {
       const unoin = struct as StructUnion;
-      return unoin.Members.every((struct) => this.Contain(struct));
+      result = unoin.Members.every((struct) => this.Contain(struct));
     } else {
-      return this.iContain(struct);
+      result = this.iContain(struct);
     }
+    containCache.Value = result;
+    return result;
   }
 
   protected abstract iCompare(struct: Struct): number;
