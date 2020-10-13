@@ -6,6 +6,9 @@ import { Hash } from '../../utils';
 import { StructObject } from '../object';
 
 export class StructTuple extends Struct {
+  /**
+   * 元组元素的结构
+   */
   public get ElementsStruct() {
     return this.elementsStruct;
   }
@@ -20,6 +23,13 @@ export class StructTuple extends Struct {
 
   protected CalcHash() {
     return Hash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
+  }
+
+  protected CalcTsName() {
+    const inner = this.ElementsStruct
+      .map((struct) => struct.TsName)
+      .join(', ');
+    return `[${inner}]`;
   }
 
   protected iContain(ts: Struct): boolean {
@@ -76,21 +86,6 @@ export class StructTuple extends Struct {
     }
   }
 
-  public iOwnObjects() {
-    const result: StructObject[] = [];
-    this.ElementsStruct.forEach((struct) => {
-      result.push(...struct.OwnObjects);
-    });
-    return result;
-  }
-
-  protected CalcTsName() {
-    const inner = this.ElementsStruct
-      .map((struct) => struct.TsName)
-      .join(', ');
-    return `[${inner}]`;
-  }
-
   protected iUpdateDesc(desc: string) {
     this.ElementsStruct.forEach((struct, index) => {
       struct.UpdateDesc(`${desc}TE${index + 1}`);
@@ -101,6 +96,14 @@ export class StructTuple extends Struct {
     this.ElementsStruct.forEach((struct) => {
       struct.UpdateParent(parent);
     });
+  }
+
+  public iOwnObjects() {
+    const result: StructObject[] = [];
+    this.ElementsStruct.forEach((struct) => {
+      result.push(...struct.OwnObjects);
+    });
+    return result;
   }
 
   public TsDef() {
