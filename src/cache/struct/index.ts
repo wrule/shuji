@@ -7,3 +7,5 @@ export function getValue(key: string) {
 export function setValue(key: string, value: any) {
   return cacheMap.set(key, value);
 }
+
+// https://github.com/luin/ioredis 缓存可以使用IO Redis
