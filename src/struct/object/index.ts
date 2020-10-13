@@ -30,22 +30,6 @@ export class StructObject extends Struct {
     );
   }
 
-  public get InterfaceName() {
-    return `I${this.tsName}`;
-  }
-
-  public get ModuleName() {
-    return this.tsName;
-  }
-
-  public get TsName() {
-    if (this.Parent) {
-      return `${this.Parent.ModuleName}.${this.InterfaceName}`;
-    } else {
-      return this.InterfaceName;
-    }
-  }
-
   public TsDef() {
     let result =
 `
@@ -141,7 +125,19 @@ ${
   }
 
   protected iTsName(desc: string) {
-    return Lodash.upperFirst(desc);
+    if (this.Parent) {
+      return `${this.Parent.ModuleName}.${this.InterfaceName}`;
+    } else {
+      return this.InterfaceName;
+    }
+  }
+
+  public get InterfaceName() {
+    return `I${this.ModuleName}`;
+  }
+
+  public get ModuleName() {
+    return Lodash.upperFirst(this.Desc);
   }
 
   protected iUpdateDesc(desc: string) { }
