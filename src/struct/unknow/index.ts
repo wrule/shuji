@@ -15,7 +15,7 @@ export class StructUnknow extends Struct {
     return StructType.Unknow.toString();
   }
 
-  protected CalcTsName(desc: string) {
+  protected CalcTsName() {
     return 'any';
   }
 

@@ -84,7 +84,7 @@ export class StructTuple extends Struct {
     return result;
   }
 
-  protected CalcTsName(desc: string) {
+  protected CalcTsName() {
     const inner = this.ElementsStruct
       .map((struct) => struct.TsName)
       .join(', ');

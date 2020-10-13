@@ -46,14 +46,14 @@ export abstract class Struct {
   /**
    * 计算结构TypeScript描述的方法(抽象定义)
    */
-  protected abstract CalcTsName(desc: string): string;
+  protected abstract CalcTsName(): string;
 
   /**
    * 可在TypeScript代码中描述此结构的名称(即时计算且缓存)
    */
   public get TsName(): string {
     if (!this.tsName) {
-      this.tsName = this.CalcTsName(this.Desc);
+      this.tsName = this.CalcTsName();
     }
     return this.tsName;
   }

@@ -83,7 +83,7 @@ export class StructUnion extends Struct {
     return result;
   }
 
-  protected CalcTsName(desc: string) {
+  protected CalcTsName() {
     const inner = this.Members
       .map((struct) => struct.TsName)
       .join(' | ');

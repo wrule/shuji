@@ -16,7 +16,7 @@ export class StructNumber extends Struct {
     return StructType.Number.toString();
   }
 
-  protected CalcTsName(desc: string) {
+  protected CalcTsName() {
     return 'number';
   }
 
