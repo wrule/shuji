@@ -15,8 +15,8 @@ console.log('耗时', Number(new Date()) - oldTime);
 
 fs.writeFileSync('output/1.ts', struct.TsCode, 'utf8');
 
-const friendsArray = ((struct as StructArray).ElementStruct as StructObject).Fields.get('friends') as StructArray;
-console.log(friendsArray.Type);
+// const friendsArray = ((struct as StructArray).ElementStruct as StructObject).Fields.get('friends') as StructArray;
+// console.log(friendsArray.Type);
 
 // 根本原因是访问的是Array的TsName
 // 而Array的TsName是被缓存的
