@@ -16,6 +16,10 @@ export class StructUndefined extends Struct {
     return StructType.Undefined.toString();
   }
 
+  protected CalcTsName(desc: string) {
+    return 'undefined';
+  }
+
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
@@ -28,17 +32,13 @@ export class StructUndefined extends Struct {
     return new StructUnion([this, ts], this.Desc);
   }
 
-  public iOwnObjects() {
-    return [];
-  }
-
-  protected CalcTsName(desc: string) {
-    return 'undefined';
-  }
-
   protected iUpdateDesc(desc: string) { }
 
   protected iUpdateParent(parent?: StructObject) { }
+
+  public iOwnObjects() {
+    return [];
+  }
 
   public TsDef() {
     return [];

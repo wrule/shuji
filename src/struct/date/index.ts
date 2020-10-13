@@ -16,6 +16,10 @@ export class StructDate extends Struct {
     return StructType.Date.toString();
   }
 
+  protected CalcTsName(desc: string) {
+    return 'Date';
+  }
+
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
@@ -28,17 +32,13 @@ export class StructDate extends Struct {
     return new StructUnion([this, ts], this.Desc);
   }
 
-  public iOwnObjects() {
-    return [];
-  }
-
-  protected CalcTsName(desc: string) {
-    return 'Date';
-  }
-
   protected iUpdateDesc(desc: string) { }
 
   protected iUpdateParent(parent?: StructObject) { }
+
+  public iOwnObjects() {
+    return [];
+  }
 
   public TsDef() {
     return [];

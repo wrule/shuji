@@ -15,6 +15,10 @@ export class StructUnknow extends Struct {
     return StructType.Unknow.toString();
   }
 
+  protected CalcTsName(desc: string) {
+    return 'any';
+  }
+
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
@@ -27,17 +31,13 @@ export class StructUnknow extends Struct {
     return ts;
   }
 
-  public iOwnObjects() {
-    return [];
-  }
-
-  protected CalcTsName(desc: string) {
-    return 'any';
-  }
-
   protected iUpdateDesc(desc: string) { }
 
   protected iUpdateParent(parent?: StructObject) { }
+
+  public iOwnObjects() {
+    return [];
+  }
 
   public TsDef() {
     return [];

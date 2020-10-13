@@ -16,6 +16,10 @@ export class StructString extends Struct {
     return StructType.String.toString();
   }
 
+  protected CalcTsName(desc: string) {
+    return 'string';
+  }
+
   protected iContain(ts: Struct): boolean {
     return this.Equal(ts);
   }
@@ -28,17 +32,13 @@ export class StructString extends Struct {
     return new StructUnion([this, ts], this.Desc);
   }
 
-  public iOwnObjects() {
-    return [];
-  }
-
-  protected CalcTsName(desc: string) {
-    return 'string';
-  }
-
   protected iUpdateDesc(desc: string) { }
 
   protected iUpdateParent(parent?: StructObject) { }
+
+  public iOwnObjects() {
+    return [];
+  }
 
   public TsDef() {
     return [];
