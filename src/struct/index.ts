@@ -83,7 +83,7 @@ export abstract class Struct {
    * 可用于测试的代码
    */
   public get TsTestCode() {
-    return `${this.TsDef().join('\n')}\n\nlet a: ${this.TsName} = { } as any;\n\n`;
+    return `${this.TsDef().join('\n')}\n\nlet a: ${this.TsName} = { } as any;\n`;
   }
   //#endregion
 
