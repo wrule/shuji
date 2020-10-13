@@ -43,7 +43,7 @@ export abstract class Struct {
 
   protected tsName?: string;
   
-  public abstract iTsName(desc: string): string;
+  protected abstract iTsName(desc: string): string;
 
   /**
    * 可在TypeScript代码中描述此结构的名称
@@ -156,7 +156,6 @@ export abstract class Struct {
   public UpdateDesc(desc: string) {
     this.desc = desc;
     this.iUpdateDesc(this.desc);
-    this.iUpdateTsName(desc);
   }
 
   protected abstract iUpdateParent(parent?: StructObject): void;
@@ -168,14 +167,7 @@ export abstract class Struct {
   public UpdateParent(parent?: StructObject) {
     this.parent = parent;
     this.iUpdateParent(parent);
-    this.iUpdateTsName(this.Desc);
   }
-
-  /**
-   * 重新计算结构的TsName
-   * @param desc 结构描述,只有Object结构需要
-   */
-  protected abstract iUpdateTsName(desc: string): void;
   //#endregion
 
   //#region 相关对象结构
