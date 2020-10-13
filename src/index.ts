@@ -1,7 +1,7 @@
 import { Infer } from './infer/index';
 import { JsField } from './js/field';
 import { StructObject } from './struct/object';
-import object from './test/index.json';
+import object from './test/index6.json';
 import fs from 'fs';
 import { StructArray } from './struct/array';
 
