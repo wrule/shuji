@@ -6,6 +6,9 @@ import { Hash } from '../../utils';
 import { StructObject } from '../object';
 
 export class StructArray extends Struct {
+  /**
+   * 数组元素的结构
+   */
   public get ElementStruct() {
     return this.elementStruct;
   }
@@ -20,6 +23,10 @@ export class StructArray extends Struct {
 
   protected CalcHash() {
     return Hash(`${this.ElementStruct.Hash}[]`);
+  }
+
+  protected CalcTsName() {
+    return `${this.ElementStruct.TsName}[]`;
   }
 
   protected iContain(ts: Struct): boolean {
@@ -59,20 +66,16 @@ export class StructArray extends Struct {
     }
   }
 
-  public iOwnObjects() {
-    return this.ElementStruct.OwnObjects;
-  }
-
-  protected CalcTsName() {
-    return `${this.ElementStruct.TsName}[]`;
-  }
-
   protected iUpdateDesc(desc: string) {
     this.ElementStruct.UpdateDesc(`${desc}AE`);
   }
 
   protected iUpdateParent(parent?: StructObject) {
     this.ElementStruct.UpdateParent(parent);
+  }
+
+  public iOwnObjects() {
+    return this.ElementStruct.OwnObjects;
   }
 
   public TsDef() {
