@@ -13,7 +13,7 @@ console.log('耗时', Number(new Date()) - oldTime);
 // console.log(struct.TsCode);
 // console.log(struct.TsName);
 
-fs.writeFileSync('output/1.ts', struct.TsCode, 'utf8');
+fs.writeFileSync('output/1.ts', struct.TsTestCode, 'utf8');
 
 // const friendsArray = ((struct as StructArray).ElementStruct as StructObject).Fields.get('friends') as StructArray;
 // console.log(friendsArray.Type);
