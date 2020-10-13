@@ -63,7 +63,7 @@ export class StructArray extends Struct {
     return this.ElementStruct.OwnObjects;
   }
 
-  protected iTsName(desc: string) {
+  protected CalcTsName(desc: string) {
     return `${this.ElementStruct.TsName}[]`;
   }
 

@@ -32,7 +32,7 @@ export class StructString extends Struct {
     return [];
   }
 
-  protected iTsName(desc: string) {
+  protected CalcTsName(desc: string) {
     return 'string';
   }
 

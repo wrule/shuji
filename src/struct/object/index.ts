@@ -124,7 +124,7 @@ ${
     return [this];
   }
 
-  protected iTsName(desc: string) {
+  protected CalcTsName(desc: string) {
     if (this.Parent) {
       return `${this.Parent.ModuleName}.${this.InterfaceName}`;
     } else {

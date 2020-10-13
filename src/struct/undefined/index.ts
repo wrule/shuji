@@ -32,7 +32,7 @@ export class StructUndefined extends Struct {
     return [];
   }
 
-  protected iTsName(desc: string) {
+  protected CalcTsName(desc: string) {
     return 'undefined';
   }
 

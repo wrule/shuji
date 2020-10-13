@@ -31,7 +31,7 @@ export class StructUnknow extends Struct {
     return [];
   }
 
-  protected iTsName(desc: string) {
+  protected CalcTsName(desc: string) {
     return 'any';
   }
 

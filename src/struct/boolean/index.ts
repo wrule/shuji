@@ -16,7 +16,7 @@ export class StructBoolean extends Struct {
     return StructType.Boolean.toString();
   }
 
-  protected iTsName(desc: string) {
+  protected CalcTsName(desc: string) {
     return 'boolean';
   }
 
