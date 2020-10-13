@@ -30,30 +30,12 @@ export class StructObject extends Struct {
     );
   }
 
-  public TsDef() {
-    let result =
-`
-export interface ${this.InterfaceName} {
-${
-  Array.from(this.Fields)
-    .map(([name, struct]) => `  '${name}': ${struct.TsName};`)
-    .join('\n')
-}
-}
-`;
-    if (this.SpaceObjects.length > 0) {
-      result +=
-`
-export module ${this.ModuleName} {
-${
-  this.SpaceObjects
-    .map((struct) => struct.TsDef().map((line) => `  ${line}`).join('\n'))
-    .join('\n\n')
-}
-}
-`;
+  protected CalcTsName() {
+    if (this.Parent) {
+      return `${this.Parent.ModuleName}.${this.InterfaceName}`;
+    } else {
+      return this.InterfaceName;
     }
-    return result.trim().split('\n');
   }
 
   protected iContain(ts: Struct): boolean {
@@ -120,30 +102,57 @@ ${
     }
   }
 
-  public iOwnObjects() {
-    return [this];
-  }
-
-  protected CalcTsName() {
-    if (this.Parent) {
-      return `${this.Parent.ModuleName}.${this.InterfaceName}`;
-    } else {
-      return this.InterfaceName;
-    }
-  }
-
-  public get InterfaceName() {
-    return `I${this.ModuleName}`;
-  }
-
-  public get ModuleName() {
-    return Lodash.upperFirst(this.Desc);
-  }
-
   protected iUpdateDesc(desc: string) { }
 
   protected iUpdateParent(parent?: StructObject) { }
 
+  public iOwnObjects() {
+    return [this];
+  }
+
+  public TsDef() {
+    let result =
+`
+export interface ${this.InterfaceName} {
+${
+  Array.from(this.Fields)
+    .map(([name, struct]) => `  '${name}': ${struct.TsName};`)
+    .join('\n')
+}
+}
+`;
+    if (this.SpaceObjects.length > 0) {
+      result +=
+`
+export module ${this.ModuleName} {
+${
+  this.SpaceObjects
+    .map((struct) => struct.TsDef().map((line) => `  ${line}`).join('\n'))
+    .join('\n\n')
+}
+}
+`;
+    }
+    return result.trim().split('\n');
+  }
+
+  /**
+   * 模块名称
+   */
+  public get ModuleName() {
+    return Lodash.upperFirst(this.Desc);
+  }
+
+  /**
+   * 接口名称
+   */
+  public get InterfaceName() {
+    return `I${this.ModuleName}`;
+  }
+
+  /**
+   * 初始化字段结构的父结构
+   */
   protected initFieldsParent() {
     Array.from(this.Fields).map(([name, struct]) => {
       struct.UpdateParent(this);
