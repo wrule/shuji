@@ -183,7 +183,7 @@ export abstract class Struct {
 
   /**
    * 结构自身携带的对象结构列表(即时计算且缓存)
-   * 内部使用,外部不要使用
+   * 内部使用,外部不需要使用
    */
   public get OwnObjects() {
     if (!this.ownObjects) {
