@@ -4,6 +4,9 @@ import { Hash } from '../../utils';
 import { StructObject } from '../object';
 
 export class StructUnion extends Struct {
+  /**
+   * 联合成员的结构
+   */
   public get Members() {
     return this.members;
   }
@@ -23,6 +26,13 @@ export class StructUnion extends Struct {
         .sort((a, b) => a.localeCompare(b))
         .join('|')
     );
+  }
+
+  protected CalcTsName() {
+    const inner = this.Members
+      .map((struct) => struct.TsName)
+      .join(' | ');
+    return `(${inner})`;
   }
 
   protected iContain(ts: Struct): boolean {
@@ -75,21 +85,6 @@ export class StructUnion extends Struct {
     }
   }
 
-  public iOwnObjects() {
-    const result: StructObject[] = [];
-    this.Members.forEach((struct) => {
-      result.push(...struct.OwnObjects);
-    });
-    return result;
-  }
-
-  protected CalcTsName() {
-    const inner = this.Members
-      .map((struct) => struct.TsName)
-      .join(' | ');
-    return `(${inner})`;
-  }
-
   protected iUpdateDesc(desc: string) {
     this.Members.forEach((struct, index) => {
       struct.UpdateDesc(`${desc}UM${index + 1}`);
@@ -100,6 +95,14 @@ export class StructUnion extends Struct {
     this.Members.forEach((struct) => {
       struct.UpdateParent(parent);
     });
+  }
+
+  public iOwnObjects() {
+    const result: StructObject[] = [];
+    this.Members.forEach((struct) => {
+      result.push(...struct.OwnObjects);
+    });
+    return result;
   }
 
   public TsDef() {
