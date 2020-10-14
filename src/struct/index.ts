@@ -107,8 +107,9 @@ export abstract class Struct {
    */
   public Contain(struct: Struct): boolean {
     const containCache = new ContainCache(this, struct);
-    if (containCache.Value !== undefined) {
-      return containCache.Value;
+    const cacheValue = containCache.Get();
+    if (cacheValue !== undefined) {
+      return cacheValue;
     }
     let result = false;
     // 联合前置包含判断
@@ -118,7 +119,7 @@ export abstract class Struct {
     } else {
       result = this.iContain(struct);
     }
-    containCache.Value = result;
+    containCache.Set(result);
     return result;
   }
 
