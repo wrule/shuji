@@ -8,11 +8,11 @@ export class CompareCache {
     return this.key;
   }
 
-  public get Value() {
+  public Get(): number | undefined {
     return Cache.getValue(this.Key);
   }
 
-  public set Value(value: number) {
+  public Set(value: number) {
     Cache.setValue(this.Key, value);
   }
 
