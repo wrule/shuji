@@ -78,8 +78,8 @@ export class StructArray extends Struct {
     return this.ElementStruct.OwnObjects;
   }
 
-  public TsDef() {
-    return this.ElementStruct.TsDef();
+  public iTsCode() {
+    return this.ElementStruct.iTsCode();
   }
 
   public constructor(

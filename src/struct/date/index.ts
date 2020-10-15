@@ -40,7 +40,7 @@ export class StructDate extends Struct {
     return [];
   }
 
-  public TsDef() {
+  public iTsCode() {
     return [];
   }
 

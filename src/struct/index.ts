@@ -5,6 +5,7 @@ import { ContainCache } from '../cache/struct/contain';
 import { CompareCache } from '../cache/struct/compare';
 import { HashCache } from '../cache/struct/hash';
 import { Hash } from '../utils';
+import { CodeCache } from '../cache/struct/code';
 
 /**
  * 结构抽象类
@@ -89,20 +90,27 @@ export abstract class Struct {
   /**
    * 结构TypeScript定义代码(字符串数组形式)
    */
-  public abstract TsDef(): string[];
+  public abstract iTsCode(): string[];
 
   /**
    * 结构TypeScript定义代码(文本形式)
    */
   public get TsCode() {
-    return this.TsDef().join('\n');
+    const codeCache = new CodeCache(this.Hash);
+    const cacheValue = codeCache.Get();
+    if (cacheValue !== null) {
+      return cacheValue;
+    }
+    const code = this.iTsCode().join('\n');
+    codeCache.Set(code);
+    return code;
   }
 
   /**
    * 可用于测试的代码
    */
   public get TsTestCode() {
-    return `${this.TsDef().join('\n')}\n\nlet a: ${this.TsName} = { } as any;\n`;
+    return `${this.iTsCode().join('\n')}\n\nlet a: ${this.TsName} = { } as any;\n`;
   }
   //#endregion
 

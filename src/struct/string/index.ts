@@ -40,7 +40,7 @@ export class StructString extends Struct {
     return [];
   }
 
-  public TsDef() {
+  public iTsCode() {
     return [];
   }
 

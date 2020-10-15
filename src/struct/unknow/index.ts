@@ -39,7 +39,7 @@ export class StructUnknow extends Struct {
     return [];
   }
 
-  public TsDef() {
+  public iTsCode() {
     return [];
   }
 

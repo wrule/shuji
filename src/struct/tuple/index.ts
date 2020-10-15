@@ -106,12 +106,12 @@ export class StructTuple extends Struct {
     return result;
   }
 
-  public TsDef() {
+  public iTsCode() {
     let result =
 `
 ${
   this.ElementsStruct
-    .map((struct) => struct.TsDef().join('\n'))
+    .map((struct) => struct.iTsCode().join('\n'))
     .filter((text) => text.trim())
     .join('\n\n')
 }

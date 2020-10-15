@@ -110,7 +110,7 @@ export class StructObject extends Struct {
     return [this];
   }
 
-  public TsDef() {
+  public iTsCode() {
     let result =
 `
 export interface ${this.InterfaceName} {
@@ -127,7 +127,7 @@ ${
 export module ${this.ModuleName} {
 ${
   this.SpaceObjects
-    .map((struct) => struct.TsDef().map((line) => `  ${line}`).join('\n'))
+    .map((struct) => struct.iTsCode().map((line) => `  ${line}`).join('\n'))
     .join('\n\n')
 }
 }
