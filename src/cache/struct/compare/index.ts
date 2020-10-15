@@ -1,5 +1,5 @@
 import { Struct } from '../../../struct';
-import * as Cache from '../index';
+import { Cache } from '../../index';
 
 export class CompareCache {
   private key: string;
@@ -8,13 +8,13 @@ export class CompareCache {
     return this.key;
   }
 
-  public Get(): number | undefined {
+  public async Get() {
     // console.log('compare', Cache.getValue(this.Key));
-    return Cache.getValue(this.Key);
+    return await Cache.GetValue(this.Key);
   }
 
-  public Set(value: number) {
-    Cache.setValue(this.Key, value);
+  public async Set(value: number) {
+    await Cache.SetValue(this.Key, value);
   }
 
   public constructor(struct1: Struct, struct2: Struct) {
