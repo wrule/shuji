@@ -1,7 +1,7 @@
 import { Struct } from '../../../struct';
 import { Cache } from '../../index';
 
-export class HashCache {
+export class CodeCache {
   private key: string;
 
   public get Key() {
@@ -17,6 +17,6 @@ export class HashCache {
   }
 
   public constructor(key: string) {
-    this.key = `hash:${key}`;
+    this.key = `code:${key}`;
   }
 }
