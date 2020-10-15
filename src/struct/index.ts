@@ -2,6 +2,7 @@ import { StructType } from './type';
 import { StructUnion } from './union';
 import { StructObject } from './object';
 import { ContainCache } from '../cache/struct/contain';
+import { CompareCache } from '../cache/struct/compare';
 
 /**
  * 结构抽象类
@@ -111,7 +112,7 @@ export abstract class Struct {
     if (cacheValue !== undefined) {
       return cacheValue;
     }
-    let result = false;
+    let result: boolean;
     // 联合前置包含判断
     if (struct.Type === StructType.Union) {
       const unoin = struct as StructUnion;
@@ -131,11 +132,19 @@ export abstract class Struct {
    * @returns [0, 1]区间的值,代表相似度
    */
   public Compare(struct: Struct): number {
-    if (struct.Type === StructType.Union) {
-      return struct.iCompare(this);
-    } else {
-      return this.iCompare(struct);
+    const compareCache = new CompareCache(this, struct);
+    const cacheValue = compareCache.Get();
+    if (cacheValue !== undefined) {
+      return cacheValue;
     }
+    let result: number;
+    if (struct.Type === StructType.Union) {
+      result = struct.iCompare(this);
+    } else {
+      result = this.iCompare(struct);
+    }
+    compareCache.Set(result);
+    return result;
   }
 
   protected abstract iMerge(struct: Struct): Struct;
