@@ -90,7 +90,7 @@ export abstract class Struct {
   /**
    * 结构TypeScript定义代码(字符串数组形式)
    */
-  public abstract iTsCode(): string[];
+  public abstract iTsCode(): string;
 
   /**
    * 结构TypeScript定义代码(文本形式)
@@ -101,16 +101,24 @@ export abstract class Struct {
     if (cacheValue !== null) {
       return cacheValue;
     }
-    const code = this.iTsCode().join('\n');
+    const code = this.iTsCode();
     codeCache.Set(code);
     return code;
+  }
+
+  public get TsCodeLines() {
+    if (this.TsCode.trim() !== '') {
+      return this.TsCode.split('\n');
+    } else {
+      return [];
+    }
   }
 
   /**
    * 可用于测试的代码
    */
   public get TsTestCode() {
-    return `${this.iTsCode().join('\n')}\n\nlet a: ${this.TsName} = { } as any;\n`;
+    return `${this.TsCode}\n\nlet a: ${this.TsName} = { } as any;\n`;
   }
   //#endregion
 

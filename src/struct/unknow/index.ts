@@ -40,7 +40,7 @@ export class StructUnknow extends Struct {
   }
 
   public iTsCode() {
-    return [];
+    return '';
   }
 
   public constructor(desc: string) {

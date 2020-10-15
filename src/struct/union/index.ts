@@ -110,12 +110,12 @@ export class StructUnion extends Struct {
 `
 ${
   this.Members
-    .map((struct) => struct.iTsCode().join('\n'))
+    .map((struct) => struct.TsCodeLines.join('\n'))
     .filter((text) => text.trim())
     .join('\n\n')
 }
 `;
-    return result.trim().split('\n');
+    return result.trim();
   }
 
   public constructor(

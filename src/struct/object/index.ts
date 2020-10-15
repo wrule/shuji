@@ -127,13 +127,13 @@ ${
 export module ${this.ModuleName} {
 ${
   this.SpaceObjects
-    .map((struct) => struct.iTsCode().map((line) => `  ${line}`).join('\n'))
+    .map((struct) => struct.TsCodeLines.map((line) => `  ${line}`).join('\n'))
     .join('\n\n')
 }
 }
 `;
     }
-    return result.trim().split('\n');
+    return result.trim();
   }
 
   /**

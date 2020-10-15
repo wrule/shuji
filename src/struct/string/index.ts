@@ -41,7 +41,7 @@ export class StructString extends Struct {
   }
 
   public iTsCode() {
-    return [];
+    return '';
   }
 
   public constructor(desc: string) {
