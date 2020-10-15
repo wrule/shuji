@@ -1,7 +1,6 @@
 import deasync from 'deasync';
 import Redis from 'ioredis';
 
-
 export class SyncRedis extends Redis {
   private syncGet: any;
   private syncSet: any;
@@ -10,17 +9,17 @@ export class SyncRedis extends Redis {
     return this.syncGet(key);
   }
 
-  SyncSet(key: KeyType, value: Redis.ValueType): void;
-  SyncSet(key: KeyType, value: Redis.ValueType, setMode: string | any[]): void;
-  SyncSet(key: KeyType, value: Redis.ValueType, expiryMode: string, time: number | string): void;
+  SyncSet(key: KeyType, value: Redis.ValueType): Redis.Ok;
+  SyncSet(key: KeyType, value: Redis.ValueType, setMode: string | any[]): Redis.Ok | null;
+  SyncSet(key: KeyType, value: Redis.ValueType, expiryMode: string, time: number | string): Redis.Ok;
   SyncSet(
       key: KeyType,
       value: Redis.ValueType,
       expiryMode: string,
       time: number | string,
       setMode: number | string,
-  ): void;
-  public SyncSet(...args: any[]): Redis.Ok | null {
+  ): Redis.Ok | null;
+  public SyncSet(...args: any[]) {
     return this.syncSet(...args);
   }
 
