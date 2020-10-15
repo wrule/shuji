@@ -33,3 +33,5 @@ import { mainModule } from "process";
 import { SyncRedis } from './utils/syncRedis';
 
 const syncRedis = new SyncRedis();
+syncRedis.SyncSet('nihao', '世界');
+console.log(syncRedis.SyncGet('nihao'));

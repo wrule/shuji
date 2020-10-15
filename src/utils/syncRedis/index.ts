@@ -9,11 +9,11 @@ export class SyncRedis extends Redis {
     return this.syncGet(key);
   }
 
-  SyncSet(key: KeyType, value: Redis.ValueType): Redis.Ok;
-  SyncSet(key: KeyType, value: Redis.ValueType, setMode: string | any[]): Redis.Ok | null;
-  SyncSet(key: KeyType, value: Redis.ValueType, expiryMode: string, time: number | string): Redis.Ok;
+  SyncSet(key: Redis.KeyType, value: Redis.ValueType): Redis.Ok;
+  SyncSet(key: Redis.KeyType, value: Redis.ValueType, setMode: string | any[]): Redis.Ok | null;
+  SyncSet(key: Redis.KeyType, value: Redis.ValueType, expiryMode: string, time: number | string): Redis.Ok;
   SyncSet(
-      key: KeyType,
+      key: Redis.KeyType,
       value: Redis.ValueType,
       expiryMode: string,
       time: number | string,
