@@ -3,6 +3,8 @@ import { StructUnion } from './union';
 import { StructObject } from './object';
 import { ContainCache } from '../cache/struct/contain';
 import { CompareCache } from '../cache/struct/compare';
+import { HashCache } from '../cache/struct/hash';
+import { Hash } from '../utils';
 
 /**
  * 结构抽象类
@@ -25,6 +27,21 @@ export abstract class Struct {
    * 计算结构Hash的方法(抽象定义)
    */
   protected abstract CalcHash(): string;
+
+  /**
+   * 带有缓存功能的Hash计算方法
+   * @param text 需要Hash的文本
+   */
+  protected cacheHash(text: string): string {
+    const hashCache = new HashCache(text);
+    const cacheValue = hashCache.Get();
+    if (cacheValue !== undefined) {
+      return cacheValue;
+    }
+    const hash = Hash(text);
+    hashCache.Set(hash);
+    return hash;
+  }
 
   /**
    * 获取结构Hash(即时计算且缓存)

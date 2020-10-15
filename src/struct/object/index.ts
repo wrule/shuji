@@ -22,7 +22,7 @@ export class StructObject extends Struct {
   }
 
   protected CalcHash() {
-    return Hash(
+    return this.cacheHash(
       Array.from(this.Fields)
         .sort((a, b) => a[0].localeCompare(b[0]))
         .map((ary) => `${ary[0]}:${ary[1].Hash}`)

@@ -22,7 +22,7 @@ export class StructTuple extends Struct {
   }
 
   protected CalcHash() {
-    return Hash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
+    return this.cacheHash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
   }
 
   protected CalcTsName() {

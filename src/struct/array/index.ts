@@ -22,7 +22,7 @@ export class StructArray extends Struct {
   }
 
   protected CalcHash() {
-    return Hash(`${this.ElementStruct.Hash}[]`);
+    return this.cacheHash(`${this.ElementStruct.Hash}[]`);
   }
 
   protected CalcTsName() {

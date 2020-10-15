@@ -9,7 +9,7 @@ export class ContainCache {
   }
 
   public Get(): boolean | undefined {
-    console.log('contain', Cache.getValue(this.Key));
+    // console.log('contain', Cache.getValue(this.Key));
     return Cache.getValue(this.Key);
   }
 

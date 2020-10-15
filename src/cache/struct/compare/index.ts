@@ -9,7 +9,7 @@ export class CompareCache {
   }
 
   public Get(): number | undefined {
-    console.log('compare', Cache.getValue(this.Key));
+    // console.log('compare', Cache.getValue(this.Key));
     return Cache.getValue(this.Key);
   }
 
