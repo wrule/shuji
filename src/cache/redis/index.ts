@@ -1,4 +1,4 @@
-import { ICache } from '..';
+import { ICache } from '../cache';
 import Redis from 'ioredis';
 const redis = new Redis();
 

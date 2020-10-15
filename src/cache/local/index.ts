@@ -1,4 +1,4 @@
-import { ICache } from '..';
+import { ICache } from '../cache';
 const cacheMap = new Map<string, any>();
 
 export class LocalCache implements ICache {
