@@ -1,15 +1,15 @@
-// import { Infer } from './infer/index';
-// import { JsField } from './js/field';
-// import object from './test/index2.json';
-// import fs from 'fs';
+import { Infer } from './infer/index';
+import { JsField } from './js/field';
+import object from './test/index2.json';
+import fs from 'fs';
 
-import { mainModule } from "process";
+// import { mainModule } from "process";
 
-// const jsField = new JsField('me', object);
-// const oldTime = Number(new Date());
-// const struct = Infer(jsField.Value, 'rsp');
-// console.log('耗时', Number(new Date()) - oldTime);
-// fs.writeFileSync('output/1.ts', struct.TsTestCode, 'utf8');
+const jsField = new JsField('me', object);
+const oldTime = Number(new Date());
+const struct = Infer(jsField.Value, 'rsp');
+console.log('耗时', Number(new Date()) - oldTime);
+fs.writeFileSync('output/1.ts', struct.TsTestCode, 'utf8');
 
 // import deasync from 'deasync';
 // var cp = require('child_process');
@@ -30,8 +30,8 @@ import { mainModule } from "process";
 
 // main();
 
-import { SyncRedis } from './utils/syncRedis';
+// import { SyncRedis } from './utils/syncRedis';
 
-const syncRedis = new SyncRedis();
-syncRedis.SyncSet('nihao', '世界');
-console.log(syncRedis.SyncGet('nihao'));
+// const syncRedis = new SyncRedis();
+// syncRedis.SyncSet('nihao', '世界');
+// console.log(syncRedis.SyncGet('nihao'));

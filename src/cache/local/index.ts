@@ -1,8 +1,8 @@
 import { ICache } from '../cache';
-const cacheMap = new Map<string, any>();
+const cacheMap = new Map<string, string>();
 
 export class LocalCache implements ICache {
-  public async GetValue(key: string) {
+  public GetValue(key: string) {
     const result = cacheMap.get(key);
     if (result !== undefined) {
       return result;
@@ -11,7 +11,7 @@ export class LocalCache implements ICache {
     }
   }
 
-  public async SetValue(key: string, value: any) {
-    await cacheMap.set(key, value);
+  public SetValue(key: string, value: string) {
+    cacheMap.set(key, value);
   }
 }

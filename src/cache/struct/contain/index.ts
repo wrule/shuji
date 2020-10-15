@@ -1,5 +1,5 @@
 import { Struct } from '../../../struct';
-import * as Cache from '../index';
+import { Cache } from '../../index';
 
 export class ContainCache {
   private key: string;
@@ -10,11 +10,16 @@ export class ContainCache {
 
   public Get() {
     // console.log('contain', Cache.getValue(this.Key));
-    return Cache.GetValue(this.Key);
+    const value = Cache.GetValue(this.Key);
+    if (value !== null) {
+      return value === 'true';
+    } else {
+      return null;
+    }
   }
 
   public Set(value: boolean) {
-    Cache.SetValue(this.Key, value);
+    Cache.SetValue(this.Key, value.toString());
   }
 
   public constructor(struct1: Struct, struct2: Struct) {

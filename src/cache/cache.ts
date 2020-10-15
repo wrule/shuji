@@ -1,6 +1,6 @@
 
 export interface ICache {
-  GetValue(key: string): Promise<any>;
+  GetValue(key: string): string | null;
   
-  SetValue(key: string, value: any): Promise<void>;
+  SetValue(key: string, value: string): void;
 }

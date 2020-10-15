@@ -1,13 +1,13 @@
 import { ICache } from '../cache';
-import Redis from 'ioredis';
-const redis = new Redis();
+import { SyncRedis } from '../../utils/syncRedis';
+const redis = new SyncRedis();
 
 export class RedisCache implements ICache {
-  public async GetValue(key: string) {
-    return await redis.get(key);
+  public GetValue(key: string) {
+    return redis.SyncGet(key);
   }
 
-  public async SetValue(key: string, value: any) {
-    await redis.set(key, value);
+  public SetValue(key: string, value: string) {
+    redis.SyncSet(key, value);
   }
 }

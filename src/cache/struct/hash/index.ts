@@ -1,5 +1,5 @@
 import { Struct } from '../../../struct';
-import * as Cache from '../index';
+import { Cache } from '../../index';
 
 export class HashCache {
   public get Key() {
