@@ -35,7 +35,7 @@ export abstract class Struct {
   protected cacheHash(text: string): string {
     const hashCache = new HashCache(text);
     const cacheValue = hashCache.Get();
-    if (cacheValue !== undefined) {
+    if (cacheValue !== null) {
       return cacheValue;
     }
     const hash = Hash(text);
@@ -126,7 +126,7 @@ export abstract class Struct {
   public Contain(struct: Struct): boolean {
     const containCache = new ContainCache(this, struct);
     const cacheValue = containCache.Get();
-    if (cacheValue !== undefined) {
+    if (cacheValue !== null) {
       return cacheValue;
     }
     let result: boolean;
@@ -151,7 +151,7 @@ export abstract class Struct {
   public Compare(struct: Struct): number {
     const compareCache = new CompareCache(this, struct);
     const cacheValue = compareCache.Get();
-    if (cacheValue !== undefined) {
+    if (cacheValue !== null) {
       return cacheValue;
     }
     let result: number;

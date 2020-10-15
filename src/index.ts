@@ -1,6 +1,6 @@
 import { Infer } from './infer/index';
 import { JsField } from './js/field';
-import object from './test/index2.json';
+import object from './test/index6.json';
 import fs from 'fs';
 
 // import { mainModule } from "process";
