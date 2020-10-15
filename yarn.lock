@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@types/deasync@^0.1.1":
+  version "0.1.1"
+  resolved "http://npm.perfma-inc.net:80/@types%2fdeasync/-/deasync-0.1.1.tgz#69ca6999a2e40e329599da9f093b67e3e6cc0833"
+  integrity sha512-/AsDEUsHjyzMX0UjPgysggxFO8r7//c4aS9aeQwHzgs5POBsqaBFWW9+KYFGUyx/VYT4HrT/+JzAGTEEL2d4OQ==
+
 "@types/ioredis@^4.17.5":
   version "4.17.5"
   resolved "http://npm.perfma-inc.net:80/@types%2fioredis/-/ioredis-4.17.5.tgz#9c8c6f08b98fd0f9e2dd40217434db607668ed21"

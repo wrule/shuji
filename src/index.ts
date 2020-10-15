@@ -1,23 +1,31 @@
-import { Infer } from './infer/index';
-import { JsField } from './js/field';
-import { StructObject } from './struct/object';
-import object from './test/index2.json';
-import fs from 'fs';
-import { StructArray } from './struct/array';
+// import { Infer } from './infer/index';
+// import { JsField } from './js/field';
+// import object from './test/index2.json';
+// import fs from 'fs';
 
-const jsField = new JsField('me', object);
+import { mainModule } from "process";
 
-const oldTime = Number(new Date());
-const struct = Infer(jsField.Value, 'rsp');
-console.log('耗时', Number(new Date()) - oldTime);
-// console.log(struct.TsCode);
-// console.log(struct.TsName);
+// const jsField = new JsField('me', object);
+// const oldTime = Number(new Date());
+// const struct = Infer(jsField.Value, 'rsp');
+// console.log('耗时', Number(new Date()) - oldTime);
+// fs.writeFileSync('output/1.ts', struct.TsTestCode, 'utf8');
 
-fs.writeFileSync('output/1.ts', struct.TsTestCode, 'utf8');
+import deasync from 'deasync';
+var cp = require('child_process');
 
-// const friendsArray = ((struct as StructArray).ElementStruct as StructObject).Fields.get('friends') as StructArray;
-// console.log(friendsArray.Type);
+function asyncFunc(cb: (err: any, res: any) => void) {
+  setTimeout(() => {
+    cb(null, '同步');
+  }, 2000);
+}
 
-// 根本原因是访问的是Array的TsName
-// 而Array的TsName是被缓存的
-// 如果访问数组内部对象的TsName的话就能看到是正确的
+const syncFunc = deasync(asyncFunc);
+
+async function main() {
+  console.log('start');
+  const result = syncFunc();
+  console.log(result);
+}
+
+main();
