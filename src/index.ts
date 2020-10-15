@@ -11,21 +11,25 @@ import { mainModule } from "process";
 // console.log('耗时', Number(new Date()) - oldTime);
 // fs.writeFileSync('output/1.ts', struct.TsTestCode, 'utf8');
 
-import deasync from 'deasync';
-var cp = require('child_process');
+// import deasync from 'deasync';
+// var cp = require('child_process');
 
-function asyncFunc(cb: (err: any, res: any) => void) {
-  setTimeout(() => {
-    cb(null, '同步');
-  }, 2000);
-}
+// function asyncFunc(cb: (err: any, res: any) => void) {
+//   setTimeout(() => {
+//     cb(null, '同步');
+//   }, 2000);
+// }
 
-const syncFunc = deasync(asyncFunc);
+// const syncFunc = deasync(asyncFunc);
 
-async function main() {
-  console.log('start');
-  const result = syncFunc();
-  console.log(result);
-}
+// async function main() {
+//   console.log('start');
+//   const result = syncFunc();
+//   console.log(result);
+// }
 
-main();
+// main();
+
+import { SyncRedis } from './utils/syncRedis';
+
+const syncRedis = new SyncRedis();
