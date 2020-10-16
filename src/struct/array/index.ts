@@ -79,7 +79,7 @@ export class StructArray extends Struct {
   }
 
   public iTsCode() {
-    return this.ElementStruct.iTsCode();
+    return this.ElementStruct.TsCode;
   }
 
   public constructor(

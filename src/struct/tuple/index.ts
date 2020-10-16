@@ -111,7 +111,7 @@ export class StructTuple extends Struct {
 `
 ${
   this.ElementsStruct
-    .map((struct) => struct.TsCodeLines.join('\n'))
+    .map((struct) => struct.TsCode)
     .filter((text) => text.trim())
     .join('\n\n')
 }
