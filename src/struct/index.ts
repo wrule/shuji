@@ -96,13 +96,13 @@ export abstract class Struct {
    * 结构TypeScript定义代码(文本形式)
    */
   public get TsCode() {
-    const codeCache = new CodeCache(this.Hash);
-    const cacheValue = codeCache.Get();
-    if (cacheValue !== null) {
-      return cacheValue;
-    }
+    // const codeCache = new CodeCache(this.Hash);
+    // const cacheValue = codeCache.Get();
+    // if (cacheValue !== null) {
+    //   return cacheValue;
+    // }
     const code = this.iTsCode();
-    codeCache.Set(code);
+    // codeCache.Set(code);
     return code;
   }
 
