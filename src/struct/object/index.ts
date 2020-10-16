@@ -154,7 +154,7 @@ ${
       result = result.trim();
       codeCache.Set(result);
     }
-    return result;
+    return this.linkCode(result);
   }
 
   /**
