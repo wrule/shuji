@@ -25,7 +25,7 @@ export class StructObject extends Struct {
     return this.cacheHash(
       Array.from(this.Fields)
         .sort((a, b) => a[0].localeCompare(b[0]))
-        .map((ary) => `${ary[0]}:${ary[1].Hash}`)
+        .map((ary) => `${ary[0]}=${ary[1].Hash}`)
         .join(',')
     );
   }
