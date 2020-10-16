@@ -4,6 +4,7 @@ import { StructUnion } from '../union';
 import { StructUndefined } from '../undefined';
 import { Hash } from '../../utils';
 import Lodash from 'lodash';
+import { CodeCache } from '../../cache/struct/code';
 
 export class StructObject extends Struct {
   /**
@@ -110,10 +111,27 @@ export class StructObject extends Struct {
     return [this];
   }
 
+  /**
+   * 用于链接代码
+   * @param code 模板代码
+   */
+  private linkCode(code: string) {
+    let result = code;
+    result = result.replace('${InterfaceName}', this.InterfaceName);
+    result = result.replace('${ModuleName}', this.ModuleName);
+    return result;
+  }
+
   public iTsCode() {
-    let result =
+    let result = '';
+    const codeCache = new CodeCache(this.Hash);
+    const cacheValue = codeCache.Get();
+    if (cacheValue !== null) {
+      result = cacheValue;
+    } else {
+      result =
 `
-export interface ${this.InterfaceName} {
+export interface \$\{InterfaceName\} {
 ${
   Array.from(this.Fields)
     .map(([name, struct]) => `  '${name}': ${struct.TsName};`)
@@ -121,10 +139,10 @@ ${
 }
 }
 `;
-    if (this.SpaceObjects.length > 0) {
-      result +=
+      if (this.SpaceObjects.length > 0) {
+        result +=
 `
-export module ${this.ModuleName} {
+export module \$\{ModuleName\} {
 ${
   this.SpaceObjects
     .map((struct) => struct.TsCodeLines.map((line) => `  ${line}`).join('\n'))
@@ -132,8 +150,11 @@ ${
 }
 }
 `;
+      }
+      result = result.trim();
+      codeCache.Set(result);
     }
-    return result.trim();
+    return result;
   }
 
   /**
