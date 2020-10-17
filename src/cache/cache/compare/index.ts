@@ -3,9 +3,14 @@ import { Cache } from '../../index';
 
 export class CompareCache {
   private key: string;
+  private reverseKey: string;
 
   public get Key() {
     return this.key;
+  }
+
+  public get ReverseKey() {
+    return this.reverseKey;
   }
 
   public Get() {
@@ -13,7 +18,12 @@ export class CompareCache {
     if (value !== null) {
       return Number(value);
     } else {
-      return null;
+      const reverseValue = Cache.GetValue(this.ReverseKey);
+      if (reverseValue !== null) {
+        return Number(reverseValue);
+      } else {
+        return null;
+      }
     }
   }
 
@@ -23,5 +33,6 @@ export class CompareCache {
 
   public constructor(struct1: Struct, struct2: Struct) {
     this.key = `compare:${struct1.Hash}-${struct2.Hash}`;
+    this.reverseKey = `compare:${struct2.Hash}-${struct1.Hash}`;
   }
 }
