@@ -4,7 +4,7 @@
   "description": "书记",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "node dist/index.js",
+    "dev": "node dist/test/index.js",
     "build": "tsc",
     "watch": "tsc -w"
   },
