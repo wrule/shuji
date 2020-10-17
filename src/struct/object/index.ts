@@ -2,7 +2,6 @@ import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructUndefined } from '../undefined';
-import { Hash } from '../../utils';
 import Lodash from 'lodash';
 import { CodeCache } from '../../cache/cache/code';
 
@@ -26,7 +25,7 @@ export class StructObject extends Struct {
     return this.cacheHash(
       Array.from(this.Fields)
         .sort((a, b) => a[0].localeCompare(b[0]))
-        .map((ary) => `${ary[0]}=${ary[1].Hash}`)
+        .map(([name, value]) => `${name}=${value.Hash}`)
         .join(',')
     );
   }

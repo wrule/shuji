@@ -1,6 +1,5 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
-import { Hash } from '../../utils';
 import { StructObject } from '../object';
 
 export class StructUnion extends Struct {

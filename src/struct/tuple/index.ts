@@ -2,7 +2,6 @@ import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructUndefined } from '../undefined';
-import { Hash } from '../../utils';
 import { StructObject } from '../object';
 
 export class StructTuple extends Struct {

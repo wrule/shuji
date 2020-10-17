@@ -30,7 +30,7 @@ export abstract class Struct {
 
   /**
    * 带有缓存功能的Hash计算方法
-   * @param text 需要Hash的文本
+   * @param text 需要计算Hash的文本
    */
   protected cacheHash(text: string): string {
     const hashCache = new HashCache(text);
