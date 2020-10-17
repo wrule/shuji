@@ -1,4 +1,3 @@
-import { Struct } from '../../../struct';
 import { Cache } from '../../index';
 
 export class HashCache {
