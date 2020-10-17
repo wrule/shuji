@@ -27,7 +27,5 @@ export class SyncRedis extends Redis {
     super();
     this.syncGet = deasync(super.get);
     this.syncSet = deasync(super.set);
-    // 可以用rpush保存
-    // this.rpush
   }
 }
