@@ -1,7 +1,7 @@
 import { Struct } from '../../../struct';
 import { Cache } from '../../index';
 
-export class ContainCache {
+export class CompareCache {
   private key: string;
 
   public get Key() {
@@ -9,20 +9,19 @@ export class ContainCache {
   }
 
   public Get() {
-    // console.log('contain', Cache.getValue(this.Key));
     const value = Cache.GetValue(this.Key);
     if (value !== null) {
-      return value === 'true';
+      return Number(value);
     } else {
       return null;
     }
   }
 
-  public Set(value: boolean) {
+  public Set(value: number) {
     Cache.SetValue(this.Key, value.toString());
   }
 
   public constructor(struct1: Struct, struct2: Struct) {
-    this.key = `contain:${struct1.Hash}-${struct2.Hash}`;
+    this.key = `compare:${struct1.Hash}-${struct2.Hash}`;
   }
 }

@@ -4,7 +4,7 @@ import { StructUnion } from '../union';
 import { StructUndefined } from '../undefined';
 import { Hash } from '../../utils';
 import Lodash from 'lodash';
-import { CodeCache } from '../../cache/struct/code';
+import { CodeCache } from '../../cache/cache/code';
 
 export class StructObject extends Struct {
   /**

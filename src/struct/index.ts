@@ -1,11 +1,10 @@
 import { StructType } from './type';
 import { StructUnion } from './union';
 import { StructObject } from './object';
-import { ContainCache } from '../cache/struct/contain';
-import { CompareCache } from '../cache/struct/compare';
-import { HashCache } from '../cache/struct/hash';
+import { ContainCache } from '../cache/cache/contain';
+import { CompareCache } from '../cache/cache/compare';
+import { HashCache } from '../cache/cache/hash';
 import { Hash } from '../utils';
-import { CodeCache } from '../cache/struct/code';
 
 /**
  * 结构抽象类
