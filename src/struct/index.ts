@@ -126,6 +126,12 @@ export abstract class Struct {
 
   protected abstract iContain(struct: Struct): boolean;
 
+  /**
+   * 判断两个结构的判断包含操作是否需要缓存
+   * @param struct1 结构1
+   * @param struct2 结构2
+   * @returns 是否需要缓存
+   */
   private isNeedContainCache(struct1: Struct, struct2: Struct): boolean {
     return (
       (struct1.Type === StructType.Object && (
@@ -142,13 +148,6 @@ export abstract class Struct {
         struct2.Type === StructType.Union
       )) ||
       (struct1.Type === StructType.Union)
-    );
-  }
-
-  private isNeedCompareCache(struct1: Struct, struct2: Struct): boolean {
-    return (
-      (struct1.Type === StructType.Union || struct2.Type === StructType.Union) ||
-      ((struct1.Type === struct2.Type) && (!struct1.IsBasic && !struct2.IsBasic))
     );
   }
 
@@ -180,6 +179,42 @@ export abstract class Struct {
   }
 
   /**
+   * 判断此结构是否包含目标结构
+   * @param struct 目标结构
+   * @returns 是否包含
+   */
+  public Contain(struct: Struct): boolean {
+    // 如果Hash相等,直接视为包含
+    if (this.Hash === struct.Hash) {
+      return true;
+    }
+    // 判断逻辑
+    let result: boolean;
+    if (struct.Type === StructType.Union) {
+      const unoin = struct as StructUnion;
+      result = unoin.Members.every((struct) => this.Contain(struct));
+    } else {
+      result = this.cacheContainRunner(this, struct, this.iContain);
+    }
+    return result;
+  }
+
+  protected abstract iCompare(struct: Struct): number;
+
+  /**
+   * 判断两个结构的计算相似度操作是否需要缓存
+   * @param struct1 结构1
+   * @param struct2 结构2
+   * @returns 是否需要缓存
+   */
+  private isNeedCompareCache(struct1: Struct, struct2: Struct): boolean {
+    return (
+      (struct1.Type === StructType.Union || struct2.Type === StructType.Union) ||
+      ((struct1.Type === struct2.Type) && (!struct1.IsBasic && !struct2.IsBasic))
+    );
+  }
+
+  /**
    * Compare缓存运行器
    * @param struct 目标结构
    * @param func 需缓存的方法
@@ -204,29 +239,6 @@ export abstract class Struct {
     }
     return result;
   }
-
-  /**
-   * 判断此结构是否包含目标结构
-   * @param struct 目标结构
-   * @returns 是否包含
-   */
-  public Contain(struct: Struct): boolean {
-    // 如果Hash相等,直接视为包含
-    if (this.Hash === struct.Hash) {
-      return true;
-    }
-    // 判断逻辑
-    let result: boolean;
-    if (struct.Type === StructType.Union) {
-      const unoin = struct as StructUnion;
-      result = unoin.Members.every((struct) => this.Contain(struct));
-    } else {
-      result = this.cacheContainRunner(this, struct, this.iContain);
-    }
-    return result;
-  }
-
-  protected abstract iCompare(struct: Struct): number;
 
   /**
    * 结构相似度对比
