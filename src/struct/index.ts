@@ -154,23 +154,25 @@ export abstract class Struct {
 
   /**
    * Cotain缓存运行器
-   * @param struct 目标结构
+   * @param struct1 源结构
+   * @param struct2 目标结构
    * @param func 需缓存的方法
    * @returns 是否包含
    */
   private cacheContainRunner(
-    struct: Struct,
+    struct1: Struct,
+    struct2: Struct,
     func: (struct: Struct) => boolean,
   ): boolean {
-    const containCache = new ContainCache(this, struct);
-    const need = this.isNeedContainCache(this, struct);
+    const containCache = new ContainCache(struct1, struct2);
+    const need = this.isNeedContainCache(struct1, struct2);
     if (need) {
       const cacheValue = containCache.Get();
       if (cacheValue !== null) {
         return cacheValue;
       }
     }
-    const result = func.call(this, struct);
+    const result = func.call(struct1, struct2);
     if (need) {
       containCache.Set(result);
     }
@@ -219,7 +221,7 @@ export abstract class Struct {
       const unoin = struct as StructUnion;
       result = unoin.Members.every((struct) => this.Contain(struct));
     } else {
-      result = this.cacheContainRunner(struct, this.iContain);
+      result = this.cacheContainRunner(this, struct, this.iContain);
     }
     return result;
   }
@@ -232,6 +234,10 @@ export abstract class Struct {
    * @returns [0, 1]区间的值,代表相似度
    */
   public Compare(struct: Struct): number {
+    // 如果Hash相等,相似度为1
+    if (this.Hash === struct.Hash) {
+      return 1;
+    }
     let result: number;
     if (struct.Type === StructType.Union) {
       result = this.cacheCompareRunner(struct, this, this.iCompare);
