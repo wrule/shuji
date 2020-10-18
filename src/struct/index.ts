@@ -145,13 +145,20 @@ export abstract class Struct {
     );
   }
 
+  private isNeedCompareCache(struct1: Struct, struct2: Struct): boolean {
+    return (
+      (struct1.Type === StructType.Union || struct2.Type === StructType.Union) ||
+      ((struct1.Type === struct2.Type) && (!struct1.IsBasic && !struct2.IsBasic))
+    );
+  }
+
   /**
    * Cotain缓存运行器
    * @param struct 目标结构
    * @param func 需缓存的方法
    * @returns 是否包含
    */
-  protected cacheContainRunner(
+  private cacheContainRunner(
     struct: Struct,
     func: (struct: Struct) => boolean,
   ): boolean {
@@ -166,6 +173,31 @@ export abstract class Struct {
     const result = func.call(this, struct);
     if (need) {
       containCache.Set(result);
+    }
+    return result;
+  }
+
+  /**
+   * Compare缓存运行器
+   * @param struct 目标结构
+   * @param func 需缓存的方法
+   * @returns [0, 1]区间的值,代表相似度
+   */
+  private cacheCompareRunner(
+    struct: Struct,
+    func: (struct: Struct) => number,
+  ): number {
+    const compareCache = new CompareCache(this, struct);
+    const need = this.isNeedCompareCache(this, struct);
+    if (need) {
+      const cacheValue = compareCache.Get();
+      if (cacheValue !== null) {
+        return cacheValue;
+      }
+    }
+    const result = func.call(this, struct);
+    if (need) {
+      compareCache.Set(result);
     }
     return result;
   }
@@ -199,18 +231,12 @@ export abstract class Struct {
    * @returns [0, 1]区间的值,代表相似度
    */
   public Compare(struct: Struct): number {
-    const compareCache = new CompareCache(this, struct);
-    const cacheValue = compareCache.Get();
-    if (cacheValue !== null) {
-      return cacheValue;
-    }
     let result: number;
     if (struct.Type === StructType.Union) {
       result = struct.iCompare(this);
     } else {
-      result = this.iCompare(struct);
+      result = this.cacheCompareRunner(struct, this.iCompare);
     }
-    compareCache.Set(result);
     return result;
   }
 
