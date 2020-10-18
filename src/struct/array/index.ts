@@ -81,6 +81,13 @@ export class StructArray extends Struct {
     return this.ElementStruct.TsCode;
   }
 
+  public Stringify() {
+    return {
+      type: this.Type,
+      element: this.ElementStruct.Stringify(),
+    };
+  }
+
   public constructor(
     private elementStruct: Struct,
     desc: string,

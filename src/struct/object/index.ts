@@ -180,6 +180,18 @@ ${
     });
   }
 
+  public Stringify() {
+    return {
+      type: this.Type,
+      fields: Object.fromEntries(
+        Array.from(this.Fields).map(([name, struct]) => [
+          name,
+          struct.Stringify(),
+        ])
+      ),
+    };
+  }
+
   public constructor(
     private fields: Map<string, Struct>,
     desc: string,

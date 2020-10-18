@@ -118,6 +118,13 @@ ${
     return result.trim();
   }
 
+  public Stringify() {
+    return {
+      type: this.Type,
+      elements: this.ElementsStruct.map((struct) => struct.Stringify()),
+    };
+  }
+
   public constructor(
     private elementsStruct: Struct[],
     desc: string,
