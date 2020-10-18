@@ -50,6 +50,10 @@ export class StructUndefined extends Struct {
     };
   }
 
+  public static Parse(desc: string) {
+    return new StructUndefined(desc);
+  }
+
   public constructor(desc: string) {
     super(desc);
     this.UpdateDesc(desc);

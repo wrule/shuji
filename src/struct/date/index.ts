@@ -50,6 +50,10 @@ export class StructDate extends Struct {
     };
   }
 
+  public static Parse(desc: string) {
+    return new StructDate(desc);
+  }
+
   public constructor(desc: string) {
     super(desc);
     this.UpdateDesc(desc);

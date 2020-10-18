@@ -50,6 +50,10 @@ export class StructBoolean extends Struct {
     };
   }
 
+  public static Parse(desc: string) {
+    return new StructBoolean(desc);
+  }
+
   public constructor(desc: string) {
     super(desc);
     this.UpdateDesc(desc);

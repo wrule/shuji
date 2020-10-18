@@ -50,6 +50,10 @@ export class StructNull extends Struct {
     };
   }
 
+  public static Parse(desc: string) {
+    return new StructNull(desc);
+  }
+
   public constructor(desc: string) {
     super(desc);
     this.UpdateDesc(desc);

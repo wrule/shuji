@@ -49,6 +49,10 @@ export class StructUnknow extends Struct {
     };
   }
 
+  public static Parse(desc: string) {
+    return new StructUnknow(desc);
+  }
+
   public constructor(desc: string) {
     super(desc);
     this.UpdateDesc(desc);

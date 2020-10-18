@@ -50,6 +50,10 @@ export class StructNumber extends Struct {
     };
   }
 
+  public static Parse(desc: string) {
+    return new StructNumber(desc);
+  }
+
   public constructor(desc: string) {
     super(desc);
     this.UpdateDesc(desc);
