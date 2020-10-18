@@ -184,18 +184,19 @@ export abstract class Struct {
    * @returns [0, 1]区间的值,代表相似度
    */
   private cacheCompareRunner(
-    struct: Struct,
+    struct1: Struct,
+    struct2: Struct,
     func: (struct: Struct) => number,
   ): number {
-    const compareCache = new CompareCache(this, struct);
-    const need = this.isNeedCompareCache(this, struct);
+    const compareCache = new CompareCache(struct1, struct2);
+    const need = this.isNeedCompareCache(struct2, struct2);
     if (need) {
       const cacheValue = compareCache.Get();
       if (cacheValue !== null) {
         return cacheValue;
       }
     }
-    const result = func.call(this, struct);
+    const result = func.call(struct1, struct2);
     if (need) {
       compareCache.Set(result);
     }
@@ -233,9 +234,9 @@ export abstract class Struct {
   public Compare(struct: Struct): number {
     let result: number;
     if (struct.Type === StructType.Union) {
-      result = struct.iCompare(this);
+      result = this.cacheCompareRunner(struct, this, this.iCompare);
     } else {
-      result = this.cacheCompareRunner(struct, this.iCompare);
+      result = this.cacheCompareRunner(this, struct, this.iCompare);
     }
     return result;
   }
