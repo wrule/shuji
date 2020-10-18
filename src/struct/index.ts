@@ -146,6 +146,31 @@ export abstract class Struct {
   }
 
   /**
+   * Cotain缓存运行器
+   * @param struct 目标结构
+   * @param func 需缓存的方法
+   * @returns 是否包含
+   */
+  protected cacheContainRunner(
+    struct: Struct,
+    func: (struct: Struct) => boolean,
+  ): boolean {
+    const containCache = new ContainCache(this, struct);
+    const need = this.isNeedContainCache(this, struct);
+    if (need) {
+      const cacheValue = containCache.Get();
+      if (cacheValue !== null) {
+        return cacheValue;
+      }
+    }
+    const result = func.call(this, struct);
+    if (need) {
+      containCache.Set(result);
+    }
+    return result;
+  }
+
+  /**
    * 判断此结构是否包含目标结构
    * @param struct 目标结构
    * @returns 是否包含
@@ -155,25 +180,14 @@ export abstract class Struct {
     if (this.Hash === struct.Hash) {
       return true;
     }
-    // 缓存逻辑
-    const containCache = new ContainCache(this, struct);
-    if (this.isNeedContainCache(this, struct)) {
-      const cacheValue = containCache.Get();
-      if (cacheValue !== null) {
-        return cacheValue;
-      }
-    }
     // 判断逻辑
     let result: boolean;
-    // 联合前置包含判断
     if (struct.Type === StructType.Union) {
       const unoin = struct as StructUnion;
       result = unoin.Members.every((struct) => this.Contain(struct));
     } else {
-      result = this.iContain(struct);
+      result = this.cacheContainRunner(struct, this.iContain);
     }
-    // 更新缓存并返回
-    containCache.Set(result);
     return result;
   }
 
