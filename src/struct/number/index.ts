@@ -44,6 +44,12 @@ export class StructNumber extends Struct {
     return '';
   }
 
+  public Stringify() {
+    return {
+      type: this.Type,
+    };
+  }
+
   public constructor(desc: string) {
     super(desc);
     this.UpdateDesc(desc);
