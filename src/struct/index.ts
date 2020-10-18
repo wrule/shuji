@@ -126,17 +126,44 @@ export abstract class Struct {
 
   protected abstract iContain(struct: Struct): boolean;
 
+  private isNeedContainCache(struct1: Struct, struct2: Struct): boolean {
+    return (
+      (struct1.Type === StructType.Object && (
+        struct2.Type === StructType.Object ||
+        struct2.Type === StructType.Union
+      )) ||
+      (struct1.Type === StructType.Array && (
+        struct2.Type === StructType.Array ||
+        struct2.Type === StructType.Tuple ||
+        struct2.Type === StructType.Union
+      )) ||
+      (struct1.Type === StructType.Tuple && (
+        struct2.Type === StructType.Tuple ||
+        struct2.Type === StructType.Union
+      )) ||
+      (struct1.Type === StructType.Union)
+    );
+  }
+
   /**
    * 判断此结构是否包含目标结构
    * @param struct 目标结构
    * @returns 是否包含
    */
   public Contain(struct: Struct): boolean {
-    const containCache = new ContainCache(this, struct);
-    const cacheValue = containCache.Get();
-    if (cacheValue !== null) {
-      return cacheValue;
+    // 如果Hash相等,直接视为包含
+    if (this.Hash === struct.Hash) {
+      return true;
     }
+    // 缓存逻辑
+    const containCache = new ContainCache(this, struct);
+    if (this.isNeedContainCache(this, struct)) {
+      const cacheValue = containCache.Get();
+      if (cacheValue !== null) {
+        return cacheValue;
+      }
+    }
+    // 判断逻辑
     let result: boolean;
     // 联合前置包含判断
     if (struct.Type === StructType.Union) {
@@ -145,6 +172,7 @@ export abstract class Struct {
     } else {
       result = this.iContain(struct);
     }
+    // 更新缓存并返回
     containCache.Set(result);
     return result;
   }
