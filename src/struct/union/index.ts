@@ -20,6 +20,7 @@ export class StructUnion extends Struct {
 
   protected CalcHash() {
     return this.cacheHash(
+      `${this.Type}@` +
       this.Members
         .map((struct) => struct.Hash)
         .sort((a, b) => a.localeCompare(b))

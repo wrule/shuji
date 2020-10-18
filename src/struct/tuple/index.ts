@@ -21,7 +21,7 @@ export class StructTuple extends Struct {
   }
 
   protected CalcHash() {
-    return this.cacheHash(this.ElementsStruct.map((struct) => struct.Hash).join(','));
+    return this.cacheHash(`${this.Type}@` + this.ElementsStruct.map((struct) => struct.Hash).join(','));
   }
 
   protected CalcTsName() {

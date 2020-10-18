@@ -23,6 +23,7 @@ export class StructObject extends Struct {
 
   protected CalcHash() {
     return this.cacheHash(
+      `${this.Type}@` +
       Array.from(this.Fields)
         .sort((a, b) => a[0].localeCompare(b[0]))
         .map(([name, value]) => `${name}=${value.Hash}`)
