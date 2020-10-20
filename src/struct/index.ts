@@ -12,7 +12,7 @@ import { IJsObj } from './IJsObj';
  * 结构抽象类
  */
 export abstract class Struct {
-  //#region 结构基本信息
+  //#region 结构基本信息相关
   /**
    * 结构的类型(抽象定义)
    */
@@ -22,38 +22,6 @@ export abstract class Struct {
    * 结构是否是基础类型(抽象定义)
    */
   public abstract IsBasic: boolean;
-
-  protected hash?: string;
-
-  /**
-   * 计算结构Hash的方法(抽象定义)
-   */
-  protected abstract CalcHash(): string;
-
-  /**
-   * 带有缓存功能的Hash计算方法
-   * @param text 需要计算Hash的文本
-   */
-  protected cacheHash(text: string): string {
-    const hashCache = new HashCache(text);
-    const cacheValue = hashCache.Get();
-    if (cacheValue !== null) {
-      return cacheValue;
-    }
-    const hash = Hash(text);
-    hashCache.Set(hash);
-    return hash;
-  }
-
-  /**
-   * 获取结构Hash(即时计算且缓存)
-   */
-  public get Hash() {
-    if (!this.hash) {
-      this.hash = this.CalcHash();
-    }
-    return this.hash;
-  }
 
   /**
    * 结构的原始描述
@@ -113,6 +81,44 @@ export abstract class Struct {
    */
   public get TsTestCode() {
     return `${this.TsCode}\n\nlet a: ${this.TsName} = { } as any;\n`;
+  }
+  //#endregion
+
+  //#region 结构Hash相关
+  /**
+   * 用于内部存储实际缓存的Hash结果
+   */
+  protected hash?: string;
+
+  /**
+   * 带有缓存功能的Hash计算方法
+   * @param text 需要计算Hash的文本
+   * @returns 带缓存的Hash结果
+   */
+  protected cacheHash(text: string): string {
+    const hashCache = new HashCache(text);
+    const cacheValue = hashCache.Get();
+    if (cacheValue !== null) {
+      return cacheValue;
+    }
+    const hash = Hash(text);
+    hashCache.Set(hash);
+    return hash;
+  }
+
+  /**
+   * 计算结构Hash的方法(抽象定义)
+   */
+  protected abstract CalcHash(): string;
+
+  /**
+   * 获取结构Hash(即时计算且缓存)
+   */
+  public get Hash() {
+    if (!this.hash) {
+      this.hash = this.CalcHash();
+    }
+    return this.hash;
   }
   //#endregion
 
