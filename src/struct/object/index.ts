@@ -4,6 +4,7 @@ import { StructUnion } from '../union';
 import { StructUndefined } from '../undefined';
 import Lodash from 'lodash';
 import { CodeCache } from '../../cache/cache/code';
+import { IJsObj } from '../IJsObj';
 
 export class StructObject extends Struct {
   /**
@@ -180,14 +181,14 @@ ${
     });
   }
 
-  public ToJs() {
+  public ToJs(): IJsObj {
     return {
       desc: this.Desc,
       type: this.Type,
-      fields: Array.from(this.Fields).map(([name, struct]) => [
+      fields: Array.from(this.Fields).map(([name, struct]) => ([
         name,
         struct.ToJs(),
-      ]),
+      ])),
     };
   }
 

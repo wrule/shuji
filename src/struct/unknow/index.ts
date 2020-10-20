@@ -1,6 +1,7 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructObject } from '../object';
+import { IJsObj } from '../IJsObj';
 
 export class StructUnknow extends Struct {
   public get Type() {
@@ -43,7 +44,7 @@ export class StructUnknow extends Struct {
     return '';
   }
 
-  public ToJs() {
+  public ToJs(): IJsObj {
     return {
       desc: this.Desc,
       type: this.Type,

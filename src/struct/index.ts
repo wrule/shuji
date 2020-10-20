@@ -6,6 +6,7 @@ import { CompareCache } from '../cache/cache/compare';
 import { HashCache } from '../cache/cache/hash';
 import { Hash } from '../utils';
 import * as MyJSON from '../utils/json';
+import { IJsObj } from './IJsObj';
 
 /**
  * 结构抽象类
@@ -348,7 +349,7 @@ export abstract class Struct {
   //#endregion
 
   //#region JSON转换相关
-  public abstract ToJs(): any;
+  public abstract ToJs(): IJsObj;
 
   public Stringify(): any {
     return MyJSON.Stringify(this.ToJs());

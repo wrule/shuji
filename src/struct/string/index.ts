@@ -2,6 +2,7 @@ import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructObject } from '../object';
+import { IJsObj } from '../IJsObj';
 
 export class StructString extends Struct {
   public get Type() {
@@ -44,7 +45,7 @@ export class StructString extends Struct {
     return '';
   }
 
-  public ToJs() {
+  public ToJs(): IJsObj {
     return {
       desc: this.Desc,
       type: this.Type,

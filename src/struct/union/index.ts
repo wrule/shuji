@@ -1,6 +1,7 @@
 import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructObject } from '../object';
+import { IJsObj } from '../IJsObj';
 
 export class StructUnion extends Struct {
   /**
@@ -118,7 +119,7 @@ ${
     return result.trim();
   }
 
-  public ToJs() {
+  public ToJs(): IJsObj {
     return {
       desc: this.Desc,
       type: this.Type,

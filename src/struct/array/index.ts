@@ -3,6 +3,7 @@ import { StructType } from '../type';
 import { StructUnion } from '../union';
 import { StructTuple } from '../tuple';
 import { StructObject } from '../object';
+import { IJsObj } from '../IJsObj';
 
 export class StructArray extends Struct {
   /**
@@ -81,7 +82,7 @@ export class StructArray extends Struct {
     return this.ElementStruct.TsCode;
   }
 
-  public ToJs() {
+  public ToJs(): IJsObj {
     return {
       desc: this.Desc,
       type: this.Type,
