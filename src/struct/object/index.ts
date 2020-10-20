@@ -5,7 +5,7 @@ import { StructUndefined } from '../undefined';
 import Lodash from 'lodash';
 import { CodeCache } from '../../cache/cache/code';
 import { IJsObj } from '../IJsObj';
-import { FromJsHub } from '../fromJsHub';
+import { FromJsHub } from '../fromJs';
 
 export class StructObject extends Struct {
   /**

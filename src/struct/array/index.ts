@@ -4,7 +4,7 @@ import { StructUnion } from '../union';
 import { StructTuple } from '../tuple';
 import { StructObject } from '../object';
 import { IJsObj } from '../IJsObj';
-import { FromJsHub } from '../fromJsHub';
+import { FromJsHub } from '../fromJs';
 
 export class StructArray extends Struct {
   /**

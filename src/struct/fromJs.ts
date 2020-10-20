@@ -12,6 +12,7 @@ import { StructType } from './type';
 import { StructObject } from './object';
 import { StructUnion } from './union';
 import { Struct } from '.';
+import * as MyJson from '../utils/json';
 
 export function FromJsHub(jsObj: IJsObj): Struct {
   switch (jsObj.type) {
@@ -28,4 +29,9 @@ export function FromJsHub(jsObj: IJsObj): Struct {
     case StructType.Union: return StructUnion.FromJs(jsObj);
     default: return StructUnknow.FromJs(jsObj);
   }
+}
+
+export function FromJson(json: string): Struct {
+  const jsObj = MyJson.Parse(json);
+  return FromJsHub(jsObj);
 }

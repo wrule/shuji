@@ -2,7 +2,7 @@ import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructObject } from '../object';
 import { IJsObj } from '../IJsObj';
-import { FromJsHub } from '../fromJsHub';
+import { FromJsHub } from '../fromJs';
 
 export class StructUnion extends Struct {
   /**
