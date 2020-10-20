@@ -81,10 +81,10 @@ export class StructArray extends Struct {
     return this.ElementStruct.TsCode;
   }
 
-  public ToJs() {
+  public Stringify() {
     return {
       type: this.Type,
-      element: this.ElementStruct.ToJs(),
+      element: this.ElementStruct.Stringify(),
     };
   }
 

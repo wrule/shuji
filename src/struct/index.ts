@@ -347,7 +347,7 @@ export abstract class Struct {
   //#endregion
 
   //#region JSON转换相关
-  public abstract ToJs(): any;
+  public abstract Stringify(): any;
   //#endregion
 
   //#region 构造函数,必须传入描述

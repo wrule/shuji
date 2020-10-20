@@ -118,10 +118,10 @@ ${
     return result.trim();
   }
 
-  public ToJs() {
+  public Stringify() {
     return {
       type: this.Type,
-      elements: this.ElementsStruct.map((struct) => struct.ToJs()),
+      elements: this.ElementsStruct.map((struct) => struct.Stringify()),
     };
   }
 

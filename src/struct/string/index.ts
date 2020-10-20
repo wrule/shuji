@@ -44,13 +44,13 @@ export class StructString extends Struct {
     return '';
   }
 
-  public ToJs() {
+  public Stringify() {
     return {
       type: this.Type,
     };
   }
 
-  public static FromJs(desc: string) {
+  public static Parse(desc: string) {
     return new StructString(desc);
   }
 
