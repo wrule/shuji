@@ -120,6 +120,7 @@ ${
 
   public Stringify() {
     return {
+      desc: this.Desc,
       type: this.Type,
       elements: this.ElementsStruct.map((struct) => struct.Stringify()),
     };

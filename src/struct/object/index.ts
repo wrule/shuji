@@ -182,6 +182,7 @@ ${
 
   public Stringify() {
     return {
+      desc: this.Desc,
       type: this.Type,
       fields: Object.fromEntries(
         Array.from(this.Fields).map(([name, struct]) => [

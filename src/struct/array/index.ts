@@ -83,6 +83,7 @@ export class StructArray extends Struct {
 
   public Stringify() {
     return {
+      desc: this.Desc,
       type: this.Type,
       element: this.ElementStruct.Stringify(),
     };

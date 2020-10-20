@@ -46,6 +46,7 @@ export class StructString extends Struct {
 
   public Stringify() {
     return {
+      desc: this.Desc,
       type: this.Type,
     };
   }
