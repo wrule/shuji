@@ -127,6 +127,10 @@ ${
     };
   }
 
+  public static Parse(jsObj: IJsObj): StructUnion {
+    return { } as any;
+  }
+
   public constructor(
     private members: Struct[],
     desc: string,

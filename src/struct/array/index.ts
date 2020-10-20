@@ -90,6 +90,10 @@ export class StructArray extends Struct {
     };
   }
 
+  public static Parse(jsObj: IJsObj): StructArray {
+    return { } as any;
+  }
+
   public constructor(
     private elementStruct: Struct,
     desc: string,

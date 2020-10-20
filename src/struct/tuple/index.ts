@@ -127,6 +127,10 @@ ${
     };
   }
 
+  public static Parse(jsObj: IJsObj): StructTuple {
+    return { } as any;
+  }
+
   public constructor(
     private elementsStruct: Struct[],
     desc: string,
