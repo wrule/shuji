@@ -366,8 +366,7 @@ export abstract class Struct {
   //#endregion
 
 
-  public static ParseS(json: string): Struct {
-    const jsObj = MyJSON.Parse(json) as IJsObj;
+  public static ParseHub(jsObj: IJsObj): Struct {
     switch (jsObj.type) {
       case StructType.Unknow: return StructUnknow.Parse(jsObj);
       case StructType.Undefined: return StructUndefined.Parse(jsObj);
@@ -382,7 +381,6 @@ export abstract class Struct {
       case StructType.Union: return StructUnion.Parse(jsObj);
       default: return StructUnknow.Parse(jsObj);
     }
-    return { } as any;
   }
 
 

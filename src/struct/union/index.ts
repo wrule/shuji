@@ -127,8 +127,9 @@ ${
     };
   }
 
-  public static Parse(jsObj: IJsObj): StructUnion {
-    return { } as any;
+  public static Parse(jsObj: IJsObj) {
+    const members = jsObj.members as IJsObj[];
+    return new StructUnion(members.map((item) => Struct.ParseHub(item)), jsObj.desc);
   }
 
   public constructor(

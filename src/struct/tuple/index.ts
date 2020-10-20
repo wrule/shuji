@@ -127,8 +127,9 @@ ${
     };
   }
 
-  public static Parse(jsObj: IJsObj): StructTuple {
-    return { } as any;
+  public static Parse(jsObj: IJsObj) {
+    const elements = jsObj.elements as IJsObj[];
+    return new StructTuple(elements.map((item) => Struct.ParseHub(item)), jsObj.desc);
   }
 
   public constructor(

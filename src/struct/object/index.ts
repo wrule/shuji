@@ -192,8 +192,14 @@ ${
     };
   }
 
-  public static Parse(obj: any) {
-    return new StructObject({ } as any, obj.desc);
+  public static Parse(jsObj: IJsObj) {
+    const fields = jsObj.fields as [string, IJsObj][];
+    const fieldsMap = new Map<string, Struct>(
+      fields.map(
+        ([name, jsObj]) => [name, Struct.ParseHub(jsObj)]
+      )
+    );
+    return new StructObject(fieldsMap, jsObj.desc);
   }
 
   public constructor(
