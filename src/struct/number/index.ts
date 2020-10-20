@@ -52,8 +52,8 @@ export class StructNumber extends Struct {
     };
   }
 
-  public static Parse(obj: any) {
-    return new StructNumber(obj.desc);
+  public static Parse(jsObj: IJsObj) {
+    return new StructNumber(jsObj.desc);
   }
 
   public constructor(desc: string) {

@@ -51,8 +51,8 @@ export class StructUnknow extends Struct {
     };
   }
 
-  public static Parse(obj: any) {
-    return new StructUnknow(obj.desc);
+  public static Parse(jsObj: IJsObj) {
+    return new StructUnknow(jsObj.desc);
   }
 
   public constructor(desc: string) {

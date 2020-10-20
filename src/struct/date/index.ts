@@ -52,8 +52,8 @@ export class StructDate extends Struct {
     };
   }
 
-  public static Parse(obj: any) {
-    return new StructDate(obj.desc);
+  public static Parse(jsObj: IJsObj) {
+    return new StructDate(jsObj.desc);
   }
 
   public constructor(desc: string) {
