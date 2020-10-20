@@ -14,9 +14,14 @@ import { StructUnion } from './union';
 import { Struct } from '.';
 import * as MyJson from '../utils/json';
 
+/**
+ * 顶层的构建协调方法
+ * 由JavaScript对象根据不同的类型构建对应结构
+ * @param jsObj IJsObj类型的JavaScript对象
+ * @returns 构建出的结构
+ */
 export function FromJsHub(jsObj: IJsObj): Struct {
   switch (jsObj.type) {
-    case StructType.Unknow: return StructUnknow.FromJs(jsObj);
     case StructType.Undefined: return StructUndefined.FromJs(jsObj);
     case StructType.Null: return StructNull.FromJs(jsObj);
     case StructType.Boolean: return StructBoolean.FromJs(jsObj);
@@ -31,6 +36,11 @@ export function FromJsHub(jsObj: IJsObj): Struct {
   }
 }
 
+/**
+ * 由Json字符串构建结构
+ * @param json Json字符串
+ * @returns 构建出的结构
+ */
 export function FromJson(json: string): Struct {
   const jsObj = MyJson.Parse(json);
   return FromJsHub(jsObj);

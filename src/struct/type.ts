@@ -1,11 +1,7 @@
 /**
- * Struct值类型
+ * Struct类型
  */
 export enum StructType {
-  /**
-   * Struct 未知的类型
-   */
-  Unknow = 'Unknow',
   /**
    * Struct Undefined类型
    */
@@ -46,4 +42,8 @@ export enum StructType {
    * Struct 联合类型
    */
   Union = 'Union',
+  /**
+   * Struct 未知的类型
+   */
+  Unknow = 'Unknow',
 }
