@@ -5,6 +5,7 @@ import { StructUndefined } from '../undefined';
 import Lodash from 'lodash';
 import { CodeCache } from '../../cache/cache/code';
 import { IJsObj } from '../IJsObj';
+import { FromJsHub } from '../fromJsHub';
 
 export class StructObject extends Struct {
   /**
@@ -196,7 +197,7 @@ ${
     const fields = jsObj.fields as [string, IJsObj][];
     const fieldsMap = new Map<string, Struct>(
       fields.map(
-        ([name, jsObj]) => [name, Struct.ParseHub(jsObj)]
+        ([name, jsObj]) => [name, FromJsHub(jsObj)]
       )
     );
     return new StructObject(fieldsMap, jsObj.desc);

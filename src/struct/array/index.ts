@@ -4,6 +4,7 @@ import { StructUnion } from '../union';
 import { StructTuple } from '../tuple';
 import { StructObject } from '../object';
 import { IJsObj } from '../IJsObj';
+import { FromJsHub } from '../fromJsHub';
 
 export class StructArray extends Struct {
   /**
@@ -92,7 +93,7 @@ export class StructArray extends Struct {
 
   public static Parse(jsObj: IJsObj) {
     const element = jsObj.element as IJsObj;
-    return new StructArray(Struct.ParseHub(element), jsObj.desc);
+    return new StructArray(FromJsHub(element), jsObj.desc);
   }
 
   public constructor(

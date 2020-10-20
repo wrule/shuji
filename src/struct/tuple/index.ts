@@ -4,6 +4,7 @@ import { StructUnion } from '../union';
 import { StructUndefined } from '../undefined';
 import { StructObject } from '../object';
 import { IJsObj } from '../IJsObj';
+import { FromJsHub } from '../fromJsHub';
 
 export class StructTuple extends Struct {
   /**
@@ -129,7 +130,7 @@ ${
 
   public static Parse(jsObj: IJsObj) {
     const elements = jsObj.elements as IJsObj[];
-    return new StructTuple(elements.map((item) => Struct.ParseHub(item)), jsObj.desc);
+    return new StructTuple(elements.map((item) => FromJsHub(item)), jsObj.desc);
   }
 
   public constructor(

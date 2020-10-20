@@ -2,6 +2,7 @@ import { Struct } from '../index';
 import { StructType } from '../type';
 import { StructObject } from '../object';
 import { IJsObj } from '../IJsObj';
+import { FromJsHub } from '../fromJsHub';
 
 export class StructUnion extends Struct {
   /**
@@ -129,7 +130,7 @@ ${
 
   public static Parse(jsObj: IJsObj) {
     const members = jsObj.members as IJsObj[];
-    return new StructUnion(members.map((item) => Struct.ParseHub(item)), jsObj.desc);
+    return new StructUnion(members.map((item) => FromJsHub(item)), jsObj.desc);
   }
 
   public constructor(
