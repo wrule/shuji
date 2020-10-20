@@ -30,15 +30,6 @@ export abstract class Struct {
     return this.desc;
   }
 
-  protected parent?: StructObject;
-
-  /**
-   * 结构的父级结构(生成代码的时候可提供模块引用信息)
-   */
-  public get Parent() {
-    return this.parent;
-  }
-
   /**
    * 结构TypeScript定义代码(字符串数组形式)
    */
@@ -124,6 +115,20 @@ export abstract class Struct {
       this.tsName = this.CalcTsName();
     }
     return this.tsName;
+  }
+  //#endregion
+
+  //#region 结构父级结构相关
+  /**
+   * 内部存储父级结构
+   */
+  protected parent?: StructObject;
+
+  /**
+   * 结构的父级结构(生成代码的时候可提供模块引用信息)
+   */
+  public get Parent() {
+    return this.parent;
   }
   //#endregion
 
