@@ -51,8 +51,8 @@ export class StructNull extends Struct {
     };
   }
 
-  public static Parse(desc: string) {
-    return new StructNull(desc);
+  public static Parse(obj: any) {
+    return new StructNull(obj.desc);
   }
 
   public constructor(desc: string) {

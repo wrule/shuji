@@ -51,8 +51,8 @@ export class StructString extends Struct {
     };
   }
 
-  public static Parse(desc: string) {
-    return new StructString(desc);
+  public static Parse(obj: any) {
+    return new StructString(obj.desc);
   }
 
   public constructor(desc: string) {

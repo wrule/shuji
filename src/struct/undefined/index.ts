@@ -51,8 +51,8 @@ export class StructUndefined extends Struct {
     };
   }
 
-  public static Parse(desc: string) {
-    return new StructUndefined(desc);
+  public static Parse(obj: any) {
+    return new StructUndefined(obj.desc);
   }
 
   public constructor(desc: string) {

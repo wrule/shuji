@@ -51,8 +51,8 @@ export class StructBoolean extends Struct {
     };
   }
 
-  public static Parse(desc: string) {
-    return new StructBoolean(desc);
+  public static Parse(obj: any) {
+    return new StructBoolean(obj.desc);
   }
 
   public constructor(desc: string) {

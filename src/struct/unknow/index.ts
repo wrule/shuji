@@ -50,8 +50,8 @@ export class StructUnknow extends Struct {
     };
   }
 
-  public static Parse(desc: string) {
-    return new StructUnknow(desc);
+  public static Parse(obj: any) {
+    return new StructUnknow(obj.desc);
   }
 
   public constructor(desc: string) {

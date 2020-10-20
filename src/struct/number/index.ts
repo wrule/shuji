@@ -51,8 +51,8 @@ export class StructNumber extends Struct {
     };
   }
 
-  public static Parse(desc: string) {
-    return new StructNumber(desc);
+  public static Parse(obj: any) {
+    return new StructNumber(obj.desc);
   }
 
   public constructor(desc: string) {
