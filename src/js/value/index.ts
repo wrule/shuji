@@ -45,7 +45,8 @@ export class JsValue {
       case '[object Date]': this.type = JsType.Date; break;
       case '[object Object]': {
         this.type = JsType.Object;
-        this.objectFields = Object.entries(value).map((ary: [string, any]) => new JsField(ary[0], ary[1]));
+        this.objectFields = Object.entries(value)
+          .map(([name, fieldValue]) => new JsField(name, fieldValue));
       } break;
       case '[object Array]': {
         this.type = JsType.Array;
