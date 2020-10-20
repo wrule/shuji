@@ -44,7 +44,7 @@ export class StructDate extends Struct {
     return '';
   }
 
-  public Stringify() {
+  public ToJs() {
     return {
       desc: this.Desc,
       type: this.Type,

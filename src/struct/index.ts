@@ -5,6 +5,7 @@ import { ContainCache } from '../cache/cache/contain';
 import { CompareCache } from '../cache/cache/compare';
 import { HashCache } from '../cache/cache/hash';
 import { Hash } from '../utils';
+import * as MyJSON from '../utils/json';
 
 /**
  * 结构抽象类
@@ -347,7 +348,11 @@ export abstract class Struct {
   //#endregion
 
   //#region JSON转换相关
-  public abstract Stringify(): any;
+  public abstract ToJs(): any;
+
+  public Stringify(): any {
+    return MyJSON.Stringify(this.ToJs());
+  }
   //#endregion
 
   //#region 构造函数,必须传入描述

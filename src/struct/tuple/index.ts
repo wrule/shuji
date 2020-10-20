@@ -118,11 +118,11 @@ ${
     return result.trim();
   }
 
-  public Stringify() {
+  public ToJs() {
     return {
       desc: this.Desc,
       type: this.Type,
-      elements: this.ElementsStruct.map((struct) => struct.Stringify()),
+      elements: this.ElementsStruct.map((struct) => struct.ToJs()),
     };
   }
 
