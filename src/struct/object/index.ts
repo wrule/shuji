@@ -193,7 +193,7 @@ ${
     };
   }
 
-  public static Parse(jsObj: IJsObj) {
+  public static FromJs(jsObj: IJsObj) {
     const fields = jsObj.fields as [string, IJsObj][];
     const fieldsMap = new Map<string, Struct>(
       fields.map(

@@ -52,7 +52,7 @@ export class StructUndefined extends Struct {
     };
   }
 
-  public static Parse(jsObj: IJsObj) {
+  public static FromJs(jsObj: IJsObj) {
     return new StructUndefined(jsObj.desc);
   }
 

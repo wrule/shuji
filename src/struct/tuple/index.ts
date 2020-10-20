@@ -128,7 +128,7 @@ ${
     };
   }
 
-  public static Parse(jsObj: IJsObj) {
+  public static FromJs(jsObj: IJsObj) {
     const elements = jsObj.elements as IJsObj[];
     return new StructTuple(elements.map((item) => FromJsHub(item)), jsObj.desc);
   }

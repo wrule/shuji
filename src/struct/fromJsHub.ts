@@ -15,17 +15,17 @@ import { Struct } from '.';
 
 export function FromJsHub(jsObj: IJsObj): Struct {
   switch (jsObj.type) {
-    case StructType.Unknow: return StructUnknow.Parse(jsObj);
-    case StructType.Undefined: return StructUndefined.Parse(jsObj);
-    case StructType.Null: return StructNull.Parse(jsObj);
-    case StructType.Boolean: return StructBoolean.Parse(jsObj);
-    case StructType.Number: return StructNumber.Parse(jsObj);
-    case StructType.String: return StructString.Parse(jsObj);
-    case StructType.Date: return StructDate.Parse(jsObj);
-    case StructType.Object: return StructObject.Parse(jsObj);
-    case StructType.Array: return StructArray.Parse(jsObj);
-    case StructType.Tuple: return StructTuple.Parse(jsObj);
-    case StructType.Union: return StructUnion.Parse(jsObj);
-    default: return StructUnknow.Parse(jsObj);
+    case StructType.Unknow: return StructUnknow.FromJs(jsObj);
+    case StructType.Undefined: return StructUndefined.FromJs(jsObj);
+    case StructType.Null: return StructNull.FromJs(jsObj);
+    case StructType.Boolean: return StructBoolean.FromJs(jsObj);
+    case StructType.Number: return StructNumber.FromJs(jsObj);
+    case StructType.String: return StructString.FromJs(jsObj);
+    case StructType.Date: return StructDate.FromJs(jsObj);
+    case StructType.Object: return StructObject.FromJs(jsObj);
+    case StructType.Array: return StructArray.FromJs(jsObj);
+    case StructType.Tuple: return StructTuple.FromJs(jsObj);
+    case StructType.Union: return StructUnion.FromJs(jsObj);
+    default: return StructUnknow.FromJs(jsObj);
   }
 }

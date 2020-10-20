@@ -52,7 +52,7 @@ export class StructDate extends Struct {
     };
   }
 
-  public static Parse(jsObj: IJsObj) {
+  public static FromJs(jsObj: IJsObj) {
     return new StructDate(jsObj.desc);
   }
 

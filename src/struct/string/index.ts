@@ -52,7 +52,7 @@ export class StructString extends Struct {
     };
   }
 
-  public static Parse(jsObj: IJsObj) {
+  public static FromJs(jsObj: IJsObj) {
     return new StructString(jsObj.desc);
   }
 

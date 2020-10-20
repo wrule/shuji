@@ -128,7 +128,7 @@ ${
     };
   }
 
-  public static Parse(jsObj: IJsObj) {
+  public static FromJs(jsObj: IJsObj) {
     const members = jsObj.members as IJsObj[];
     return new StructUnion(members.map((item) => FromJsHub(item)), jsObj.desc);
   }

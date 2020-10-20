@@ -91,7 +91,7 @@ export class StructArray extends Struct {
     };
   }
 
-  public static Parse(jsObj: IJsObj) {
+  public static FromJs(jsObj: IJsObj) {
     const element = jsObj.element as IJsObj;
     return new StructArray(FromJsHub(element), jsObj.desc);
   }
