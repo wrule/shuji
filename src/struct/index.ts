@@ -355,6 +355,13 @@ export abstract class Struct {
   }
   //#endregion
 
+
+  public static Parse(json: string): Struct {
+    const jsonObj = MyJSON.Parse(json);
+    return { } as any;
+  }
+
+
   //#region 构造函数,必须传入描述
   public constructor(
     protected desc: string,

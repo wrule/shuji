@@ -184,17 +184,15 @@ ${
     return {
       desc: this.Desc,
       type: this.Type,
-      fields: Object.fromEntries(
-        Array.from(this.Fields).map(([name, struct]) => [
-          name,
-          struct.ToJs(),
-        ])
-      ),
+      fields: Array.from(this.Fields).map(([name, struct]) => [
+        name,
+        struct.ToJs(),
+      ]),
     };
   }
 
-  public static Parse() {
-
+  public static Parse(obj: any) {
+    return new StructObject({ } as any, obj.desc);
   }
 
   public constructor(
