@@ -366,7 +366,7 @@ export abstract class Struct {
   //#endregion
 
 
-  public static Parse(json: string): Struct {
+  public static ParseS(json: string): Struct {
     const jsObj = MyJSON.Parse(json) as IJsObj;
     switch (jsObj.type) {
       case StructType.Unknow: return StructUnknow.Parse(jsObj);
