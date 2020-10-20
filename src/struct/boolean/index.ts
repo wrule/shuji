@@ -44,13 +44,13 @@ export class StructBoolean extends Struct {
     return '';
   }
 
-  public Stringify() {
+  public ToJs() {
     return {
       type: this.Type,
     };
   }
 
-  public static Parse(desc: string) {
+  public static FromJs(desc: string) {
     return new StructBoolean(desc);
   }
 

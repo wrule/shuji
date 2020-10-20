@@ -180,16 +180,20 @@ ${
     });
   }
 
-  public Stringify() {
+  public ToJs() {
     return {
       type: this.Type,
       fields: Object.fromEntries(
         Array.from(this.Fields).map(([name, struct]) => [
           name,
-          struct.Stringify(),
+          struct.ToJs(),
         ])
       ),
     };
+  }
+
+  public static FromJs() {
+
   }
 
   public constructor(

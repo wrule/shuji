@@ -44,13 +44,13 @@ export class StructDate extends Struct {
     return '';
   }
 
-  public Stringify() {
+  public ToJs() {
     return {
       type: this.Type,
     };
   }
 
-  public static Parse(desc: string) {
+  public static FromJs(desc: string) {
     return new StructDate(desc);
   }
 
