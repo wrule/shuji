@@ -267,9 +267,15 @@ export abstract class Struct {
   }
   //#endregion
 
-  //#region 相关对象结构
+  //#region 结构关联的对象结构相关
+  /**
+   * 用于内部存储自身携带的对象结构列表
+   */
   private ownObjects?: StructObject[];
 
+  /**
+   * 获取结构自身携带的对象结构列表(抽象定义)
+   */
   protected abstract iOwnObjects(): StructObject[];
 
   /**
@@ -284,7 +290,7 @@ export abstract class Struct {
   }
 
   /**
-   * 作用域空间内结构携带的对象结构列表
+   * 作用域空间内结构携带的对象结构列表(用于Module)
    */
   public get SpaceObjects() {
     if (this.Type === StructType.Object) {
