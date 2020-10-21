@@ -70,7 +70,8 @@ export function isNeedCompareCache(struct1: Struct, struct2: Struct): boolean {
 
 /**
  * Compare缓存运行器
- * @param struct 目标结构
+ * @param struct1 源结构
+ * @param struct2 目标结构
  * @param func 需缓存的方法
  * @returns [0, 1]区间的值,代表相似度
  */
