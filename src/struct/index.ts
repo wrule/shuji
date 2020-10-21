@@ -310,7 +310,11 @@ export abstract class Struct {
   }
   //#endregion
 
-  //#region 结构基本信息更新方法
+  //#region 结构内容更新方法
+  /**
+   * 实现更新Desc产生的其他衍生更新(抽象定义)
+   * @param desc 
+   */
   protected abstract iUpdateDesc(desc: string): void;
 
   /**
@@ -324,6 +328,10 @@ export abstract class Struct {
     this.iUpdateDesc(this.desc);
   }
 
+  /**
+   * 实现更新父级结构产生的其他衍生更新(抽象定义)
+   * @param parent 
+   */
   protected abstract iUpdateParent(parent?: StructObject): void;
 
   /**
