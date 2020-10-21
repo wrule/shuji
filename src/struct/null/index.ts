@@ -41,7 +41,7 @@ export class StructNull extends Struct {
     return [];
   }
 
-  public iTsCode() {
+  public GetTsCode() {
     return '';
   }
 

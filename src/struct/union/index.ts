@@ -107,7 +107,7 @@ export class StructUnion extends Struct {
     return result;
   }
 
-  public iTsCode() {
+  public GetTsCode() {
     let result =
 `
 ${

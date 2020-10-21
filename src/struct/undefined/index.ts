@@ -41,7 +41,7 @@ export class StructUndefined extends Struct {
     return [];
   }
 
-  public iTsCode() {
+  public GetTsCode() {
     return '';
   }
 

@@ -124,7 +124,7 @@ export class StructObject extends Struct {
     return result;
   }
 
-  public iTsCode() {
+  public GetTsCode() {
     let result = '';
     const codeCache = new CodeCache(this.Hash);
     const cacheValue = codeCache.Get();

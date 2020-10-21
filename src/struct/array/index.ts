@@ -79,7 +79,7 @@ export class StructArray extends Struct {
     return this.ElementStruct.OwnObjects;
   }
 
-  public iTsCode() {
+  public GetTsCode() {
     return this.ElementStruct.TsCode;
   }
 

@@ -29,33 +29,6 @@ export abstract class Struct {
   public get Desc() {
     return this.desc;
   }
-
-  /**
-   * 结构TypeScript定义代码(字符串数组形式)
-   */
-  public abstract iTsCode(): string;
-
-  /**
-   * 结构TypeScript定义代码(文本形式)
-   */
-  public get TsCode() {
-    return this.iTsCode();
-  }
-
-  public get TsCodeLines() {
-    if (this.TsCode.trim() !== '') {
-      return this.TsCode.split('\n');
-    } else {
-      return [];
-    }
-  }
-
-  /**
-   * 可用于测试的代码
-   */
-  public get TsTestCode() {
-    return `${this.TsCode}\n\nlet a: ${this.TsName} = { } as any;\n`;
-  }
   //#endregion
 
   //#region 结构Hash相关
@@ -129,6 +102,38 @@ export abstract class Struct {
    */
   public get Parent() {
     return this.parent;
+  }
+  //#endregion
+
+  //#region TypeScript定义代码生成相关
+  /**
+   * 获取结构的TypeScript定义代码(文本形式)
+   */
+  public abstract GetTsCode(): string;
+
+  /**
+   * 结构的TypeScript定义代码(文本形式)
+   */
+  public get TsCode() {
+    return this.GetTsCode();
+  }
+
+  /**
+   * 结构的TypeScript定义代码(字符串数组形式)
+   */
+  public get TsCodeLines() {
+    if (this.TsCode.trim() !== '') {
+      return this.TsCode.split('\n');
+    } else {
+      return [];
+    }
+  }
+
+  /**
+   * 可用于测试的TypeScript定义代码(文本形式)
+   */
+  public get TsTestCode() {
+    return `${this.TsCode}\n\nlet a: ${this.TsName} = { } as any;\n`;
   }
   //#endregion
 
