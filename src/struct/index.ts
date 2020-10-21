@@ -174,6 +174,11 @@ export abstract class Struct {
     return result;
   }
 
+  /**
+   * 结构相似度对比(抽象实现)
+   * @param struct 目标结构
+   * @returns [0, 1]区间的值,代表相似度
+   */
   protected abstract iCompare(struct: Struct): number;
 
   /**
@@ -183,7 +188,7 @@ export abstract class Struct {
    */
   public Compare(struct: Struct): number {
     // 如果Hash相等,相似度为1
-    if (this.Hash === struct.Hash) {
+    if (this.Equal(struct)) {
       return 1;
     }
     let result: number;
