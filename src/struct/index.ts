@@ -146,6 +146,11 @@ export abstract class Struct {
     return this.Hash === struct.Hash;
   }
 
+  /**
+   * 判断此结构是否包含目标结构(抽象实现)
+   * @param struct 目标结构
+   * @returns 是否包含
+   */
   protected abstract iContain(struct: Struct): boolean;
 
   /**
@@ -155,7 +160,7 @@ export abstract class Struct {
    */
   public Contain(struct: Struct): boolean {
     // 如果Hash相等,直接视为包含
-    if (this.Hash === struct.Hash) {
+    if (this.Equal(struct)) {
       return true;
     }
     // 判断逻辑
