@@ -370,8 +370,14 @@ export abstract class Struct {
   //#endregion
 
   //#region JSON转换相关
+  /**
+   * 转换结构为IJsObj类型的JavaScript对象(抽象定义)
+   */
   public abstract ToJs(): IJsObj;
 
+  /**
+   * 转换结构为Json字符串
+   */
   public Stringify(): any {
     return MyJSON.Stringify(this.ToJs());
   }
