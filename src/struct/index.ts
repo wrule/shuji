@@ -147,7 +147,7 @@ export abstract class Struct {
   }
 
   /**
-   * 判断此结构是否包含目标结构(抽象实现)
+   * 判断此结构是否包含目标结构(抽象定义)
    * @param struct 目标结构
    * @returns 是否包含
    */
@@ -175,7 +175,7 @@ export abstract class Struct {
   }
 
   /**
-   * 结构相似度对比(抽象实现)
+   * 结构相似度对比(抽象定义)
    * @param struct 目标结构
    * @returns [0, 1]区间的值,代表相似度
    */
@@ -200,6 +200,11 @@ export abstract class Struct {
     return result;
   }
 
+  /**
+   * 合并两个结构(抽象定义)
+   * @param struct 目标结构
+   * @returns 合并之后的结构
+   */
   protected abstract iMerge(struct: Struct): Struct;
 
   /**
