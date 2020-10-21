@@ -1,12 +1,11 @@
 import { StructType } from './type';
 import { StructUnion } from './union';
 import { StructObject } from './object';
-import { ContainCache } from '../cache/cache/contain';
-import { CompareCache } from '../cache/cache/compare';
 import { HashCache } from '../cache/cache/hash';
 import { Hash } from '../utils';
 import * as MyJSON from '../utils/json';
 import { IJsObj } from './IJsObj';
+import { cacheCompareRunner, cacheContainRunner } from './cacheRunner';
 
 /**
  * 结构抽象类
@@ -150,58 +149,6 @@ export abstract class Struct {
   protected abstract iContain(struct: Struct): boolean;
 
   /**
-   * 判断两个结构的判断包含操作是否需要缓存
-   * @param struct1 结构1
-   * @param struct2 结构2
-   * @returns 是否需要缓存
-   */
-  private isNeedContainCache(struct1: Struct, struct2: Struct): boolean {
-    return (
-      (struct1.Type === StructType.Object && (
-        struct2.Type === StructType.Object ||
-        struct2.Type === StructType.Union
-      )) ||
-      (struct1.Type === StructType.Array && (
-        struct2.Type === StructType.Array ||
-        struct2.Type === StructType.Tuple ||
-        struct2.Type === StructType.Union
-      )) ||
-      (struct1.Type === StructType.Tuple && (
-        struct2.Type === StructType.Tuple ||
-        struct2.Type === StructType.Union
-      )) ||
-      (struct1.Type === StructType.Union)
-    );
-  }
-
-  /**
-   * Cotain缓存运行器
-   * @param struct1 源结构
-   * @param struct2 目标结构
-   * @param func 需缓存的方法
-   * @returns 是否包含
-   */
-  private cacheContainRunner(
-    struct1: Struct,
-    struct2: Struct,
-    func: (struct: Struct) => boolean,
-  ): boolean {
-    const containCache = new ContainCache(struct1, struct2);
-    const need = this.isNeedContainCache(struct1, struct2);
-    if (need) {
-      const cacheValue = containCache.Get();
-      if (cacheValue !== null) {
-        return cacheValue;
-      }
-    }
-    const result = func.call(struct1, struct2);
-    if (need) {
-      containCache.Set(result);
-    }
-    return result;
-  }
-
-  /**
    * 判断此结构是否包含目标结构
    * @param struct 目标结构
    * @returns 是否包含
@@ -217,51 +164,12 @@ export abstract class Struct {
       const unoin = struct as StructUnion;
       result = unoin.Members.every((struct) => this.Contain(struct));
     } else {
-      result = this.cacheContainRunner(this, struct, this.iContain);
+      result = cacheContainRunner(this, struct, this.iContain);
     }
     return result;
   }
 
   protected abstract iCompare(struct: Struct): number;
-
-  /**
-   * 判断两个结构的计算相似度操作是否需要缓存
-   * @param struct1 结构1
-   * @param struct2 结构2
-   * @returns 是否需要缓存
-   */
-  private isNeedCompareCache(struct1: Struct, struct2: Struct): boolean {
-    return (
-      (struct1.Type === StructType.Union || struct2.Type === StructType.Union) ||
-      ((struct1.Type === struct2.Type) && (!struct1.IsBasic && !struct2.IsBasic))
-    );
-  }
-
-  /**
-   * Compare缓存运行器
-   * @param struct 目标结构
-   * @param func 需缓存的方法
-   * @returns [0, 1]区间的值,代表相似度
-   */
-  private cacheCompareRunner(
-    struct1: Struct,
-    struct2: Struct,
-    func: (struct: Struct) => number,
-  ): number {
-    const compareCache = new CompareCache(struct1, struct2);
-    const need = this.isNeedCompareCache(struct2, struct2);
-    if (need) {
-      const cacheValue = compareCache.Get();
-      if (cacheValue !== null) {
-        return cacheValue;
-      }
-    }
-    const result = func.call(struct1, struct2);
-    if (need) {
-      compareCache.Set(result);
-    }
-    return result;
-  }
 
   /**
    * 结构相似度对比
@@ -275,9 +183,9 @@ export abstract class Struct {
     }
     let result: number;
     if (struct.Type === StructType.Union) {
-      result = this.cacheCompareRunner(struct, this, this.iCompare);
+      result = cacheCompareRunner(struct, this, this.iCompare);
     } else {
-      result = this.cacheCompareRunner(this, struct, this.iCompare);
+      result = cacheCompareRunner(this, struct, this.iCompare);
     }
     return result;
   }
