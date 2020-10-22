@@ -58,6 +58,5 @@ export class StructUndefined extends Struct {
 
   public constructor(desc: string) {
     super(desc);
-    this.UpdateDesc(desc);
   }
 }
