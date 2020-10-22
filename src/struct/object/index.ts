@@ -23,16 +23,26 @@ export class StructObject extends Struct {
     return false;
   }
 
+  /**
+   * 计算对象结构的Hash
+   * 对象结构的Hash为所有字段排序后拼装出的Hash
+   * 具体可看下面代码
+   */
   protected CalcHash() {
     return this.cacheHash(
       `${this.Type}@` +
       Array.from(this.Fields)
-        .sort((a, b) => a[0].localeCompare(b[0]))
-        .map(([name, value]) => `${name}=${value.Hash}`)
+        .sort(([name1], [name2]) => name1.localeCompare(name2))
+        .map(([name, struct]) => `${name}=${struct.Hash}`)
         .join(',')
     );
   }
 
+  /**
+   * 计算对象结构的TsName
+   * 如果此对象结构有父级结构的话则为其加上模块作用域描述
+   * 如果没有的话,直接返回InterfaceName
+   */
   protected CalcTsName() {
     if (this.Parent) {
       return `${this.Parent.ModuleName}.${this.InterfaceName}`;
@@ -41,9 +51,15 @@ export class StructObject extends Struct {
     }
   }
 
-  protected iContain(ts: Struct): boolean {
-    if (ts.Type === this.Type) {
-      const object = ts as StructObject;
+  /**
+   * 对象结构的包含运算
+   * 对象接口包含的条件为所有字段必须相同,并且字段类型满足包含的递归定义
+   * @param struct 目标结构
+   * @returns 是否包含
+   */
+  protected iContain(struct: Struct): boolean {
+    if (struct.Type === this.Type) {
+      const object = struct as StructObject;
       if (this.Fields.size === object.Fields.size) {
         return Array.from(object.Fields).every(([name, dstStruct]) => {
           const srcStruct = this.Fields.get(name);
