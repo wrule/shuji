@@ -109,6 +109,8 @@ export class StructObject extends Struct {
 
   /**
    * 对象结构的合并运算
+   * 对象结构的合并会在两个对象结构相似度大于等于0.3的时候发生
+   * 其会对于对象中每一个字段进行递归合并
    * @param struct 目标结构
    * @returns 合并产生的新结构
    */
