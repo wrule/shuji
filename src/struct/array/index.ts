@@ -30,21 +30,32 @@ export class StructArray extends Struct {
     return `${this.ElementStruct.TsName}[]`;
   }
 
-  protected iContain(ts: Struct): boolean {
-    if (ts.Type === this.Type) {
-      const array = ts as StructArray;
+  /**
+   * 数组结构的包含判断
+   * 数组结构只有可能包含数组结构或元组结构
+   * @param struct 目标结构
+   * @returns 是否包含
+   */
+  protected iContain(struct: Struct): boolean {
+    if (struct.Type === this.Type) {
+      const array = struct as StructArray;
       return this.ElementStruct.Contain(array.ElementStruct);
-    } else if (ts.Type === StructType.Tuple) {
-      const tuple = ts as StructTuple;
-      return tuple.ElementsStruct.every((struct) => this.ElementStruct.Contain(struct));
+    } else if (struct.Type === StructType.Tuple) {
+      const tuple = struct as StructTuple;
+      return tuple.ElementsStruct.every((structDst) => this.ElementStruct.Contain(structDst));
     } else {
       return false;
     }
   }
 
-  protected iCompare(ts: Struct): number {
-    if (ts.Type === this.Type) {
-      const array = ts as StructArray;
+  /**
+   * 数组结构的比较相似度
+   * @param struct 目标结构
+   * @returns 相似度
+   */
+  protected iCompare(struct: Struct): number {
+    if (struct.Type === this.Type) {
+      const array = struct as StructArray;
       return this.ElementStruct.Compare(array.ElementStruct);
     } else {
       return 0;
