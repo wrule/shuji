@@ -62,19 +62,25 @@ export class StructArray extends Struct {
     }
   }
 
-  protected iMerge(ts: Struct): Struct {
-    if (ts.Type === this.Type) {
-      const array = ts as StructArray;
+  /**
+   * 数组结构的合并
+   * 数据结构只能与数组结构或元组结构合并
+   * @param struct 目标结构
+   * @returns 合并生成的新结构
+   */
+  protected iMerge(struct: Struct): Struct {
+    if (struct.Type === this.Type) {
+      const array = struct as StructArray;
       return new StructArray(this.ElementStruct.Merge(array.ElementStruct), this.Desc);
-    } else if (ts.Type === StructType.Tuple) {
-      const tuple = ts as StructTuple;
+    } else if (struct.Type === StructType.Tuple) {
+      const tuple = struct as StructTuple;
       let result = this.ElementStruct;
-      tuple.ElementsStruct.forEach((struct) => {
-        result = result.Merge(struct);
+      tuple.ElementsStruct.forEach((structDst) => {
+        result = result.Merge(structDst);
       });
       return new StructArray(result, this.Desc);
     } else {
-      return new StructUnion([this, ts], this.Desc);
+      return new StructUnion([this, struct], this.Desc);
     }
   }
 
@@ -112,6 +118,6 @@ export class StructArray extends Struct {
     desc: string,
   ) {
     super(desc);
-    this.UpdateDesc(desc);
+    this.iUpdateDesc(desc);
   }
 }
