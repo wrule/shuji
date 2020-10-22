@@ -2,7 +2,7 @@ import { StructType } from './type';
 import { StructUnion } from './union';
 import { StructObject } from './object';
 import { HashCache } from '../cache/cache/hash';
-import { Hash } from '../utils';
+import { Hash } from '../utils/hash';
 import * as MyJSON from '../utils/json';
 import { IJsObj } from './IJsObj';
 import { cacheCompareRunner, cacheContainRunner } from './cacheRunner';
