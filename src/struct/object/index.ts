@@ -202,15 +202,6 @@ ${
     return `I${this.ModuleName}`;
   }
 
-  /**
-   * 初始化字段结构的父结构
-   */
-  protected initFieldsParent() {
-    Array.from(this.Fields).map(([name, struct]) => {
-      struct.UpdateParent(this);
-    });
-  }
-
   public ToJs(): IJsObj {
     return {
       desc: this.Desc,
@@ -232,12 +223,20 @@ ${
     return new StructObject(fieldsMap, jsObj.desc);
   }
 
+  /**
+   * 初始化字段结构的父结构
+   */
+  protected initFieldsParent() {
+    Array.from(this.Fields).map(([name, struct]) => {
+      struct.UpdateParent(this);
+    });
+  }
+
   public constructor(
     private fields: Map<string, Struct>,
     desc: string,
   ) {
     super(desc);
-    this.UpdateDesc(desc);
     this.initFieldsParent();
   }
 }
