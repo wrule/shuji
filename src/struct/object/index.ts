@@ -77,9 +77,15 @@ export class StructObject extends Struct {
     }
   }
 
-  protected iCompare(ts: Struct): number {
-    if (ts.Type === this.Type) {
-      const object = ts as StructObject;
+  /**
+   * 对象结构的比较运算
+   * 对象结构相似度是共同字段相似度的平均数的递归定义
+   * @param struct 目标结构
+   * @returns 相似度
+   */
+  protected iCompare(struct: Struct): number {
+    if (struct.Type === this.Type) {
+      const object = struct as StructObject;
       const srcKeys = Array.from(this.Fields.keys());
       const bothKeys = srcKeys.filter((key) => object.Fields.has(key));
       if (bothKeys.length > 0) {
@@ -101,9 +107,14 @@ export class StructObject extends Struct {
     }
   }
 
-  protected iMerge(ts: Struct): Struct {
-    if (ts.Type === this.Type && this.Compare(ts) >= 0.3) {
-      const object = ts as StructObject;
+  /**
+   * 对象结构的合并运算
+   * @param struct 目标结构
+   * @returns 合并产生的新结构
+   */
+  protected iMerge(struct: Struct): Struct {
+    if (struct.Type === this.Type && this.Compare(struct) >= 0.3) {
+      const object = struct as StructObject;
       const allKeys = Array.from(new Set(
         Array.from(this.Fields.keys())
           .concat(Array.from(object.Fields.keys()))
@@ -117,7 +128,7 @@ export class StructObject extends Struct {
         })
       ), this.Desc);
     } else {
-      return new StructUnion([this, ts], this.Desc);
+      return new StructUnion([this, struct], this.Desc);
     }
   }
 
