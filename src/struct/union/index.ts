@@ -111,6 +111,7 @@ export class StructUnion extends Struct {
   protected iUpdateDesc(desc: string) {
     this.Members.forEach((struct, index) => {
       struct.UpdateDesc(`${desc}UM${index + 1}`);
+      // struct.UpdateDesc(`${desc}UM${struct.Hash.slice(0, 8)}`);
     });
   }
 
