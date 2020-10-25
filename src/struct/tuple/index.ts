@@ -8,7 +8,7 @@ import { FromJsHub } from '../fromJs';
 
 export class StructTuple extends Struct {
   /**
-   * 元组元素的结构
+   * 元组元素的结构列表
    */
   public get ElementsStruct() {
     return this.elementsStruct;
@@ -23,7 +23,10 @@ export class StructTuple extends Struct {
   }
 
   protected CalcHash() {
-    return this.cacheHash(`${this.Type}@` + this.ElementsStruct.map((struct) => struct.Hash).join(','));
+    return this.cacheHash(
+      `${this.Type}@` +
+      this.ElementsStruct.map((struct) => struct.Hash).join(',')
+    );
   }
 
   protected CalcTsName() {
@@ -33,12 +36,18 @@ export class StructTuple extends Struct {
     return `[${inner}]`;
   }
 
-  protected iContain(ts: Struct): boolean {
-    if (ts.Type === this.Type) {
-      const tuple = ts as StructTuple;
-      if (this.ElementsStruct.length >= tuple.ElementsStruct.length) {
+  /**
+   * 元组结构的包含
+   * 元组结构只可能包含长度相等的元组结构
+   * @param struct 目标结构
+   * @returns 是否包含
+   */
+  protected iContain(struct: Struct): boolean {
+    if (struct.Type === this.Type) {
+      const tuple = struct as StructTuple;
+      if (this.ElementsStruct.length === tuple.ElementsStruct.length) {
         return tuple.ElementsStruct
-          .every((struct, index) => this.ElementsStruct[index].Contain(struct));
+          .every((structDst, index) => this.ElementsStruct[index].Contain(structDst));
       } else {
         return false;
       }
@@ -47,17 +56,23 @@ export class StructTuple extends Struct {
     }
   }
 
-  protected iCompare(ts: Struct): number {
-    if (ts.Type === this.Type) {
-      const tuple = ts as StructTuple;
+  /**
+   * 元组结构的相似度比较
+   * 比较方法为最小长度相似区域比较平均值乘以通过率
+   * @param struct 目标结构
+   * @returns 相似度
+   */
+  protected iCompare(struct: Struct): number {
+    if (struct.Type === this.Type) {
+      const tuple = struct as StructTuple;
       const srcCount = this.ElementsStruct.length;
       const dstCount = tuple.ElementsStruct.length;
       const smallStructs = srcCount < dstCount ? this.ElementsStruct : tuple.ElementsStruct;
       const bigStructs = srcCount >= dstCount ? this.ElementsStruct : tuple.ElementsStruct;
       const passRate = smallStructs.length / bigStructs.length;
       let sum = 0;
-      smallStructs.forEach((struct, index) => {
-        sum += struct.Compare(bigStructs[index]);
+      smallStructs.forEach((structSmall, index) => {
+        sum += structSmall.Compare(bigStructs[index]);
       });
       return (sum / smallStructs.length) * passRate;
     } else {
@@ -65,6 +80,11 @@ export class StructTuple extends Struct {
     }
   }
 
+  /**
+   * 元组结构的合并
+   * @param ts 
+   * @returns 合并产生的新的结构
+   */
   protected iMerge(ts: Struct): Struct {
     if (ts.Type === this.Type) {
       const tuple = ts as StructTuple;
