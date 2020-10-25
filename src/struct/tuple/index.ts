@@ -82,28 +82,28 @@ export class StructTuple extends Struct {
 
   /**
    * 元组结构的合并
-   * @param ts 
+   * @param struct 目标结构
    * @returns 合并产生的新的结构
    */
-  protected iMerge(ts: Struct): Struct {
-    if (ts.Type === this.Type) {
-      const tuple = ts as StructTuple;
+  protected iMerge(struct: Struct): Struct {
+    if (struct.Type === this.Type) {
+      const tuple = struct as StructTuple;
       const srcCount = this.ElementsStruct.length;
       const dstCount = tuple.ElementsStruct.length;
       const smallStructs = srcCount < dstCount ? this.ElementsStruct : tuple.ElementsStruct;
       const bigStructs = srcCount >= dstCount ? this.ElementsStruct : tuple.ElementsStruct;
       return new StructTuple(
-        bigStructs.map((struct, index) => {
-          const undefinedStruct = new StructUndefined(smallStructs[index].Desc);
-          const dstStruct = smallStructs[index] || undefinedStruct;
-          return struct.Merge(dstStruct);
+        bigStructs.map((structSrc, index) => {
+          const structDst = smallStructs[index] || new StructUndefined(structSrc.Desc);
+          return structSrc.Merge(structDst);
         }),
         this.Desc,
       );
-    } else if (ts.Type === StructType.Array) {
-      return ts.Merge(this);
+    } else if (struct.Type === StructType.Array) {
+      // 数组则应用反向合并
+      return struct.Merge(this);
     } else {
-      return new StructUnion([this, ts], this.Desc);
+      return new StructUnion([this, struct], this.Desc);
     }
   }
 
