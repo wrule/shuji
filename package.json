@@ -1,5 +1,5 @@
 {
-  "name": "shuji",
+  "name": "@wrule/shuji",
   "version": "1.0.0",
   "description": "书记",
   "main": "dist/index.js",
