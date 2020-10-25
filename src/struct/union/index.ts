@@ -37,22 +37,36 @@ export class StructUnion extends Struct {
     return `(${inner})`;
   }
 
-  protected iContain(ts: Struct): boolean {
-    if (ts.Type === this.Type) {
-      const union = ts as StructUnion;
-      return union.Members.every((struct) => this.Contain(struct));
+  /**
+   * 联合结构的包含
+   * 联合结构内有任意一个结构包含非联合结构即可视为包含
+   * 目标联合结构内的所有结构被本联合包含可视为联合之间的包含
+   * @param struct 目标结构
+   * @returns 是否包含
+   */
+  protected iContain(struct: Struct): boolean {
+    if (struct.Type === this.Type) {
+      const union = struct as StructUnion;
+      return union.Members.every((structDst) => this.Contain(structDst));
     } else {
-      return this.Members.some((struct) => struct.Contain(ts));
+      return this.Members.some((structSrc) => structSrc.Contain(struct));
     }
   }
 
-  protected iCompare(ts: Struct): number {
+  /**
+   * 联合结构的比较
+   * 对于非联合结构,相似度取联合结构内所有结构和目标结构相比相似度最大的一个
+   * 对于联合结构,相似度取目标联合结构内所有结构和本联合结构相比相似度最大的一个(上述递归定义)
+   * @param struct 目标结构
+   * @returns 相似度
+   */
+  protected iCompare(struct: Struct): number {
     let nums: number[] = [];
-    if (ts.Type === this.Type) {
-      const union = ts as StructUnion;
-      nums = union.Members.map((struct) => this.Compare(struct));
+    if (struct.Type === this.Type) {
+      const union = struct as StructUnion;
+      nums = union.Members.map((structDst) => this.Compare(structDst));
     } else {
-      nums = this.Members.map((struct) => struct.Compare(ts));
+      nums = this.Members.map((structSrc) => structSrc.Compare(struct));
     }
     if (nums.length > 0) {
       return Math.max(...nums);
@@ -138,6 +152,6 @@ ${
     desc: string,
   ) {
     super(desc);
-    this.UpdateDesc(desc);
+    this.iUpdateDesc(desc);
   }
 }
