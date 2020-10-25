@@ -158,6 +158,6 @@ ${
     desc: string,
   ) {
     super(desc);
-    this.UpdateDesc(desc);
+    this.iUpdateDesc(desc);
   }
 }
