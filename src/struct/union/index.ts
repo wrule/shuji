@@ -75,28 +75,35 @@ export class StructUnion extends Struct {
     }
   }
 
-  protected iMerge(ts: Struct): Struct {
+  /**
+   * 联合结构合并
+   * @param struct 目标结构
+   * @returns 合并生成的结构
+   */
+  protected iMerge(struct: Struct): Struct {
     if (this.Members.length < 1) {
-      return ts;
+      return struct;
     }
-    if (ts.Type === this.Type) {
-      const union = ts as StructUnion;
+    if (struct.Type === this.Type) {
+      // 拆开目标联合成员,递归合并
+      const union = struct as StructUnion;
       let result: Struct = this;
-      union.Members.forEach((struct) => {
-        result = result.Merge(struct);
+      union.Members.forEach((structDst) => {
+        result = result.Merge(structDst);
       });
       return result;
     } else {
-      const nums = this.Members.map((struct) => struct.Compare(ts));
+      // 寻找到最相似的结构,若相似度大于阈值,则执行结构合并,否则执行追加联合成员合并
+      const nums = this.Members.map((structSrc) => structSrc.Compare(struct));
       const maxNum = Math.max(...nums);
       if (maxNum >= 0.3) {
         const maxIndex = nums.findIndex((num) => num === maxNum);
         const newMembers = this.Members.slice(0);
-        const newStruct = newMembers[maxIndex].Merge(ts);
+        const newStruct = newMembers[maxIndex].Merge(struct);
         newMembers.splice(maxIndex, 1, newStruct);
         return new StructUnion(newMembers, this.Desc);
       } else {
-        return new StructUnion(this.Members.concat([ts]), this.Desc);
+        return new StructUnion(this.Members.concat([struct]), this.Desc);
       }
     }
   }
