@@ -34,6 +34,7 @@ function InferArray(value: JsValue, desc: string): Struct {
       const union = result as StructUnion;
       const structCount = union.Members.length;
       const arrayLength = value.ArrayValues.length;
+      // Tuple或Array的阈值界限
       if (arrayLength / structCount <= 3) {
         return new StructTuple(structs, desc);
       } else {
