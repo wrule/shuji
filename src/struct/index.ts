@@ -132,7 +132,12 @@ export abstract class Struct {
    * 可用于测试的TypeScript定义代码(文本形式)
    */
   public get TsTestCode() {
-    return `${this.TsCode}\n\nlet a: ${this.TsName} = { } as any;\n`;
+    return `//#region ${this.TsName}
+${this.TsCode}
+
+\\\\ let a: ${this.TsName} = { } as any;
+//#endregion
+`;
   }
   //#endregion
 
