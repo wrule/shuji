@@ -1,6 +1,6 @@
 {
   "name": "@wrule/shuji",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "书记",
   "main": "dist/index.js",
   "scripts": {
