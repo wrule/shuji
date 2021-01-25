@@ -5,7 +5,8 @@ export class LocalCache implements ICache {
   public GetValue(key: string) {
     const result = cacheMap.get(key);
     if (result !== undefined) {
-      return result;
+      // return result;
+      return null;
     } else {
       return null;
     }
