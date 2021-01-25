@@ -135,7 +135,7 @@ export abstract class Struct {
     return `//#region ${this.TsName}
 ${this.TsCode}
 
-\\\\ let a: ${this.TsName} = { } as any;
+// let a: ${this.TsName} = { } as any;
 //#endregion
 `;
   }
